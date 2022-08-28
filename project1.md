@@ -6,3 +6,5 @@ LAMP (Linux, Apache, MySQL, PHP or Python, or Perl)
 LEMP (Linux, Nginx, MySQL, PHP or Python, or Perl)
 MERN (MongoDB, ExpressJS, ReactJS, NodeJS)
 MEAN (MongoDB, ExpressJS, AngularJS, NodeJS
+#STEP 4 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
+file:///home/tosinaluko/Pictures/Screenshots/Screenshot%20from%202022-08-28%2013-48-26.png
