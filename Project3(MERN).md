@@ -42,7 +42,14 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
 
 ![Screenshot from 2022-08-29 20-20-51](https://user-images.githubusercontent.com/110517150/187281562-10bb42b0-cf0e-4ba4-8d7b-012f5a22180b.png)
 
-8) 
+8) creating a post request for API
+
+![Screenshot from 2022-08-29 21-15-41](https://user-images.githubusercontent.com/110517150/187293224-019ea35a-bf98-43d0-9dc7-e3c38677f624.png)
+
+9) Getting a request from API
+
+![Screenshot from 2022-08-29 21-27-31](https://user-images.githubusercontent.com/110517150/187292286-08303b74-217f-49b2-a517-6bb89e3a1d81.png)
+
 
 
 
