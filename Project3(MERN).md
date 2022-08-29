@@ -67,3 +67,7 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
 ![Screenshot from 2022-08-29 23-41-25](https://user-images.githubusercontent.com/110517150/187311484-ef892942-4466-4b9c-bb6b-24a820ff0f42.png)
 
 3) Creating the React Components
+![Screenshot from 2022-08-30 00-02-51](https://user-images.githubusercontent.com/110517150/187313818-9943c43d-4c4c-4a67-a48c-4b944ea2f471.png)
+
+project completed
+![Screenshot from 2022-08-30 00-04-16](https://user-images.githubusercontent.com/110517150/187313927-0df5a4cd-253f-4348-a56b-99d40d06f291.png)
