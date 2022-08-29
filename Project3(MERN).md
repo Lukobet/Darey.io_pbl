@@ -12,7 +12,7 @@ Node.js: A JavaScript runtime environment. It is used to run JavaScript on a mac
 
 In this project i am to deploy a simple To-Do application that creates To-Do lists by:
 
-*Configuring Backend
+* CONFIGURNG BACKEND
 1) Updating and ugrading Ubuntu using: sudo apt update && sudo apt upgrade
 
 ![Screenshot from 2022-08-29 17-30-57](https://user-images.githubusercontent.com/110517150/187282687-cc946c93-e56d-4eae-8af6-21e58fb07dc5.png)
@@ -50,6 +50,6 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
 
 ![Screenshot from 2022-08-29 21-27-31](https://user-images.githubusercontent.com/110517150/187292286-08303b74-217f-49b2-a517-6bb89e3a1d81.png)
 
-
-
+* CONFIGURING FRONTEND
+1) 
 
