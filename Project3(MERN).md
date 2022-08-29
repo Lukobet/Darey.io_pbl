@@ -62,3 +62,8 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
  problem resolved by rearranging the details in package.json
  
  ![Screenshot from 2022-08-29 23-30-54](https://user-images.githubusercontent.com/110517150/187310429-6c640e5c-02f9-4fe9-8263-c36c2eedb564.png)
+
+
+![Screenshot from 2022-08-29 23-41-25](https://user-images.githubusercontent.com/110517150/187311484-ef892942-4466-4b9c-bb6b-24a820ff0f42.png)
+
+3) Creating the React Components
