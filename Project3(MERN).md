@@ -58,3 +58,7 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
 2) Problems encountered after creating proxy in package.json
 
 ![Screenshot from 2022-08-29 22-06-12](https://user-images.githubusercontent.com/110517150/187299267-e6ffdb68-61c4-4793-b5bb-dc0df7084a5f.png)
+
+ problem resolved by rearranging the details in package.json
+ 
+ ![Screenshot from 2022-08-29 23-30-54](https://user-images.githubusercontent.com/110517150/187310429-6c640e5c-02f9-4fe9-8263-c36c2eedb564.png)
