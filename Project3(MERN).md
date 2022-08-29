@@ -51,5 +51,10 @@ In this project i am to deploy a simple To-Do application that creates To-Do lis
 ![Screenshot from 2022-08-29 21-27-31](https://user-images.githubusercontent.com/110517150/187292286-08303b74-217f-49b2-a517-6bb89e3a1d81.png)
 
 * CONFIGURING FRONTEND
-1) 
+1) installation of React App
 
+![Screenshot from 2022-08-29 21-40-30](https://user-images.githubusercontent.com/110517150/187294931-03145d84-ec4a-4651-92da-f0b7348e0ce4.png)
+
+2) Problems encountered after creating proxy in package.json
+
+![Screenshot from 2022-08-29 22-06-12](https://user-images.githubusercontent.com/110517150/187299267-e6ffdb68-61c4-4793-b5bb-dc0df7084a5f.png)
