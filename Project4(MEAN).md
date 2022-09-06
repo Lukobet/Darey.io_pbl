@@ -6,7 +6,7 @@ MEAN Stack is a combination of following components:
 * Angular (Front-end application framework) – Handles Client and Server Requests
 * Node.js (JavaScript runtime environment) – Accepts requests and displays results to end user
 
-Task 1 : Installation of Nodejs, Mongodb and 
+Task 1 : Installation of Nodejs, Mongodb 
 1. Ec2 instance connect
 ![Screenshot from 2022-09-05 22-50-11](https://user-images.githubusercontent.com/110517150/188515321-2d06130d-2e3f-4ee5-8cc8-bafd142ce590.png)
 
@@ -20,4 +20,13 @@ I created another instance with Ubuntu 20.04 image and ran the following command
  * sudo apt-get update
  * sudo apt-get install -y mongodb-org   and it worked
  ![Screenshot from 2022-09-05 23-55-31](https://user-images.githubusercontent.com/110517150/188518770-3aed2603-95d1-4af7-8177-dde7717f1f62.png)
+  
+  Task 2: Installation of Express and set up to the route
+  * server up and running
+  ![Screenshot from 2022-09-06 12-34-00](https://user-images.githubusercontent.com/110517150/188626031-22cba187-4be6-4abd-873a-a43b27a26a01.png)
+  
+  Running curl on the terminal 
+  ![Screenshot from 2022-09-06 12-41-36](https://user-images.githubusercontent.com/110517150/188626817-dace3c54-c281-41d5-a930-131155b82be2.png)
 
+Final result
+![Screenshot from 2022-09-06 12-44-12](https://user-images.githubusercontent.com/110517150/188627319-3bfb0b49-2edc-4fdf-b11a-9aeae68b4750.png)
