@@ -14,15 +14,33 @@ Installing the Nginx Web Server
 
 ![Screenshot from 2022-08-28 18-49-50](https://user-images.githubusercontent.com/110517150/188638510-defec68b-9430-4820-a034-16f2f1d82fcf.png)
 
+The welcome note
+
 ![Screenshot from 2022-08-28 18-51-17](https://user-images.githubusercontent.com/110517150/188638514-71698388-701d-4da0-ac4e-34f74956fcfb.png)
+
+Installing Mysql with
+sudo apt install mysql-server
 
 ![Screenshot from 2022-08-28 18-55-25](https://user-images.githubusercontent.com/110517150/188638516-7c14f7cb-00d2-41d5-85d4-14f8184a9be0.png)
 
+Installing PHP
+sudo apt install php-fpm php-mysql
+
 ![Screenshot from 2022-08-28 19-00-33](https://user-images.githubusercontent.com/110517150/188638520-ec6b6ec4-39e9-45b0-815e-8460db7fdc6b.png)
+
+# Configuring Nginx to Use PHP Processor
+After the creation of the website, i disabled default Nginx host and reload Nginx to apply the changes, the website turned to this:
 
 ![Screenshot from 2022-08-28 19-09-46](https://user-images.githubusercontent.com/110517150/188638526-c09631a4-7cd0-4db2-a826-876d509cba57.png)
 
+I had to create an index.html file using the following commands
+sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html
+And got this :
+
+
 ![Screenshot from 2022-08-28 19-12-35](https://user-images.githubusercontent.com/110517150/188638528-c71b6dd2-7d12-42da-a0e5-7e3c5f775ee5.png)
+
+Testing PHP with Nginx and getting the final result
 
 ![Screenshot from 2022-08-28 19-13-46](https://user-images.githubusercontent.com/110517150/188638536-bb7884c7-053c-4d59-84a7-55b2d9bf95f0.png)
 
