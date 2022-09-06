@@ -30,3 +30,4 @@ I created another instance with Ubuntu 20.04 image and ran the following command
 
 Final result
 ![Screenshot from 2022-09-06 12-44-12](https://user-images.githubusercontent.com/110517150/188627319-3bfb0b49-2edc-4fdf-b11a-9aeae68b4750.png)
+![Screenshot from 2022-09-06 13-25-30](https://user-images.githubusercontent.com/110517150/188634860-2aa6aacf-def5-41f3-96c7-4546170d2614.png)
