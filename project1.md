@@ -10,11 +10,18 @@ MEAN (MongoDB, ExpressJS, AngularJS, NodeJS
 STEP 1. INSTANCE CREATION AND CONNECTION
 ![Screenshot from 2022-08-28 15-08-38](https://user-images.githubusercontent.com/110517150/188636550-7e94a85b-f0da-47f8-a660-3efb5a28ac23.png)
 
+
 After the installation of APACHE, MYSQL AND PHP, i have the following proof for review:
 CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
-![Screenshot from 2022-08-28 13-48-26](https://user-images.githubusercontent.com/110517150/188636864-59424584-ea5b-4b5c-b926-d95a92f71ec1.png)
+
 ![Screenshot from 2022-08-28 13-48-39](https://user-images.githubusercontent.com/110517150/188636878-6dc53d63-9726-4a4e-b928-6e11cbaee5e5.png)
+
+
 ![Screenshot from 2022-08-28 13-49-00](https://user-images.githubusercontent.com/110517150/188636886-882a8eaa-2485-4392-9d7f-d2d690507b67.png)
+
+
+![Screenshot from 2022-08-28 13-48-26](https://user-images.githubusercontent.com/110517150/188636864-59424584-ea5b-4b5c-b926-d95a92f71ec1.png)
+
 
 final result 
 ![Screenshot from 2022-08-28 13-46-49](https://user-images.githubusercontent.com/110517150/188637334-c848fd12-2c48-47a3-a71f-dea6c9bdbf98.png)
