@@ -48,16 +48,24 @@ Testing PHP with Nginx and getting the final result
 
 ![Screenshot from 2022-08-28 19-17-18-1](https://user-images.githubusercontent.com/110517150/188638544-b2176c5d-10b7-4746-ab6b-a82a0f561da7.png)
 
+Retrieving data from MySQL database with PHP
+
 ![Screenshot from 2022-08-28 19-21-59](https://user-images.githubusercontent.com/110517150/188638546-69c9c83a-d11d-4a3a-b0cf-edf46e943753.png)
 
 ![Screenshot from 2022-08-28 19-24-22](https://user-images.githubusercontent.com/110517150/188638555-1acb88c9-d7ca-4705-b182-fce26b1b4f82.png)
+
+I encountered some difficulties at the stage of to -do list creation but was able to resolve it:
 
 ![Screenshot from 2022-08-28 19-42-25](https://user-images.githubusercontent.com/110517150/188638563-883f5b1d-1057-4a1a-b5c7-0e0580f5d2c9.png)
 
 ![Screenshot from 2022-08-28 19-46-35](https://user-images.githubusercontent.com/110517150/188638570-ef8d35e9-7cb4-4273-a929-b4bf2a199e1a.png)
 
+My to do list script:
+
 ![Screenshot from 2022-08-28 19-48-36](https://user-images.githubusercontent.com/110517150/188638572-e543e09e-f5da-477d-81c1-808c9cb71290.png)
 
 ![Screenshot from 2022-08-28 19-50-51](https://user-images.githubusercontent.com/110517150/188638579-bf2f8c9d-e60f-4021-86ff-32fad2d1023a.png)
+
+My to do list on the website:
 
 ![Screenshot from 2022-08-28 19-50-51-1](https://user-images.githubusercontent.com/110517150/188638584-aeddc341-9219-41be-a322-abfaedd6cca0.png)
