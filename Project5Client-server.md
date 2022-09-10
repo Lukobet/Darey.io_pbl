@@ -27,7 +27,14 @@ Task 1:
  
  ![Screenshot from 2022-09-10 23-31-18](https://user-images.githubusercontent.com/110517150/189504014-3d65a3ba-939d-4a8a-853a-2c8add3a25a1.png)
  
- * Configuring MYSQL server to allow connection from remote hosts
+ * Configuring MYSQL server to allow connection from remote hosts by changing the bind address to 0.0.0.0
+ 
+ [Screenshot from 2022-09-11 00-00-30](https://user-images.githubusercontent.com/110517150/189504574-235e6d98-2147-413b-9694-a6e008871cb0.png)
+ 
+* Connecting remotely from the mysql client Linux Server to mysql server Database Engine without using SSH. 
+*
+
+ 
  
  
  
