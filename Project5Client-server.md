@@ -39,7 +39,7 @@ Task 1:
 Couldnt enter the mysql with sudo mysql, i had to use : 'mysql -u root -p'
 ![Screenshot from 2022-09-16 11-51-33](https://user-images.githubusercontent.com/110517150/190623353-61c3cf01-6a62-4ae1-9940-de465c868ab7.png)
 
-Creating a user from the remote user
+Creating a user for the remote user
 
 ![Screenshot from 2022-09-16 11-31-06](https://user-images.githubusercontent.com/110517150/190619766-ae081ada-4687-4d18-8901-1f0bb6308bc9.png)
 
