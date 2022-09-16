@@ -74,14 +74,22 @@ mounting
 
 ![Screenshot from 2022-09-16 16-36-16](https://user-images.githubusercontent.com/110517150/190676758-b38a59af-7774-4d31-8f3a-04f873d2a633.png)
 
+* ## Install WordPress and connect it to a remote MySQL database server. 
 
 Installing wordpress on Webserver EC2
-1. installing Apache and its dependencies
+1. Installing Apache and its dependencies
 
+![Screenshot from 2022-09-16 16-53-24](https://user-images.githubusercontent.com/110517150/190679860-abc4973e-3fa2-45ec-aec6-f192de5f6db5.png)
 
-2. Start Apache 
-3. Install PHP and its dependencies
-4. Download wordpress and copy wordpress to var/www/html
-5. Configure SELinux Policies
+installing Mysql on the Database server and enabling it
 
-* ## Install WordPress and connect it to a remote MySQL database server. 
+![Screenshot from 2022-09-16 17-27-38](https://user-images.githubusercontent.com/110517150/190686029-4dbb8714-e46a-48db-8500-6555bf21f0a1.png)
+
+Configure DB to work with WordPress
+![Screenshot from 2022-09-16 17-34-42](https://user-images.githubusercontent.com/110517150/190687233-5f99d333-f5f1-4ebd-b75a-c603d5db06c2.png)
+
+![Screenshot from 2022-09-16 17-34-42](https://user-images.githubusercontent.com/110517150/190687251-28aab342-48fb-4df6-9b93-bcb2585ed838.png)
+
+Configure WordPress to connect to remote database
+.
+![Screenshot from 2022-09-16 17-37-53](https://user-images.githubusercontent.com/110517150/190687805-260829e2-61cc-40e1-99ef-ae17ceb04c89.png)
