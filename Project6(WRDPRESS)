@@ -1,0 +1,87 @@
+# WEB SOLUTION WITH WORDPRESS
+
+In this project i am tasked to prepare storage infrastructure on two Linux servers and to implement a basic web solution using WordPress. 
+WordPress is a free and open-source content management system written in PHP and paired with MySQL or MariaDB as its backend Relational Database Management System (RDBMS).
+
+This Project consists of two parts:
+
+* ## Configure storage subsystem for Web and Database servers based on Linux OS. 
+ 1. Prepare a webserver and database server on EC2 using REDHAT as the Linux distribution.
+   
+   ![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/190659422-6ae7f2f5-88d1-4921-9fb0-07683dd9b990.png)
+
+ 2. Creating volumes and attaching to webserver EC2 instances
+    
+![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/190660712-60ad3af0-21ce-491d-ac17-c0cff5bf13fb.png)
+
+3. Partition configuration
+
+![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-bf392be32ba6.png)
+
+![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/190664147-c5ddc8df-249c-4081-80a5-758882d0f9e3.png)
+
+![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/190665272-44ed83f9-305d-480c-b574-b94dcb5a563a.png)
+
+![Screenshot from 2022-09-16 15-41-21](https://user-images.githubusercontent.com/110517150/190665581-32c41f38-204c-431c-a418-c646eb5a9e12.png)
+
+![Screenshot from 2022-09-16 15-45-05](https://user-images.githubusercontent.com/110517150/190666460-e5021e7f-ae76-459b-8316-a09c5ef392cd.png)
+
+To verify the entire setup
+
+![Screenshot from 2022-09-16 15-46-27](https://user-images.githubusercontent.com/110517150/190666688-cbcfda26-03ab-45b2-b473-a7ea39d40683.png)
+
+![Screenshot from 2022-09-16 15-47-30](https://user-images.githubusercontent.com/110517150/190666905-0e15003a-1726-4746-a02c-f7b6ccb85b56.png)
+
+
+4. Updating the '/ETC/FSTAB` file
+
+![Screenshot from 2022-09-16 16-01-09](https://user-images.githubusercontent.com/110517150/190669962-8243f35f-50c1-45dc-a47e-c5eb68ae2d82.png)
+
+![Screenshot from 2022-09-16 16-01-52](https://user-images.githubusercontent.com/110517150/190670146-2662364c-6ebd-406e-96a8-768bdde6e874.png)
+
+
+PREPARING THE DATABASE
+ 1. Create volumes for the Database server, attach the volumes to the Database server and connect to the server
+ 
+![Screenshot from 2022-09-16 16-07-18](https://user-images.githubusercontent.com/110517150/190671342-aa1021de-1e1e-4488-b09c-fd754719a3ce.png)
+
+![Screenshot from 2022-09-16 16-12-07](https://user-images.githubusercontent.com/110517150/190672285-76359a96-7247-47bf-b374-b3ce3f8454a8.png)
+
+![Screenshot from 2022-09-16 16-12-07](https://user-images.githubusercontent.com/110517150/190672167-6aa22205-c861-4119-aa94-98bd09a00bb1.png)
+
+![Screenshot from 2022-09-16 16-13-35](https://user-images.githubusercontent.com/110517150/190672663-13e49784-ed72-4283-8bde-d0daf75f2503.png)
+
+lvm2 installed
+
+![Screenshot from 2022-09-16 16-13-35](https://user-images.githubusercontent.com/110517150/190672695-d9c8e13d-5735-4bdd-a490-7f87defa4142.png)
+
+Physical volume created
+![Screenshot from 2022-09-16 16-16-40](https://user-images.githubusercontent.com/110517150/190673048-71cc6683-bbc7-4a14-9052-3fed12937efe.png)
+
+Volume group created
+
+![Screenshot from 2022-09-16 16-18-34](https://user-images.githubusercontent.com/110517150/190673448-d8a3d728-f9c6-4fcb-b4fd-f10dc688229d.png)
+
+logical volume created
+
+![Screenshot from 2022-09-16 16-24-02](https://user-images.githubusercontent.com/110517150/190674653-727dfd32-580e-4ca9-845c-9eb3a836ef28.png)
+
+![Screenshot from 2022-09-16 16-24-44](https://user-images.githubusercontent.com/110517150/190674727-797623be-53b8-413a-91c6-a56167aa46a5.png)
+
+mounting
+
+![Screenshot from 2022-09-16 16-28-51](https://user-images.githubusercontent.com/110517150/190675436-0b3b2554-d6c7-40f7-b638-64f556b57989.png)
+
+![Screenshot from 2022-09-16 16-36-16](https://user-images.githubusercontent.com/110517150/190676758-b38a59af-7774-4d31-8f3a-04f873d2a633.png)
+
+
+Installing wordpress on Webserver EC2
+1. installing Apache and its dependencies
+
+
+2. Start Apache 
+3. Install PHP and its dependencies
+4. Download wordpress and copy wordpress to var/www/html
+5. Configure SELinux Policies
+
+* ## Install WordPress and connect it to a remote MySQL database server. 
