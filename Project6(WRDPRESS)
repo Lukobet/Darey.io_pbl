@@ -1,34 +1,34 @@
-# WEB SOLUTION WITH WORDPRESS
+## WEB SOLUTION WITH WORDPRESS
 
 In this project i am tasked to prepare storage infrastructure on two Linux servers and to implement a basic web solution using WordPress. 
 WordPress is a free and open-source content management system written in PHP and paired with MySQL or MariaDB as its backend Relational Database Management System (RDBMS).
 
 This Project consists of two parts:
 
-* ## Configure storage subsystem for Web and Database servers based on Linux OS. 
+## Configure storage subsystem for Web and Database servers based on Linux OS. 
  1. Prepare a webserver and database server on EC2 using REDHAT as the Linux distribution.
    
-   ![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/190659422-6ae7f2f5-88d1-4921-9fb0-07683dd9b990.png)
+![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192043811-d389356b-ac28-425b-bee2-5bf4c2bad667.png)
 
- 2. Creating volumes and attaching to webserver EC2 instances
-    
-![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/190660712-60ad3af0-21ce-491d-ac17-c0cff5bf13fb.png)
+2. Creating volumes and attaching to webserver EC2 instances
 
+![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192044489-85d663c1-3e57-4fac-9ae6-1994b28351c8.png)
+  
 3. Partition configuration
 
 ![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-bf392be32ba6.png)
 
-![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/190664147-c5ddc8df-249c-4081-80a5-758882d0f9e3.png)
+![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192044621-63725a60-3353-45d5-b71c-301f3b729da5.png)
 
-![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/190665272-44ed83f9-305d-480c-b574-b94dcb5a563a.png)
+![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/192044688-4d6af576-fffc-438f-b997-1fbecfab9480.png)
 
-![Screenshot from 2022-09-16 15-41-21](https://user-images.githubusercontent.com/110517150/190665581-32c41f38-204c-431c-a418-c646eb5a9e12.png)
+![Screenshot from 2022-09-16 15-41-21](https://user-images.githubusercontent.com/110517150/192044726-f1faa213-cfdf-4346-8eeb-61dd21d939b1.png)
 
-![Screenshot from 2022-09-16 15-45-05](https://user-images.githubusercontent.com/110517150/190666460-e5021e7f-ae76-459b-8316-a09c5ef392cd.png)
+![Screenshot from 2022-09-16 15-45-05](https://user-images.githubusercontent.com/110517150/192044768-464e81dc-c57a-41f6-ae60-9415ae23519f.png)
 
 To verify the entire setup
 
-![Screenshot from 2022-09-16 15-46-27](https://user-images.githubusercontent.com/110517150/190666688-cbcfda26-03ab-45b2-b473-a7ea39d40683.png)
+![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/192044574-67a70b17-a565-43b9-8557-1651554f9903.png)
 
 ![Screenshot from 2022-09-16 15-47-30](https://user-images.githubusercontent.com/110517150/190666905-0e15003a-1726-4746-a02c-f7b6ccb85b56.png)
 
@@ -41,6 +41,7 @@ To verify the entire setup
 
 
 PREPARING THE DATABASE
+
  1. Create volumes for the Database server, attach the volumes to the Database server and connect to the server
  
 ![Screenshot from 2022-09-16 16-07-18](https://user-images.githubusercontent.com/110517150/190671342-aa1021de-1e1e-4488-b09c-fd754719a3ce.png)
