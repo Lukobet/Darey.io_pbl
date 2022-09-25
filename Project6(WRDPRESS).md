@@ -7,24 +7,17 @@ This Project consists of two parts:
 
 ## Configure storage subsystem for Web and Database servers based on Linux OS. 
  1. Prepare a webserver and database server on EC2 using REDHAT as the Linux distribution.
- 
-
-   
-![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192043811-d389356b-ac28-425b-bee2-
-5bf4c2bad667.png)
+ ![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192043811-d389356b-ac28-425b-bee2-5bf4c2bad667.png)
 
 2. Creating volumes and attaching to webserver EC2 instances
 
-![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192044489-85d663c1-3e57-4fac-9ae6-
-1994b28351c8.png)
+![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192044489-85d663c1-3e57-4fac-9ae6-1994b28351c8.png)
   
 3. Partition configuration
 
-![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-
-bf392be32ba6.png)
+![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-bf392be32ba6.png)
 
-![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192044621-63725a60-3353-45d5-b71c-
-301f3b729da5.png)
+![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192044621-63725a60-3353-45d5-b71c-301f3b729da5.png)
 
 ![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/192044688-4d6af576-fffc-438f-b997-1fbecfab9480.png)
 
@@ -41,10 +34,9 @@ To verify the entire setup
 
 4. Updating the '/ETC/FSTAB` file
 
-![Screenshot from 2022-09-16 16-01-09](https://user-images.githubusercontent.com/110517150/190669962-8243f35f-50c1-45dc-a47e-c5eb68ae2d82.png)
+![Screenshot from 2022-09-16 16-01-09](https://user-images.githubusercontent.com/110517150/192161201-92f5f278-2ab6-4d4f-a456-cdb02a9335fc.png)
 
-![Screenshot from 2022-09-16 16-01-52](https://user-images.githubusercontent.com/110517150/190670146-2662364c-6ebd-406e-96a8-768bdde6e874.png)
-
+![Screenshot from 2022-09-16 16-01-52](https://user-images.githubusercontent.com/110517150/192161203-e6140df9-4204-4f0e-9e45-d3d65d61a8d5.png)
 
 PREPARING THE DATABASE
 
@@ -100,3 +92,31 @@ Configure DB to work with WordPress
 Configure WordPress to connect to remote database
 .
 ![Screenshot from 2022-09-16 17-37-53](https://user-images.githubusercontent.com/110517150/190687805-260829e2-61cc-40e1-99ef-ae17ceb04c89.png)
+
+
+
+![Screenshot from 2022-09-25 21-05-11](https://user-images.githubusercontent.com/110517150/192163577-a9bfff96-f68f-431f-898c-16ff9db7609c.png)
+
+connecting to the database server from the webserver
+
+![Screenshot from 2022-09-25 21-21-08](https://user-images.githubusercontent.com/110517150/192163580-ef0bea4c-38d5-4aee-9e4a-0a1d6a3c7fc9.png)
+
+Configuring SELinux policies
+![Screenshot from 2022-09-25 21-25-04](https://user-images.githubusercontent.com/110517150/192163685-922f2aed-8310-44da-812d-251140311193.png)
+
+![Screenshot from 2022-09-25 21-27-24](https://user-images.githubusercontent.com/110517150/192163758-bc4829b5-5205-419b-bf9d-6f6e2dd90cfd.png)
+
+confirming if wordpress is working and setting up a profile
+![Screenshot from 2022-09-25 21-33-10](https://user-images.githubusercontent.com/110517150/192164389-b40110ee-9156-4c13-b146-a821ce18da1b.png)
+
+![Screenshot from 2022-09-25 21-33-32](https://user-images.githubusercontent.com/110517150/192164391-e45518b3-7f63-4abb-a3d1-c1753d3e6674.png)
+
+![Screenshot from 2022-09-25 21-36-02](https://user-images.githubusercontent.com/110517150/192164676-c00f0d6a-d0ec-42f5-a87b-c8d0b459c0cc.png)
+
+![Screenshot from 2022-09-25 21-41-28](https://user-images.githubusercontent.com/110517150/192164677-58b471f1-77fd-4fa6-b5c9-b4831cc387ad.png)
+
+
+
+
+username Tosin
+o%dA(!Q#y0s2lV1Y9N
