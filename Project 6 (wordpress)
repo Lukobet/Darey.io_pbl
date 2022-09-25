@@ -1,0 +1,26 @@
+## WEB SOLUTION WITH WORDPRESS
+
+In this project i am tasked to prepare storage infrastructure on two Linux servers and to implement a basic web solution using WordPress. 
+WordPress is a free and open-source content management system written in PHP and paired with MySQL or MariaDB as its backend 
+Relational Database Management System (RDBMS).
+
+This Project consists of two parts:
+ 
+ ## Configure storage subsystem for Web and Database servers based on Linux OS. 
+ 1. Prepare a webserver and database server on EC2 using REDHAT as the Linux distribution.
+ 
+ ![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192160691-7f6f12d0-28fb-4d28-bc18-c21bb79b645f.png)
+ 
+ 
+![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192160694-b61f44e3-8233-409c-8001-7af79cab9293.png)
+
+![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/192160695-24398cc7-d176-411d-a2b2-bbc42227ece0.png)
+
+![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192160696-69adc658-5091-45a3-aef2-c014feb1afe7.png)
+
+![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/192160697-a2529017-9ca2-43d7-bc5a-9084587ae6fc.png)
+
+![Screenshot from 2022-09-16 15-41-21](https://user-images.githubusercontent.com/110517150/192160699-6db9cd0f-094a-4217-b922-fc3e09661417.png)
+
+
+![Screenshot from 2022-09-16 15-45-05](https://user-images.githubusercontent.com/110517150/192160700-67ef1b45-a989-4205-ade8-4f6130cd985c.png)
