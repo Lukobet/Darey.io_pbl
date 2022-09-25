@@ -7,18 +7,24 @@ This Project consists of two parts:
 
 ## Configure storage subsystem for Web and Database servers based on Linux OS. 
  1. Prepare a webserver and database server on EC2 using REDHAT as the Linux distribution.
+ 
+
    
-![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192043811-d389356b-ac28-425b-bee2-5bf4c2bad667.png)
+![Screenshot from 2022-09-16 15-12-20](https://user-images.githubusercontent.com/110517150/192043811-d389356b-ac28-425b-bee2-
+5bf4c2bad667.png)
 
 2. Creating volumes and attaching to webserver EC2 instances
 
-![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192044489-85d663c1-3e57-4fac-9ae6-1994b28351c8.png)
+![Screenshot from 2022-09-16 15-18-06](https://user-images.githubusercontent.com/110517150/192044489-85d663c1-3e57-4fac-9ae6-
+1994b28351c8.png)
   
 3. Partition configuration
 
-![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-bf392be32ba6.png)
+![Screenshot from 2022-09-16 15-27-07](https://user-images.githubusercontent.com/110517150/190662568-47b7499b-aab3-4fb5-b805-
+bf392be32ba6.png)
 
-![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192044621-63725a60-3353-45d5-b71c-301f3b729da5.png)
+![Screenshot from 2022-09-16 15-34-18](https://user-images.githubusercontent.com/110517150/192044621-63725a60-3353-45d5-b71c-
+301f3b729da5.png)
 
 ![Screenshot from 2022-09-16 15-39-55](https://user-images.githubusercontent.com/110517150/192044688-4d6af576-fffc-438f-b997-1fbecfab9480.png)
 
