@@ -54,20 +54,11 @@ Formatting the disk as xfS
 Create mount points on /mnt directory for the logical volumes 
 ![Screenshot from 2022-09-27 12-01-11](https://user-images.githubusercontent.com/110517150/192508718-830e9ee2-3a82-473f-973d-8c427311a9e1.png)
 
-*Installing NFS Server and NFS utils
+*Installing NFS Server
 
+![Screenshot from 2022-09-27 15-10-16](https://user-images.githubusercontent.com/110517150/192549857-9469e33c-a5c5-46d7-bc65-ff03d63dbcf4.png)
 
-
-
-
-
-
-
-
-
-
-
-
+![Screenshot from 2022-09-27 15-29-11](https://user-images.githubusercontent.com/110517150/192554480-bc840a2a-cfe0-4e5e-96ae-c19f07dceeec.png)
 
 # Configuring the DBSERVER
 ![Screenshot from 2022-09-27 12-26-37](https://user-images.githubusercontent.com/110517150/192513413-cf395d67-185c-442a-9017-1f0281842d0b.png)
@@ -78,5 +69,33 @@ Grant permission to webaccess user on tooling database
 ![Screenshot from 2022-09-27 12-40-45](https://user-images.githubusercontent.com/110517150/192515935-2d767e72-0d70-4593-aeb8-d89a8e5d7620.png)
 
 
+# Preparing the Webservers
+*Mounted /var/www/ and target the NFS server’s export for apps
 
+![Screenshot from 2022-09-27 17-22-37](https://user-images.githubusercontent.com/110517150/192581390-e629544a-d386-4c9a-8ced-03897c164a30.png)
+
+*Installing apache on the 3 webservers
+![Screenshot from 2022-09-27 17-19-42](https://user-images.githubusercontent.com/110517150/192580744-634b86f2-adf0-4dfc-bdf8-a8f12e755ac9.png)
+![Screenshot from 2022-09-27 17-19-52](https://user-images.githubusercontent.com/110517150/192580765-fe0be780-f3c5-48d3-bd16-db1af493b1b8.png)
+![Screenshot from 2022-09-27 17-19-52](https://user-images.githubusercontent.com/110517150/192580789-ca58126b-d854-4e70-a7e8-7b00a5a89c1d.png)
+
+
+*Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps.
+
+![Screenshot from 2022-09-27 17-26-10](https://user-images.githubusercontent.com/110517150/192582136-8c41676e-d09b-4fba-b1a8-e823e0c46547.png)
+![Screenshot from 2022-09-27 17-26-04](https://user-images.githubusercontent.com/110517150/192582165-eb7c9602-ac5b-41d2-9113-809add8bb0f1.png)
+
+*Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. 
+
+![Screenshot from 2022-09-27 17-33-43](https://user-images.githubusercontent.com/110517150/192584304-b120807c-afff-4121-8e75-38bf60e85d14.png)
+![Screenshot from 2022-09-27 17-33-34](https://user-images.githubusercontent.com/110517150/192584337-5a1d82ef-9229-46ff-b45d-f35d92fb6da0.png)
+![Screenshot from 2022-09-27 17-33-27](https://user-images.githubusercontent.com/110517150/192584361-d6b852d9-ad8d-4178-a82d-99bda0cf414f.png)
+
+*Fork the tooling source code from *Darey.io Github Account*
+
+![Screenshot from 2022-09-27 17-44-23](https://user-images.githubusercontent.com/110517150/192586414-a9fbb356-8ffb-4d44-b386-4409d3fb28e1.png)
+
+Deploy the tooling website’s code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
+
+![Screenshot from 2022-09-27 17-48-16](https://user-images.githubusercontent.com/110517150/192587195-caef2e1e-5ceb-4f2f-8f10-33bda1bdcb78.png)
 
