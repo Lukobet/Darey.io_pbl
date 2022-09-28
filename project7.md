@@ -5,7 +5,7 @@ This a single DevOps Tooling Solution that will consist of the following compone
 
 * Infrastructure: AWS 
 * Webserver Linux: Red Hat Enterprise Linux 8
-* Database Server: Ubuntu 20.04 + MySQL
+* Database Server: Ubuntu 22.04 + MySQL
 * Storage Server: Red Hat Enterprise Linux 8 + NFS Server
 * Programming Language: PHP
 * Code Repository: GitHub
@@ -99,3 +99,12 @@ Deploy the tooling website’s code to the Webserver. Ensure that the html folde
 
 ![Screenshot from 2022-09-27 17-48-16](https://user-images.githubusercontent.com/110517150/192587195-caef2e1e-5ceb-4f2f-8f10-33bda1bdcb78.png)
 
+![Screenshot from 2022-09-28 12-00-03](https://user-images.githubusercontent.com/110517150/192762742-c9e02ddd-1869-4bb9-9265-424c1a597548.png)
+
+![Screenshot from 2022-09-28 12-02-58](https://user-images.githubusercontent.com/110517150/192763297-a35f4b02-830a-4c14-a6f9-531e18c9d461.png)
+![Screenshot from 2022-09-28 12-02-58](https://user-images.githubusercontent.com/110517150/192763322-1cc9ec69-294e-404d-a38a-1d8072d9566d.png)
+
+![Screenshot from 2022-09-28 12-05-10](https://user-images.githubusercontent.com/110517150/192763683-f82c82a7-7097-4ccf-8908-d0f033d3ac39.png)
+
+# END GOAL
+![Screenshot from 2022-09-28 12-23-38](https://user-images.githubusercontent.com/110517150/192766890-372d788f-e38e-4014-a356-d452ec733d47.png)
