@@ -32,7 +32,10 @@ The two Webservers receiving requests
 
 *Configure Local DNS Names Resolution
 ![Screenshot from 2022-10-05 13-59-40](https://user-images.githubusercontent.com/110517150/194066377-c26aab31-090c-49b2-a09b-1f52255c4cb8.png)
-![Screenshot from 2022-10-05 13-59-40](https://user-images.githubusercontent.com/110517150/194066401-7c131fb0-f3cf-4d36-8ed9-0735052ae7d2.png)
+
+![Screenshot from 2022-10-05 14-09-31](https://user-images.githubusercontent.com/110517150/194068210-7f014b5f-228d-46b7-8f27-434c5eef4a64.png)
+
+Trying to curl my Web Servers from Load Balancer locally using `curl http://Web1` or `curl http://Web2` it brough the html version
 
 ![Screenshot from 2022-10-05 13-56-18](https://user-images.githubusercontent.com/110517150/194065529-98d8ec39-fd4b-4ce8-8b76-c9fb3bd97263.png)
 ![Screenshot from 2022-10-05 13-56-39](https://user-images.githubusercontent.com/110517150/194065621-9744d89d-089e-4418-85fc-1ff995fd4d5c.png)
