@@ -14,9 +14,9 @@ Retrieving password for Jenkins
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
-![Screenshot from 2022-10-18 23-51-14](https://user-images.githubusercontent.com/110517150/196560088-ac005bcb-30b4-4e67-97f1-4d4f062394ac.png)
-
 ![Screenshot from 2022-10-18 23-51-14](https://user-images.githubusercontent.com/110517150/196560100-0734f9bf-0181-4863-bb67-102198293a1c.png)
+
+![Screenshot from 2022-10-18 23-54-11](https://user-images.githubusercontent.com/110517150/196567373-de38a577-4b8c-4ba8-b7a4-b2dbc9a95483.png)
 
 # Task 2 – Configure Jenkins to retrieve source codes from GitHub using Webhooks
 ![Screenshot from 2022-10-19 00-22-34](https://user-images.githubusercontent.com/110517150/196563102-49f9d758-1556-4c3c-a34d-4963fced8373.png)
