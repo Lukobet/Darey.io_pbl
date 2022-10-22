@@ -28,4 +28,13 @@ Second builld after putting a write up in the README file
 
 
 # Task 3 Configure Jenkins to copy files to NFS server via SSH
+ I encountered a difficulty connecting to the NFS Server via ssh but was able to resovle it 
 
+![Screenshot from 2022-10-22 20-24-48](https://user-images.githubusercontent.com/110517150/197358948-d5ad5aad-95fe-48b9-b460-4ede42586027.png)
+
+solved by viewing the content of my .pem key
+![Screenshot from 2022-10-22 20-43-15](https://user-images.githubusercontent.com/110517150/197359514-9f711a1d-efb4-4863-b570-3b75da8bbd55.png)
+
+Files transfered successfully
+![Screenshot from 2022-10-22 20-52-52](https://user-images.githubusercontent.com/110517150/197359878-51ceaea6-7434-4a03-90bc-7b79a342dde8.png)
+![Screenshot from 2022-10-22 20-55-06](https://user-images.githubusercontent.com/110517150/197359924-38f53997-8e58-49ea-a601-342028ece02d.png)
