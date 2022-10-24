@@ -23,3 +23,6 @@ Step 2: Assign an Elastic IP to your Nginx LB server and associate your domain n
 
 ![Screenshot from 2022-10-23 22-45-09](https://user-images.githubusercontent.com/110517150/197419721-f8c90e91-091e-43db-a10a-1b2398b64ae3.png)
 
+*Difficulties encountered
+my Toolingysf.cf is displaying
+![Screenshot from 2022-10-24 22-07-08](https://user-images.githubusercontent.com/110517150/197629549-28390e49-987e-457f-96aa-cde40ddf7e50.png)
