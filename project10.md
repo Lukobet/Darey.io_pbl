@@ -23,6 +23,20 @@ Step 2: Assign an Elastic IP to your Nginx LB server and associate your domain n
 
 ![Screenshot from 2022-10-23 22-45-09](https://user-images.githubusercontent.com/110517150/197419721-f8c90e91-091e-43db-a10a-1b2398b64ae3.png)
 
+# Checking the webservers 
 *Difficulties encountered
 my Toolingysf.cf is displaying
 ![Screenshot from 2022-10-24 22-07-08](https://user-images.githubusercontent.com/110517150/197629549-28390e49-987e-457f-96aa-cde40ddf7e50.png)
+
+Solution
+
+
+
+
+# Installing certbot and request for an SSL/TLS certificate
+![Screenshot from 2022-10-24 22-13-31](https://user-images.githubusercontent.com/110517150/197630565-fd7c415a-c324-4661-86fe-c2b342d85b28.png)
+
+![Screenshot from 2022-10-24 22-23-19](https://user-images.githubusercontent.com/110517150/197632310-9a4e73a9-3657-4e36-aea2-78058820b633.png)
+
+![Screenshot from 2022-10-24 22-25-09](https://user-images.githubusercontent.com/110517150/197632536-5cf20d87-2a39-4467-b385-3853102e3247.png)
+
