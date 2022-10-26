@@ -34,4 +34,5 @@ Solved it by changing the branch configuration for the job
 ![Screenshot from 2022-10-26 20-40-34](https://user-images.githubusercontent.com/110517150/198121118-2951a5f6-9349-470f-9d51-82ac01e44758.png)
 
 ## Task 2:  Prepare your development environment using Visual Studio Code
-* 
+* Here i will need write some codes which will require me to use a codding tool such as Integrated development environment (IDE) or Source-code Editor. The coding editor i will be using is the  Visual Studio Code (VSC)
+
