@@ -55,16 +55,86 @@ ssh into your Jenkins-Ansible server using ssh-agent
 
 ![Screenshot from 2022-10-28 03-42-55](https://user-images.githubusercontent.com/110517150/198505611-d8096267-f0aa-4ebd-9edf-a654fa2b1a25.png)
 
+* Update your inventory/dev.yml file with this snippet of code:
+```
+[nfs]
+<NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+[webservers]
+<Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user'
+<Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+[db]
+<Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+
+[lb]
+<Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
+```
+### Task 5: Create a Common Playbook
+* Update the playbooks/common.yml file with following code:
+```
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+    - name: ensure wireshark is at the latest version
+      yum:
+        name: wireshark
+        state: latest
+
+- name: update LB server
+  hosts: lb
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+    - name: Update apt repo
+      apt: 
+        update_cache: yes
+
+    - name: ensure wireshark is at the latest version
+      apt:
+        name: wireshark
+        state: latest
+```
 ![Screenshot from 2022-10-28 04-05-07](https://user-images.githubusercontent.com/110517150/198505617-5d9c38f3-da14-4b78-9ab0-dff29e3700be.png)
+### Task 6 – Update GIT with the latest code
+* Commit the code into GitHub:
+
+use git commands to add, commit and push your branch to GitHub.
+```
+git status
+
+git add <selected files>
+
+git commit -m "commit message"
+```
 ![Screenshot from 2022-10-28 04-47-47](https://user-images.githubusercontent.com/110517150/198505619-0ffc87bf-b36d-4242-b71b-a2c9fb1f1adb.png)
+
+* Create a Pull request (PR)
+
 ![Screenshot from 2022-10-28 04-54-54](https://user-images.githubusercontent.com/110517150/198505625-a04b11b0-ceae-4c3a-a63d-592ef4895fbe.png)
+
 ![Screenshot from 2022-10-28 04-56-46](https://user-images.githubusercontent.com/110517150/198505626-7e99b4b5-2952-421e-8511-ced71d8211f2.png)
+
 ![Screenshot from 2022-10-28 04-58-25](https://user-images.githubusercontent.com/110517150/198505629-59b5e5f1-233b-42c5-8304-21119a556cce.png)
+
 ![Screenshot from 2022-10-28 04-58-47](https://user-images.githubusercontent.com/110517150/198505634-dd143eb6-448f-47cf-868c-fb05c6a2b601.png)
+
 ![Screenshot from 2022-10-28 05-00-12](https://user-images.githubusercontent.com/110517150/198505636-27ca9d17-6a87-482a-96be-43f5930bf800.png)
-![Screenshot from 2022-10-28 05-03-39](https://user-images.githubusercontent.com/110517150/198505640-0e2f370c-b06a-4b6c-ab6d-f05e0cf9006d.png)
-![Screenshot from 2022-10-28 05-07-45](https://user-images.githubusercontent.com/110517150/198505644-2800269d-2093-48d2-9e38-e4451c9bf301.png)
-![Screenshot from 2022-10-28 05-09-44](https://user-images.githubusercontent.com/110517150/198505647-e0ffa95a-cce5-4c66-bb4f-562b9816702d.png)
+
 ![Screenshot from 2022-10-28 05-11-44](https://user-images.githubusercontent.com/110517150/198505650-a23866e8-1f1c-49d1-9772-e1ab15e9fe39.png)
+* Confirming the build on Jenkins server
+
+![Screenshot from 2022-10-28 05-03-39](https://user-images.githubusercontent.com/110517150/198505640-0e2f370c-b06a-4b6c-ab6d-f05e0cf9006d.png)
+
+![Screenshot from 2022-10-28 05-07-45](https://user-images.githubusercontent.com/110517150/198505644-2800269d-2093-48d2-9e38-e4451c9bf301.png)
+
+![Screenshot from 2022-10-28 05-09-44](https://user-images.githubusercontent.com/110517150/198505647-e0ffa95a-cce5-4c66-bb4f-562b9816702d.png)
+### Task7: Run first Ansible test
+
 ![Screenshot from 2022-10-28 05-32-12](https://user-images.githubusercontent.com/110517150/198505651-f10510a2-363e-4788-93f7-87d7c2c82636.png)
 
