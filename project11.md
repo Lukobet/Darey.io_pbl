@@ -46,5 +46,25 @@ Solved it by changing the branch configuration for the job
 ### TASK 4 : SET UP ANSIBLE INVENTORY
 An Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. Since our intention is to execute Linux commands on remote hosts, and ensure that it is the intended configuration on a particular server that occurs. It is important to have a way to organize our hosts in such an Inventory.
 
-* 
+* connecting to the ssh agent through the visual studio code usin gthe following commands
+```
+eval `ssh-agent -s`
+ssh-add <path-to-private-key>
+```
+ssh into your Jenkins-Ansible server using ssh-agent
+
+![Screenshot from 2022-10-28 03-42-55](https://user-images.githubusercontent.com/110517150/198505611-d8096267-f0aa-4ebd-9edf-a654fa2b1a25.png)
+
+![Screenshot from 2022-10-28 04-05-07](https://user-images.githubusercontent.com/110517150/198505617-5d9c38f3-da14-4b78-9ab0-dff29e3700be.png)
+![Screenshot from 2022-10-28 04-47-47](https://user-images.githubusercontent.com/110517150/198505619-0ffc87bf-b36d-4242-b71b-a2c9fb1f1adb.png)
+![Screenshot from 2022-10-28 04-54-54](https://user-images.githubusercontent.com/110517150/198505625-a04b11b0-ceae-4c3a-a63d-592ef4895fbe.png)
+![Screenshot from 2022-10-28 04-56-46](https://user-images.githubusercontent.com/110517150/198505626-7e99b4b5-2952-421e-8511-ced71d8211f2.png)
+![Screenshot from 2022-10-28 04-58-25](https://user-images.githubusercontent.com/110517150/198505629-59b5e5f1-233b-42c5-8304-21119a556cce.png)
+![Screenshot from 2022-10-28 04-58-47](https://user-images.githubusercontent.com/110517150/198505634-dd143eb6-448f-47cf-868c-fb05c6a2b601.png)
+![Screenshot from 2022-10-28 05-00-12](https://user-images.githubusercontent.com/110517150/198505636-27ca9d17-6a87-482a-96be-43f5930bf800.png)
+![Screenshot from 2022-10-28 05-03-39](https://user-images.githubusercontent.com/110517150/198505640-0e2f370c-b06a-4b6c-ab6d-f05e0cf9006d.png)
+![Screenshot from 2022-10-28 05-07-45](https://user-images.githubusercontent.com/110517150/198505644-2800269d-2093-48d2-9e38-e4451c9bf301.png)
+![Screenshot from 2022-10-28 05-09-44](https://user-images.githubusercontent.com/110517150/198505647-e0ffa95a-cce5-4c66-bb4f-562b9816702d.png)
+![Screenshot from 2022-10-28 05-11-44](https://user-images.githubusercontent.com/110517150/198505650-a23866e8-1f1c-49d1-9772-e1ab15e9fe39.png)
+![Screenshot from 2022-10-28 05-32-12](https://user-images.githubusercontent.com/110517150/198505651-f10510a2-363e-4788-93f7-87d7c2c82636.png)
 
