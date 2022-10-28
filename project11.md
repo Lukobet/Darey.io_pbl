@@ -55,7 +55,7 @@ ssh into your Jenkins-Ansible server using ssh-agent
 
 ![Screenshot from 2022-10-28 03-42-55](https://user-images.githubusercontent.com/110517150/198505611-d8096267-f0aa-4ebd-9edf-a654fa2b1a25.png)
 
-* Update your inventory/dev.yml file with this snippet of code:
+* Updating the inventory/dev.yml file with this snippet of code:
 ```
 [nfs]
 <NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
