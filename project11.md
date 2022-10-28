@@ -46,7 +46,7 @@ Solved it by changing the branch configuration for the job
 ### TASK 4 : SET UP ANSIBLE INVENTORY
 An Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. Since our intention is to execute Linux commands on remote hosts, and ensure that it is the intended configuration on a particular server that occurs. It is important to have a way to organize our hosts in such an Inventory.
 
-* connecting to the ssh agent through the visual studio code usin gthe following commands
+* connecting to the ssh agent through the visual studio code using the following commands
 ```
 eval `ssh-agent -s`
 ssh-add <path-to-private-key>
