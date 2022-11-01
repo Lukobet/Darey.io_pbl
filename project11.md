@@ -70,6 +70,11 @@ ssh into your Jenkins-Ansible server using ssh-agent
 [lb]
 <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 ```
+![Screenshot from 2022-11-01 17-08-05](https://user-images.githubusercontent.com/110517150/199281035-c09e12b6-4374-463f-a759-f1fb6340615c.png)
+
+[Screenshot from 2022-11-01 17-10-13](https://user-images.githubusercontent.com/110517150/199281466-02fe510d-6ebd-440d-9921-74100ce56463.png)
+
+
 ### Task 5: Create a Common Playbook
 * Update the playbooks/common.yml file with following code:
 ```
