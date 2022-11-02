@@ -194,6 +194,9 @@ Optional steps
 -> Ansible-playbook
 ![Screenshot from 2022-11-02 22-27-13](https://user-images.githubusercontent.com/110517150/199605880-358ab509-592f-4fd6-beef-7f250ba7c17d.png)
 ![Screenshot from 2022-11-02 22-35-26](https://user-images.githubusercontent.com/110517150/199607031-ab70371d-beb9-4dbf-982b-66a4a48c02c6.png)
+
+* confirming
+* 
 ![Screenshot from 2022-11-02 22-38-12](https://user-images.githubusercontent.com/110517150/199607597-eb4b1703-eea5-4e4f-9968-018cdb9c27c4.png)
 
-
+![Screenshot from 2022-11-02 22-44-08](https://user-images.githubusercontent.com/110517150/199608388-96f5f8e0-1f91-4782-a830-db76823e3547.png)
