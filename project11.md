@@ -148,7 +148,9 @@ ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/6/archive/inventory/dev
 
 ![Screenshot from 2022-11-02 05-21-42](https://user-images.githubusercontent.com/110517150/199399991-e7e4b53a-3190-4935-bba6-3e2c30ea1511.png)
 SUCCESS!!!
-![Screenshot from 2022-11-02 05-21-42](https://user-images.githubusercontent.com/110517150/199399998-7c88507d-fb5f-40f6-aff6-50df494097b5.png)
+
+![Screenshot from 2022-11-02 05-50-41](https://user-images.githubusercontent.com/110517150/199401049-3ffd33ea-773f-465b-84ad-ae6e6a8a5265.png)
+
 
 Confirming if Wireshark was installed using 
 ```
