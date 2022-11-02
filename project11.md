@@ -140,6 +140,12 @@ git commit -m "commit message"
 
 ![Screenshot from 2022-10-28 05-09-44](https://user-images.githubusercontent.com/110517150/198505647-e0ffa95a-cce5-4c66-bb4f-562b9816702d.png)
 ### Task7: Run first Ansible test
-
+using 
+```
+ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/6/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/6/archive/playbooks/common.yml 
+```
 ![Screenshot from 2022-10-28 05-32-12](https://user-images.githubusercontent.com/110517150/198505651-f10510a2-363e-4788-93f7-87d7c2c82636.png)
 
+![Screenshot from 2022-11-02 05-21-42](https://user-images.githubusercontent.com/110517150/199399991-e7e4b53a-3190-4935-bba6-3e2c30ea1511.png)
+SUCCESS!!!
+![Screenshot from 2022-11-02 05-21-42](https://user-images.githubusercontent.com/110517150/199399998-7c88507d-fb5f-40f6-aff6-50df494097b5.png)
