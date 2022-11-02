@@ -164,3 +164,10 @@ wireshark --version
 Optional steps
 #### Steps
 * checkout -> change codes -> commit -> PR -> merge -> build -> ansible-playbook
+![Screenshot from 2022-11-02 21-14-57](https://user-images.githubusercontent.com/110517150/199593832-7132a731-bbf2-49b1-9c89-0d3256b0bad5.png)
+![Screenshot from 2022-11-02 21-16-08](https://user-images.githubusercontent.com/110517150/199593886-1a7c4c72-8873-4d0a-b00c-7297fba9ccd3.png)
+![Screenshot from 2022-11-02 22-04-46](https://user-images.githubusercontent.com/110517150/199602314-3ec799fd-b9ef-426c-9a7f-521cab6c2595.png)
+![Screenshot from 2022-11-02 22-06-02](https://user-images.githubusercontent.com/110517150/199602507-90e7d4a2-c84b-4aba-a9a9-80441beacaea.png)
+![Screenshot from 2022-11-02 22-27-13](https://user-images.githubusercontent.com/110517150/199605880-358ab509-592f-4fd6-beef-7f250ba7c17d.png)
+
+
