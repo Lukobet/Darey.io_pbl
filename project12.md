@@ -6,4 +6,8 @@ Code Refactoring
 Refactoring is a general term in computer programming. It means making changes to the source code without changing expected behaviour of the software. The main idea of refactoring is to enhance code readability, increase maintainability and extensibility, reduce complexity, add proper comments without affecting the logic.
 
 ### Task 1 : Jenkins job enhancement
-* Step 1: create a new directory called ansible-config-artifact
+![Screenshot from 2022-11-03 07-07-25](https://user-images.githubusercontent.com/110517150/199657099-c91db4b6-6f94-4563-9136-d17b2ac7e28b.png)
+![Screenshot from 2022-11-03 07-07-25](https://user-images.githubusercontent.com/110517150/199657115-a3d78952-25d5-4ebb-b2c9-99ade8c01896.png)
+![Screenshot from 2022-11-03 07-08-07](https://user-images.githubusercontent.com/110517150/199657123-0265f53f-fc02-4a9a-97dd-a64eae491e08.png)
+
+### Task 2 :Refactor Ansible code by importing other playbooks into site.yml
