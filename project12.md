@@ -39,8 +39,6 @@ Refactoring is a general term in computer programming. It means making changes t
 
 *Run ansible-playbook command against the dev environment
 
-![Screenshot from 2022-11-09 16-13-41](https://user-images.githubusercontent.com/110517150/200867948-cb65c1db-3bdf-4d21-8f63-fa525d91b20b.png)
-
 ```
 ---
 - name: update web, nfs and db servers
@@ -68,6 +66,8 @@ Refactoring is a general term in computer programming. It means making changes t
       purge: yes
       autoclean: yes
 ```
+![Screenshot from 2022-11-09 16-13-41](https://user-images.githubusercontent.com/110517150/200867948-cb65c1db-3bdf-4d21-8f63-fa525d91b20b.png)
+
 
 ```
 # code block
