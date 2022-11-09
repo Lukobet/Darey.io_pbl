@@ -79,10 +79,15 @@ BUt i realised i can ping witout connecting to the remote
 ![Screenshot from 2022-11-09 17-08-57](https://user-images.githubusercontent.com/110517150/200881172-8f86a047-e318-40c3-8124-ed980b26dacf.png)
 ![Screenshot from 2022-11-09 17-10-39](https://user-images.githubusercontent.com/110517150/200881619-3b95e206-22f5-46cf-aa3a-c40311568f33.png)
 ![Screenshot from 2022-11-09 17-09-43](https://user-images.githubusercontent.com/110517150/200881501-aa413f93-b557-4a68-9d88-fbb9b4eede58.png)
+Make sure that wireshark is deleted on all the servers by running 
+```
+wireshark --version
+```
+![Screenshot from 2022-11-09 17-13-30](https://user-images.githubusercontent.com/110517150/200882681-30dc9053-b179-4715-8e70-af7c1610fe43.png)
+![Screenshot from 2022-11-09 17-15-09](https://user-images.githubusercontent.com/110517150/200882691-c788f65f-1cef-45fc-966c-e8ff152443a4.png)
 
-```
-# code block
-print '3 backticks or'
-print 'indent 4 spaces'
-```
+### Task 3 – Configure UAT Webservers with a role ‘Webserver’
+
+
+
 
