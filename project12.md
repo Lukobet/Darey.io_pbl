@@ -23,3 +23,55 @@ Refactoring is a general term in computer programming. It means making changes t
 ![Screenshot from 2022-11-03 07-07-49](https://user-images.githubusercontent.com/110517150/199658471-a0923dae-d4eb-4252-9642-042de2096f4c.png)
 
 ### Task 2 :Refactor Ansible code by importing other playbooks into site.yml
+* Within playbooks folder, create a new file and name it site.yml – This file will now be considered as an entry point into the entire infrastructure configuration and also create a new folder in root of the repository and name it static-assignments.
+
+![Screenshot from 2022-11-09 15-50-43](https://user-images.githubusercontent.com/110517150/200862185-523c6291-f707-4f72-b3e5-1f55e3714249.png)
+* Move common.yml file into the newly created static-assignments folder.
+![Screenshot from 2022-11-09 15-54-35](https://user-images.githubusercontent.com/110517150/200863329-a79922cb-6209-4546-8eaf-ac2442fabed4.png)
+
+*Inside site.yml file, import common.yml playbook.
+```
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+```
+![Screenshot from 2022-11-09 15-59-34](https://user-images.githubusercontent.com/110517150/200864584-d086b4e5-94d2-4657-8ec1-a084c33dc90a.png)
+
+*Run ansible-playbook command against the dev environment
+
+![Screenshot from 2022-11-09 16-13-41](https://user-images.githubusercontent.com/110517150/200867948-cb65c1db-3bdf-4d21-8f63-fa525d91b20b.png)
+
+```
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    yum:
+      name: wireshark
+      state: removed
+
+- name: update LB server
+  hosts: lb
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    apt:
+      name: wireshark-qt
+      state: absent
+      autoremove: yes
+      purge: yes
+      autoclean: yes
+```
+
+```
+# code block
+print '3 backticks or'
+print 'indent 4 spaces'
+```
+
