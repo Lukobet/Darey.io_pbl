@@ -97,9 +97,11 @@ wireshark --version
 
 ![Screenshot from 2022-11-09 17-46-18](https://user-images.githubusercontent.com/110517150/200890114-5991720e-5cef-4686-b766-288b200967c2.png)
 
-* Adding some logic to the webserver role.
 
-writing configuration tasks to do the following:
+* Adding some logic to the webserver role by writing configuration tasks to do the following
+
+Install and configure Apache (httpd service), Clone Tooling website from GitHub, Ensure the tooling website code is deployed to /var/www/html on each of 2 UAT Web servers and Make sure httpd service is started
+  
 
 ```
 ---
@@ -137,5 +139,9 @@ writing configuration tasks to do the following:
   ansible.builtin.file:
     path: /var/www/html/html
     state: absent
-  ```
+```
+![Screenshot from 2022-11-09 20-21-21](https://user-images.githubusercontent.com/110517150/200922414-92015b74-0426-46e0-a2ca-18d37e1808ea.png)
+
+
+
   
