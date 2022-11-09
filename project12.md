@@ -140,8 +140,37 @@ Install and configure Apache (httpd service), Clone Tooling website from GitHub,
     path: /var/www/html/html
     state: absent
 ```
-![Screenshot from 2022-11-09 20-21-21](https://user-images.githubusercontent.com/110517150/200922414-92015b74-0426-46e0-a2ca-18d37e1808ea.png)
+![Screenshot from 2022-11-09 20-31-27](https://user-images.githubusercontent.com/110517150/200923793-fa7371ec-8ef7-4cc2-925b-3a9d2b215804.png)
+
+### Task 4 – Reference ‘Webserver’ role
+
+* Within the static-assignments folder, create a new assignment for uat-webservers uat-webservers.yml
+```
+---
+- hosts: uat-webservers
+  roles:
+     - webserver
+```
+![Screenshot from 2022-11-09 20-43-27](https://user-images.githubusercontent.com/110517150/200926104-33e44a7f-b56b-4ac2-a168-c6d5c2445fbb.png)
+
+* Add the following into the site.yml file
+
+```
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+
+- hosts: uat-webservers
+- import_playbook: ../static-assignments/uat-webservers.yml
+```
+  ![Screenshot from 2022-11-09 20-42-36](https://user-images.githubusercontent.com/110517150/200925953-ef5331f0-8a91-47d8-8956-9f277a87aa83.png)
+
+### Task 5 – Commit & Test
+![Screenshot from 2022-11-09 20-50-24](https://user-images.githubusercontent.com/110517150/200927344-438f6d22-8cbb-4d16-b0a3-1ba2aaf429e0.png)
+
+![Screenshot from 2022-11-09 20-54-48](https://user-images.githubusercontent.com/110517150/200928141-d7c76137-9fae-4ce2-977c-ecdacb23cfac.png)
 
 
+* I encountered difficulty running the palybook
+![Screenshot from 2022-11-09 21-10-05](https://user-images.githubusercontent.com/110517150/200931123-3d2c702f-c935-4644-af30-d23d0b1e2ff7.png)
 
-  
