@@ -88,6 +88,13 @@ wireshark --version
 
 ### Task 3 – Configure UAT Webservers with a role ‘Webserver’
 
+* Launch 2 new RHEL8 instances
+![Screenshot from 2022-11-09 17-28-40](https://user-images.githubusercontent.com/110517150/200885917-08e21439-cfb7-4fa9-bc0f-2e4817a8ce3b.png)
 
+
+* Create Folder structure
+![Screenshot from 2022-11-09 17-43-25](https://user-images.githubusercontent.com/110517150/200889472-9682d4e0-811a-4e39-a68e-8ab8afb7dbbf.png)
+
+![Screenshot from 2022-11-09 17-46-18](https://user-images.githubusercontent.com/110517150/200890114-5991720e-5cef-4686-b766-288b200967c2.png)
 
 
