@@ -68,6 +68,17 @@ Refactoring is a general term in computer programming. It means making changes t
 ```
 ![Screenshot from 2022-11-09 16-13-41](https://user-images.githubusercontent.com/110517150/200867948-cb65c1db-3bdf-4d21-8f63-fa525d91b20b.png)
 
+Encountered a problem my remote server couldnt connect to the servers
+![Screenshot from 2022-11-09 16-54-22](https://user-images.githubusercontent.com/110517150/200877698-07484091-171f-4772-88c5-862ead607f93.png)
+BUt i realised i can ping witout connecting to the remote
+![Screenshot from 2022-11-09 17-04-05](https://user-images.githubusercontent.com/110517150/200880123-1a1e307b-58bc-42ca-aea1-845ec0ad00e2.png)
+
+* Running the playbook
+![Screenshot from 2022-11-09 17-09-50](https://user-images.githubusercontent.com/110517150/200881407-8910dad8-cdd7-4037-84a4-7a63037afff9.png)
+
+![Screenshot from 2022-11-09 17-08-57](https://user-images.githubusercontent.com/110517150/200881172-8f86a047-e318-40c3-8124-ed980b26dacf.png)
+![Screenshot from 2022-11-09 17-10-39](https://user-images.githubusercontent.com/110517150/200881619-3b95e206-22f5-46cf-aa3a-c40311568f33.png)
+![Screenshot from 2022-11-09 17-09-43](https://user-images.githubusercontent.com/110517150/200881501-aa413f93-b557-4a68-9d88-fbb9b4eede58.png)
 
 ```
 # code block
