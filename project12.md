@@ -175,5 +175,9 @@ Install and configure Apache (httpd service), Clone Tooling website from GitHub,
 ![Screenshot from 2022-11-09 21-10-05](https://user-images.githubusercontent.com/110517150/200931123-3d2c702f-c935-4644-af30-d23d0b1e2ff7.png)
 ![Screenshot from 2022-11-09 21-24-38](https://user-images.githubusercontent.com/110517150/200934600-bca12116-e453-407a-8b21-83c45bf8a551.png)
 
-solved
+solved by correcting some typographical error
+![Screenshot from 2022-11-09 21-46-57](https://user-images.githubusercontent.com/110517150/200938623-1689d565-42ad-4fd4-8801-65a7d96533ff.png)
+
+![Screenshot from 2022-11-09 21-56-27](https://user-images.githubusercontent.com/110517150/200940027-ffb79f90-a80e-44d8-910d-eee479c69162.png)
+
 
