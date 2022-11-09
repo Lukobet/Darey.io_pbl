@@ -173,4 +173,7 @@ Install and configure Apache (httpd service), Clone Tooling website from GitHub,
 
 * I encountered difficulty running the palybook
 ![Screenshot from 2022-11-09 21-10-05](https://user-images.githubusercontent.com/110517150/200931123-3d2c702f-c935-4644-af30-d23d0b1e2ff7.png)
+![Screenshot from 2022-11-09 21-24-38](https://user-images.githubusercontent.com/110517150/200934600-bca12116-e453-407a-8b21-83c45bf8a551.png)
+
+solved
 
