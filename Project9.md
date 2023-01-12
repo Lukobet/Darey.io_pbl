@@ -26,6 +26,10 @@ Project built successfully
 Second builld after putting a write up in the README file
 ![Screenshot from 2022-10-19 00-30-06](https://user-images.githubusercontent.com/110517150/196563943-507b3ebd-d63d-4d22-8b18-9ad434d53cb9.png)
 
+Checking the Jenkins file stored locally through the Terminal
+
+![Screenshot from 2023-01-12 22-49-21](https://user-images.githubusercontent.com/110517150/212188661-33619643-840a-48e2-a887-e5f773f6f8c2.png)
+
 
 # Task 3 Configure Jenkins to copy files to NFS server via SSH
  I encountered a difficulty connecting to the NFS Server via ssh but was able to resovle it 
