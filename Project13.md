@@ -30,3 +30,22 @@
         - always
 ```
   ![Screenshot from 2023-04-19 00-13-14](https://user-images.githubusercontent.com/110517150/232924520-ecb2fe16-19d7-439c-b724-3a3bc7d1b3f8.png)
+
+### Task 2: Update site.yml with dynamic assignments
+* Update Site.yml with the following snippet
+```
+  ---
+- hosts: all
+- name: Include dynamic variables 
+  tasks:
+  import_playbook: ../static-assignments/common.yml 
+  include: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
+-  hosts: webservers
+- name: Webserver assignment
+  import_playbook: ../static-assignments/webservers.yml
+  
+```
+  
