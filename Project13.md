@@ -48,4 +48,13 @@
   import_playbook: ../static-assignments/webservers.yml
   
 ```
+ ![Screenshot from 2023-04-19 00-50-20](https://user-images.githubusercontent.com/110517150/232928816-1cef6ca2-7b22-49d9-8bc7-e576832dd634.png)
+
+  ### Task 3: Create a Community Role for MySQL database
+  * Download Mysql Ansible 
+  ![Screenshot from 2023-04-19 01-03-49](https://user-images.githubusercontent.com/110517150/232930352-b9ddb265-48ba-4081-8f3c-291c9b573d7b.png)
   
+  i encounteed problems with the downloadbecause i didnt include sudo
+  ![Screenshot from 2023-04-19 01-05-21](https://user-images.githubusercontent.com/110517150/232930555-9be8475e-1e18-4fdf-bd17-265dc02a2487.png)
+
+
