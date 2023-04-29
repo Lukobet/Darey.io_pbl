@@ -66,4 +66,9 @@
 I realised that it was downloaded into ansible-config-artifact path
  ![Screenshot from 2023-04-29 22-20-57](https://user-images.githubusercontent.com/110517150/235324758-92144bd8-2b5e-4103-af26-870b1e5073b6.png) 
   
+  ![Screenshot from 2023-04-29 22-22-36](https://user-images.githubusercontent.com/110517150/235324792-e9791cd5-97bb-42a7-8b06-19989d633b06.png)
+  
+  Renaming of the file done successfully
+  ![Screenshot from 2023-04-29 22-23-56](https://user-images.githubusercontent.com/110517150/235324838-ef8271f3-9e21-46ee-b8c9-629d853e9717.png)
+  
   
