@@ -63,4 +63,7 @@
   i also encountered a problem in the change of geerlingguy.mysql file to mysql
 ![Screenshot from 2023-04-29 21-49-28](https://user-images.githubusercontent.com/110517150/235323681-208f28eb-4855-42d0-8080-a99b5fbc8b73.png)
 
+I realised that it was downloaded into ansible-config-artifact path
+ ![Screenshot from 2023-04-29 22-20-57](https://user-images.githubusercontent.com/110517150/235324758-92144bd8-2b5e-4103-af26-870b1e5073b6.png) 
+  
   
