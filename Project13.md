@@ -74,5 +74,11 @@ I realised that it was downloaded into ansible-config-artifact path
   I finally got the solution to my problems
   ![Screenshot from 2023-05-01 22-46-49](https://user-images.githubusercontent.com/110517150/235537495-b044289a-49e1-4cb0-8d09-0d3ed1b6a6bc.png)
 
+  But still i couldnt move forward, i had to go back again to project 9 to start all over again
+  Now here
+  
+![Screenshot from 2023-05-22 22-16-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1b653493-6f26-488d-86af-412d82129e37)
+  
+  
   
   
