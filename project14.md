@@ -24,11 +24,17 @@ Examples of common interpreted languages are PHP, Ruby, Python, and JavaScript.
 In software engineering, Continuous Integration (CI) is a practice of merging all developers’ working copies to a shared mainline (e.g., Git Repository or some other version control system) several times per day. Frequent merges reduce chances of any conflicts in code and allow to run tests more often to avoid massive rework if something goes wrong. This principle can be formulated as Commit early, push often.
 
 ![Screenshot from 2023-05-23 12-09-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a7bb789a-b4f8-4aec-a36d-c519f5fca357)
-
+![Screenshot from 2023-05-23 12-28-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ac814391-f703-45e4-a713-96658afeee3f)
 ![Screenshot from 2023-05-23 12-11-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4aa7db77-88fd-4ebf-8eb9-f56c12aeb450)
+![Screenshot from 2023-05-23 12-30-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/72fca5a1-4bd7-45f4-9327-28aac80bcb6e)
+![Screenshot from 2023-05-23 12-30-57](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/459068b3-995f-4399-82a9-07f9c8c45129)
 
 * WHY ARE WE DOING EVERYTHING WE ARE DOING?
-The goals of Devops are enhaced velocity, quality and performance. THere are 13 metrics that can be used to track these performances.
+The goals of Devops are enhaced velocity, quality and performance. There are 13 metrics that can be used to track these performances.
 ![Screenshot from 2023-05-23 12-22-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/04516be8-2448-4e18-b6c6-03f1d1b615a2)
 ![Screenshot from 2023-05-23 12-23-05-1](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5cdb8995-8d0e-4553-859b-7d4258b06b3e)
 ![Screenshot from 2023-05-23 12-23-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/89761584-7e6f-403f-94ad-55cf48a0bfcc)
+
+* SIMULATING A TYPICAL CI/CD PIPELINE FOR A PHP BASED APPLICATION
+![Screenshot from 2023-05-23 12-48-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/60f210b2-7fb3-4b30-90e3-c5b51f02c3e4)
+![Screenshot from 2023-05-23 12-49-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c10ae5b5-40af-46ae-b62e-eba534608f15)
