@@ -38,3 +38,37 @@ The goals of Devops are enhaced velocity, quality and performance. There are 13 
 * SIMULATING A TYPICAL CI/CD PIPELINE FOR A PHP BASED APPLICATION
 ![Screenshot from 2023-05-23 12-48-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/60f210b2-7fb3-4b30-90e3-c5b51f02c3e4)
 ![Screenshot from 2023-05-23 12-49-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c10ae5b5-40af-46ae-b62e-eba534608f15)
+
+## Task 2: Configuring Ansible For Jenkins Deployment
+![Screenshot from 2023-05-23 13-10-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2f74ff7b-6670-48e3-b810-e4ec888fcaf7)
+
+Now, with Jenkins, we will start running Ansible from Jenkins UI.
+
+* Navigate to Jenkins URL
+* Install & Open Blue Ocean Jenkins Plugin
+* Create a new pipeline
+![Screenshot from 2023-05-23 23-44-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ea8d476-c1b6-4b93-91d3-dbba50956390)
+
+![Screenshot from 2023-05-23 23-47-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a63f4f27-b246-4606-ac96-c0b1740090e8)
+![Screenshot from 2023-05-23 23-49-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12426840-5bdf-40db-a7af-f970de113856)
+
+* Inside the Ansible project, create a new directory deploy and start a new file Jenkinsfile inside the directory.
+
+![Screenshot from 2023-05-23 23-54-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b1a3c6ef-47c1-448f-b4f4-e30fc6beb89e)
+
+* Paste the following into the jenkinsfile
+ ```
+pipeline {
+    agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+    }
+}
+```
