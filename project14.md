@@ -73,8 +73,72 @@ pipeline {
 }
 ```
 ![Screenshot from 2023-05-23 23-57-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/13d4a2bf-ea8c-49d9-b9fa-21ed9c31572d)
+
 * configure the ansible project to work with the jenkins file
 I encountered a problem here, my jenkins refused to link up with my deploy/jenkins file was able to solve it by clicking "validate"
 ![Screenshot from 2023-05-25 04-33-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/46b1be25-1449-4593-bbd2-dd0182bd0005)
+![Screenshot from 2023-05-25 11-35-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a0aec73c-243a-47f2-a646-2d5f6455a777)
+
+* Create a new git branch and name it feature/jenkinspipeline-stages
+![Screenshot from 2023-05-25 11-38-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/13bf2812-010b-4f21-88d0-ceff8d11792e)
+Paste the code snippet below and push the new changes to GitHub.
+ ```
+pipeline {
+    agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        script {
+          sh 'echo "Testing Stage"'
+        }
+      }
+    }
+    }
+}
+
+```
+![Screenshot from 2023-05-25 12-05-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6e6a9d4a-9969-4c79-8e15-3efadec9e777)
 
 
+### A QUICK TASK 
+
+```
+1. Create a pull request to merge the latest code into the main branch
+2. After merging the PR, go back into your terminal and switch into the main branch.
+3. Pull the latest change.
+4. Create a new branch, add more stages into the Jenkins file to simulate below phases. (Just add an echo command like we have in build and test stages)
+   1. Package 
+   2. Deploy 
+   3. Clean up
+5. Verify in Blue Ocean that all the stages are working, then merge your feature branch to the main branch
+6. Eventually, your main branch should have a successful pipeline like this in blue ocean
+```
+
+![Screenshot from 2023-05-25 12-03-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/792e1060-6d9d-44a9-8171-7e31d21aa674)
+
+![Screenshot from 2023-05-25 12-10-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/41e848fd-7dc1-4424-9c95-f6cd9858ddbd)
+
+Got a failure because of error in the vsc
+
+![Screenshot from 2023-05-25 12-55-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c35b7c75-d7d2-43d6-a3e5-636742616efa)
+
+![Screenshot from 2023-05-25 13-01-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc0d6ed4-64bf-4192-92c6-c364c4b15a82)
+
+* Merging
+
+![Screenshot from 2023-05-25 13-05-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6bef8a2e-58ac-4aea-8081-e3c138493297)
+
+![Screenshot from 2023-05-25 13-07-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ab64e146-4d12-47dd-979d-d5014775c9b9)
+
+![Screenshot from 2023-05-25 13-12-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1ceb44c4-c5f2-486b-8f6a-1c0a146cf87b)
+
+## Running Ansible Playbook from Jenkins
