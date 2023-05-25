@@ -142,3 +142,8 @@ Got a failure because of error in the vsc
 ![Screenshot from 2023-05-25 13-12-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1ceb44c4-c5f2-486b-8f6a-1c0a146cf87b)
 
 ## Running Ansible Playbook from Jenkins
+Had an error in the codes
+![Screenshot from 2023-05-25 18-37-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05755e02-14ab-4167-86f3-fc3a8291661b)
+
+![Screenshot from 2023-05-25 18-58-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0183a243-472c-49cd-8236-6140b551d053)
+
