@@ -74,4 +74,7 @@ pipeline {
 ```
 ![Screenshot from 2023-05-23 23-57-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/13d4a2bf-ea8c-49d9-b9fa-21ed9c31572d)
 * configure the ansible project to work with the jenkins file
-I encountered a problem here, my jenkins refused to link up with my deploy/jenkins file 
+I encountered a problem here, my jenkins refused to link up with my deploy/jenkins file was able to solve it by clicking "validate"
+![Screenshot from 2023-05-25 04-33-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/46b1be25-1449-4593-bbd2-dd0182bd0005)
+
+
