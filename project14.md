@@ -215,3 +215,14 @@ ppipeline {
   }
 }
 ```
+![Screenshot from 2023-05-26 13-01-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4cbdeeaf-36c9-43bb-a8d7-96f9c0e53165)
+Encountered a difficulty here
+![Screenshot from 2023-05-26 13-41-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2d91f6e9-e7a2-462a-aac7-9f72131a867e)
+i was able to solve it by correcting all the syntax error on vsc
+![Screenshot from 2023-05-26 13-48-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7fea8b50-fc39-496a-9ced-324b789326b2)
+success
+![Screenshot from 2023-05-26 13-54-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c14281ff-2d7d-46c3-a1a7-84ff2c8d702b)
+i realised mysql is not on the db server
+
+
+Phase 3 – Code Quality Analysis
