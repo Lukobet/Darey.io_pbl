@@ -147,3 +147,71 @@ Had an error in the codes
 
 ![Screenshot from 2023-05-25 18-58-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0183a243-472c-49cd-8236-6140b551d053)
 
+### Phase 1 – Prepare Jenkins
+* Fork the repository below into your GitHub account
+https://github.com/darey-devops/php-todo.git
+On you Jenkins server, install PHP, its dependencies and Composer tool (Feel free to do this manually at first, then update your Ansible accordingly later)
+    sudo apt install -y zip libapache2-mod-php phploc php-{xml,bcmath,bz2,intl,gd,mbstring,mysql,zip}
+Install Jenkins plugins
+Plot plugin
+Artifactory plugin
+We will use plot plugin to display tests reports, and code coverage information.
+The Artifactory plugin will be used to easily upload code artifacts into an Artifactory server.
+
+Artifactory working
+![Screenshot from 2023-05-26 12-07-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c222e085-ef9d-4c8e-86d3-27cc5690faf0)
+![Screenshot from 2023-05-26 12-12-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/74734d7f-11eb-4fc5-a0b3-b4190187313e)
+
+configuring jenkins to work with artifactory
+![Screenshot from 2023-05-26 12-20-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/29a08e1c-6532-4eb8-81db-e780351676f8)
+
+### Phase 2 – Integrate Artifactory repository with Jenkins
+
+* Create a dummy Jenkinsfile in the repository
+
+
+* Using Blue Ocean, create a multibranch Jenkins pipeline
+
+
+*On the database server, create database and user
+```
+Create database homestead;
+CREATE USER 'homestead'@'%' IDENTIFIED BY 'sePret^i';
+GRANT ALL PRIVILEGES ON * . * TO 'homestead'@'%';
+
+```
+![Screenshot from 2023-05-26 12-30-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ed1badb1-9f06-48df-a161-a327e4fd0930)
+
+Update the Jenkinsfile with
+```
+ppipeline {
+    agent any
+
+  stages {
+
+     stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
+
+    stage('Checkout SCM') {
+      steps {
+            git branch: 'main', url: 'https://github.com/darey-devops/php-todo.git'
+      }
+    }
+
+    stage('Prepare Dependencies') {
+      steps {
+             sh 'mv .env.sample .env'
+             sh 'composer install'
+             sh 'php artisan migrate'
+             sh 'php artisan db:seed'
+             sh 'php artisan key:generate'
+      }
+    }
+  }
+}
+```
