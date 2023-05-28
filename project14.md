@@ -275,5 +275,7 @@ stage('Plot Code Coverage Report') {
 
 3. Bundle the application code for into an artifact (archived package) upload to Artifactory
 4. Publish the resulted artifact into Artifactory
+
+
 5. Deploy the application to the dev environment by launching Ansible pipeline
 
