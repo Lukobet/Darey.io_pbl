@@ -276,6 +276,8 @@ stage('Plot Code Coverage Report') {
 3. Bundle the application code for into an artifact (archived package) upload to Artifactory
 4. Publish the resulted artifact into Artifactory
 
+I got an error due to inactivity of artifactory server, but was able to solve it.
+![Screenshot from 2023-06-04 20-30-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4c4375d-a108-4e58-8df4-03c9a220c6eb)
 
 5. Deploy the application to the dev environment by launching Ansible pipeline
 
