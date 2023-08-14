@@ -130,12 +130,7 @@ pipeline {
 Got a failure because of error in the vsc
 
 ![Screenshot from 2023-05-25 12-55-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c35b7c75-d7d2-43d6-a3e5-636742616efa)
-![Screenshot from 2023-08-15 00-27-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2f9b6254-f50e-40c8-8078-573deb16a09c)
-i had to solve it by changing the ansible syntax from 'inventory/dev' to inventory/inventory 
-
-![Screenshot from 2023-05-25 13-01-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc0d6ed4-64bf-4192-92c6-c364c4b15a82)
-
-![Screenshot from 2023-08-15 00-25-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9c8eb1aa-2837-4633-85f2-a7a556d7192b)
+![Screenshot from 2023-05-25 13-12-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1ceb44c4-c5f2-486b-8f6a-1c0a146cf87b)
 
 * Merging
 
@@ -143,13 +138,14 @@ i had to solve it by changing the ansible syntax from 'inventory/dev' to invento
 
 ![Screenshot from 2023-05-25 13-07-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ab64e146-4d12-47dd-979d-d5014775c9b9)
 
-![Screenshot from 2023-05-25 13-12-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1ceb44c4-c5f2-486b-8f6a-1c0a146cf87b)
-
 ## Running Ansible Playbook from Jenkins
 Had an error in the codes
 ![Screenshot from 2023-05-25 18-37-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05755e02-14ab-4167-86f3-fc3a8291661b)
+i had to solve it by changing the ansible syntax from 'inventory/dev' to inventory/inventory 
 
 ![Screenshot from 2023-05-25 18-58-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0183a243-472c-49cd-8236-6140b551d053)
+
+![Screenshot from 2023-08-15 00-25-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9c8eb1aa-2837-4633-85f2-a7a556d7192b)
 
 ### Phase 1 – Prepare Jenkins
 * Fork the repository below into your GitHub account
