@@ -130,8 +130,12 @@ pipeline {
 Got a failure because of error in the vsc
 
 ![Screenshot from 2023-05-25 12-55-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c35b7c75-d7d2-43d6-a3e5-636742616efa)
+![Screenshot from 2023-08-15 00-27-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2f9b6254-f50e-40c8-8078-573deb16a09c)
+i had to solve it by changing the ansible syntax from 'inventory/dev' to inventory/inventory 
 
 ![Screenshot from 2023-05-25 13-01-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc0d6ed4-64bf-4192-92c6-c364c4b15a82)
+
+![Screenshot from 2023-08-15 00-25-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9c8eb1aa-2837-4633-85f2-a7a556d7192b)
 
 * Merging
 
