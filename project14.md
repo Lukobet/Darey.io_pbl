@@ -292,3 +292,5 @@ stage ('Deploy to Dev Environment') {
 
 i got an error trying to deploy because i didnt change my credentials on deployment.yml file
 ![Screenshot from 2023-08-15 23-03-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c1d694b4-fe99-4c0a-a8ab-d9fa54b8e4a8)
+success
+![Screenshot from 2023-08-15 23-23-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12e2fb97-75a5-43ac-abda-4ee471020757)
