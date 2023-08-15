@@ -292,5 +292,18 @@ stage ('Deploy to Dev Environment') {
 
 i got an error trying to deploy because i didnt change my credentials on deployment.yml file
 ![Screenshot from 2023-08-15 23-03-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c1d694b4-fe99-4c0a-a8ab-d9fa54b8e4a8)
-success
+job successful
 ![Screenshot from 2023-08-15 23-23-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12e2fb97-75a5-43ac-abda-4ee471020757)
+
+
+### SONARQUBE INSTALLATION
+*Important concepts to understand
+Software Quality – The degree to which a software component, system or process meets specified requirements based on user needs and expectations.
+Software Quality Gates – Quality gates are basically acceptance criteria which are usually presented as a set of predefined quality criteria that a software development project must meet in order to proceed from one stage of its lifecycle to the next one.
+SonarQube is a tool that can be used to create quality gates for software projects, and the ultimate goal is to be able to ship only quality software code.
+
+Despite that DevOps CI/CD pipeline helps with fast software delivery, it is of the same importance to ensure the quality of such delivery. Hence, we will need SonarQube to set up Quality gates. In this project we will use predefined Quality Gates (also known as The Sonar Way). Software testers and developers would normally work with project leads and architects to create custom quality gates.
+
+sonarqube insalled successfully
+![Screenshot from 2023-08-16 00-21-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1db646dc-1bac-403d-9da1-0eb21f8c7d13)
+
