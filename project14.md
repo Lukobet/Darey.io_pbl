@@ -282,3 +282,13 @@ I got an error due to inactivity of artifactory server, but was able to solve it
 
 5. Deploy the application to the dev environment by launching Ansible pipeline
 
+```
+stage ('Deploy to Dev Environment') {
+    steps {
+    build job: 'ansible-project/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+    }
+  }
+```
+
+i got an error trying to deploy because i didnt change my credentials on deployment.yml file
+![Screenshot from 2023-08-15 23-03-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c1d694b4-fe99-4c0a-a8ab-d9fa54b8e4a8)
