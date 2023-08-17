@@ -314,3 +314,13 @@ solved by
 ## CONFIGURE SONARQUBE AND JENKINS FOR QUALITY GATE
 ![Screenshot from 2023-08-17 06-12-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3f1a71f8-64a2-4a57-ad67-b576f0172e9c)
 ![Screenshot from 2023-08-17 06-14-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ca2f2d6d-cd5b-4b15-8576-448c86423d57)
+I couldnt generate token  and Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server http://{JENKINS_HOST}/sonarqube-webhook/  because i the sonarqube is not loading on my browser
+*futurescreenshots*
+![Screenshot from 2023-08-17 06-15-08](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ca8666fa-149b-405e-8169-ce5d9b775727)
+![Screenshot from 2023-08-17 06-18-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef35583e-151f-404d-b136-893a7c68b66f)
+
+Setup SonarQube scanner from Jenkins – Global Tool Configuration
+![Screenshot from 2023-08-17 06-21-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2ebacb8e-408b-4f98-871a-93d2142e6980)
+
+* Update Jenkins Pipeline to include SonarQube scanning and Quality Gate
+
