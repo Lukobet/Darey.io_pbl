@@ -336,3 +336,11 @@ stage('SonarQube Quality Gate') {
         }
     }
 ```
+
+still went ahead to do the job but it failed even after Configuring sonar-scanner.properties with
+![Screenshot from 2023-08-17 06-45-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f47733f0-ad51-47c0-b189-c9fcb24b61fc)
+
+
+![Screenshot from 2023-08-17 06-42-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fd521f6d-fec9-4f93-80a0-0a12b0a5c814)
+
+
