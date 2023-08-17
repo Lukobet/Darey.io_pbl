@@ -323,4 +323,16 @@ Setup SonarQube scanner from Jenkins – Global Tool Configuration
 ![Screenshot from 2023-08-17 06-21-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2ebacb8e-408b-4f98-871a-93d2142e6980)
 
 * Update Jenkins Pipeline to include SonarQube scanning and Quality Gate
+```
+stage('SonarQube Quality Gate') {
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+        steps {
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
 
+        }
+    }
+```
