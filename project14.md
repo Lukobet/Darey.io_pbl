@@ -317,11 +317,17 @@ solved by editing the files (handlers folder) and also running another instance
 ![Screenshot from 2023-08-17 06-14-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ca2f2d6d-cd5b-4b15-8576-448c86423d57)
 ![Screenshot from 2023-08-20 23-24-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c4ffda82-0c5e-4491-a9ee-78a1c197571c)
 
-*futurescreenshots*
-![Screenshot from 2023-08-17 06-15-08](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ca8666fa-149b-405e-8169-ce5d9b775727)
-![Screenshot from 2023-08-17 06-18-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef35583e-151f-404d-b136-893a7c68b66f)
 
 Setup SonarQube scanner from Jenkins – Global Tool Configuration
+Generate authentication token in SonarQube
+![Screenshot from 2023-08-20 23-32-03](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/309d0834-2359-4c3a-8aab-2ac7be74bf48)
+
+Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server http://{JENKINS_HOST}/sonarqube-webhook/
+![Screenshot from 2023-08-20 23-36-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12d8f4e6-3fe8-4770-81b0-9eba363a0614)
+
+Setup SonarQube scanner from Jenkins – Global Tool Configuration
+![Screenshot from 2023-08-20 23-39-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/aa6520b9-f656-4212-b829-14394038bd28)
+
 
 
 * Update Jenkins Pipeline to include SonarQube scanning and Quality Gate
@@ -338,11 +344,12 @@ stage('SonarQube Quality Gate') {
         }
     }
 ```
+got this error
+![Screenshot from 2023-08-20 23-52-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5ae3be3d-bd89-4bd6-855c-ead3c54853c9)
 
-still went ahead to do the job but it failed even after Configuring sonar-scanner.properties with
-![Screenshot from 2023-08-17 06-45-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f47733f0-ad51-47c0-b189-c9fcb24b61fc)
+i tried installing java 17 but yet getting the same error 
+![Screenshot from 2023-08-21 00-15-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9f4a4a6-d2c9-4463-9400-848603b99e13)
 
 
-![Screenshot from 2023-08-17 06-42-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fd521f6d-fec9-4f93-80a0-0a12b0a5c814)
 
 
