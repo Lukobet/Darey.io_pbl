@@ -308,8 +308,9 @@ sonarqube insalled successfully
 ![Screenshot from 2023-08-16 00-21-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1db646dc-1bac-403d-9da1-0eb21f8c7d13)
 But not dispalying on the browser
 ![Screenshot from 2023-08-17 05-17-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/525ff05c-b4f3-4098-871d-c3c762d07d48)
-solved by 
+solved by editing the files and also running another instance
 
+![Screenshot from 2023-08-20 23-21-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/411582e5-2f0a-43a0-ac28-17638507dbac)
 
 ## CONFIGURE SONARQUBE AND JENKINS FOR QUALITY GATE
 ![Screenshot from 2023-08-17 06-12-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3f1a71f8-64a2-4a57-ad67-b576f0172e9c)
