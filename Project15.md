@@ -25,14 +25,19 @@ Create a hosted zone in AWS, and map it to your free domain from Freenom
 ![Screenshot from 2023-08-21 23-30-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ae43c187-dfe6-4487-9a3a-9c78055ff8fe)
 
 *Create subnets as shown in the architecture
-*Create a route table and associate it with public subnets and private subnets
 
 ![Screenshot from 2023-08-21 23-43-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4e8e01b6-1907-4b25-9f52-3effb6ba86b2)
+
+*Create a route table and associate it with public subnets and private subnets
+
+![Screenshot from 2023-08-21 23-46-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/65aec9de-002c-4b74-aef4-7c65b8e9c863)
 
 *Create an Internet Gateway
 ![Screenshot from 2023-08-21 23-33-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c3b3f566-0ee9-44dd-823f-88dc824c0ed1)
 
 Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accisble from the Internet)
+![Screenshot from 2023-08-21 23-46-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/65aec9de-002c-4b74-aef4-7c65b8e9c863)
+
 Create 3 Elastic IPs
 Create a Nat Gateway and assign one of the Elastic IPs (*The other 2 will be used by Bastion hosts)
 Create a Security Group for:
