@@ -350,6 +350,41 @@ got this error
 i tried installing java 17 but yet getting the same error 
 ![Screenshot from 2023-08-21 00-15-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9f4a4a6-d2c9-4463-9400-848603b99e13)
 
+but continued with the documentations
+To further examine the configuration of the scanner tool on the Jenkins server – navigate into the tools directory and List the content to see the scanner tool sonar-scanner. 
+![Screenshot from 2023-08-21 13-55-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9548aa95-c53e-475e-95ce-d2e8a8adce63)
 
 
+To generate Jenkins code, navigate to the dashboard for the php-todo pipeline and click on the Pipeline Syntax menu item
+Click on Steps and select withSonarQubeEnv – This appears in the list because of the previous SonarQube configurations you have done in Jenkins. Otherwise, it would not be there.
 
+*future screenshots to complete the project*
+![Screenshot from 2023-08-21 13-59-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/67db0030-6c4a-460b-872c-a57dab9f33f6)
+![Screenshot from 2023-08-21 14-02-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/56339d90-267c-43fa-b592-7257a5ff4195)
+![Screenshot from 2023-08-21 14-02-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf775d40-ef76-44ca-a5ec-0261c473eeb1)
+![Screenshot from 2023-08-21 14-02-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/dbb91517-f420-4e74-ac61-a822bc894519)
+![Screenshot from 2023-08-21 14-02-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7b076b34-bce1-4027-afb5-94a06f3aab93)
+![Screenshot from 2023-08-21 14-03-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6b34a2c0-e9e8-47b1-8c97-0acaf8618860)
+![Screenshot from 2023-08-21 14-03-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3f6624d4-d8d8-48d7-8d3d-6da1930dd1eb)
+![Screenshot from 2023-08-21 14-03-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/860e5984-ef50-4942-8112-96499f89ebdb)
+![Screenshot from 2023-08-21 14-03-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/74bcd383-539c-4a99-a104-c6c3823edee9)
+![Screenshot from 2023-08-21 13-55-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/16728ebe-cef0-4c5b-acea-bc17fa40472c)
+
+update the jenkinsfile to look like this in order to complete the project
+
+```
+ stage('SonarQube Quality Gate') {
+      when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+        steps {
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            }
+            timeout(time: 1, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    }
+```
