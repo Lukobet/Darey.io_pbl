@@ -1,7 +1,13 @@
 # AWS CLOUD SOLUTION FOR 2 COMPANY WEBSITES USING A REVERSE PROXY TECHNOLOGY
+futurescreenshots
+
 ![Screenshot from 2023-08-21 15-28-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ab00fa97-0946-41c2-9916-9ce1e5b8eb64)
 ![Screenshot from 2023-08-21 15-29-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7b0bab7b-00f4-46a6-ae3e-907acd786e0b)
 ![Screenshot from 2023-08-21 15-29-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/074275a8-295f-41af-8eae-d5ddf01afa52)
+
+
+
+
 
 * Properly configure your AWS account and Organization Unit 
 Create an AWS Master account. (Also known as Root Account)
@@ -18,6 +24,7 @@ Login to the newly created AWS account using the new email address.
 Create a free domain name for your fictitious company at Freenom domain registrar here.
 Create a hosted zone in AWS, and map it to your free domain from Freenom
 ### TASK 1:Set Up a Virtual Private Network (VPC)
+futurescreenshot
 ![Screenshot from 2023-08-21 23-24-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/15eca66e-c4f3-45af-b3ad-f631c8477c31)
 ![Screenshot from 2023-08-21 23-24-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7f393260-4edf-45e2-9b5a-2cc6251d8f0c)
 
@@ -45,7 +52,7 @@ Create 3 Elastic IPs
 Create a Nat Gateway and assign one of the Elastic IPs (*The other 2 will be used by Bastion hosts)
 ![Screenshot from 2023-08-21 23-55-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6b6006da-2ea1-41c2-b22a-1859b4e21000)
 
-Create a Security Group for:
+* Create a Security Group for:
 
 Nginx Servers:
 Bastion Servers: 
@@ -59,3 +66,125 @@ Data Layer:
 ![Screenshot from 2023-08-22 00-14-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cdad0ff7-b7b9-407d-8b51-80b67c0b8178)
 ![Screenshot from 2023-08-22 00-17-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/dcc77ff6-9161-4a44-9c16-89da32c36bfd)
 ![Screenshot from 2023-08-22 00-21-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fc92995b-a026-4dff-b5ac-e949d30ba0ed)
+
+ 
+*create a certificate, Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) 
+
+* Proceed With Compute Resources
+You will need to set up and configure compute resources inside your VPC. The recources related to compute are:
+
+EC2 Instances
+Launch Templates
+Target Groups
+Autoscaling Groups
+TLS Certificates
+Application Load Balancers (ALB)
+
+
+*Set Up Compute Resources for Nginx
+Provision EC2 Instances for Nginx
+Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to your customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
+
+Ensure that it has the following software installed:
+
+python
+ntp
+net-tools
+vim
+wget
+telnet
+epel-release
+htop
+Create an AMI out of the EC2 instance
+
+Prepare Launch Template For Nginx (One Per Subnet)
+Make use of the AMI to set up a launch template
+Ensure the Instances are launched into a public subnet
+Assign appropriate security group
+Configure Userdata to update yum package repository and install nginx
+Configure Target Groups
+Select Instances as the target type
+Ensure the protocol HTTPS on secure TLS port 443
+Ensure that the health check path is /healthstatus
+Register Nginx Instances as targets
+Ensure that health check passes for the target group
+Configure Autoscaling For Nginx
+Select the right launch template
+Select the VPC
+Select both public subnets
+Enable Application Load Balancer for the AutoScalingGroup (ASG)
+Select the target group you created before
+Ensure that you have health checks for both EC2 and ALB
+The desired capacity is 2
+Minimum capacity is 2
+Maximum capacity is 4
+Set scale out if CPU utilization reaches 90%
+Ensure there is an SNS topic to send scaling notifications
+Set Up Compute Resources for Bastion
+Provision the EC2 Instances for Bastion
+Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) per each Availability Zone in the same Region and same AZ where you created Nginx server
+Ensure that it has the following software installed
+
+python
+ntp
+net-tools
+vim
+wget
+telnet
+epel-release
+htop
+Associate an Elastic IP with each of the Bastion EC2 Instances
+Create an AMI out of the EC2 instance
+Prepare Launch Template For Bastion (One per subnet)
+Make use of the AMI to set up a launch template
+Ensure the Instances are launched into a public subnet
+Assign appropriate security group
+Configure Userdata to update yum package repository and install Ansible and git
+Configure Target Groups
+Select Instances as the target type
+Ensure the protocol is TCP on port 22
+Register Bastion Instances as targets
+Ensure that health check passes for the target group
+Configure Autoscaling For Bastion
+Select the right launch template
+Select the VPC
+Select both public subnets
+Enable Application Load Balancer for the AutoScalingGroup (ASG)
+Select the target group you created before
+Ensure that you have health checks for both EC2 and ALB
+The desired capacity is 2
+Minimum capacity is 2
+Maximum capacity is 4
+Set scale out if CPU utilization reaches 90%
+Ensure there is an SNS topic to send scaling notifications
+Set Up Compute Resources for Webservers
+Provision the EC2 Instances for Webservers
+Now, you will need to create 2 separate launch templates for both the WordPress and Tooling websites
+
+Create an EC2 Instance (Centos) each for WordPress and Tooling websites per Availability Zone (in the same Region).
+
+Ensure that it has the following software installed
+
+python
+ntp
+net-tools
+vim
+wget
+telnet
+epel-release
+htop
+php
+Create an AMI out of the EC2 instance
+
+Prepare Launch Template For Webservers (One per subnet)
+Make use of the AMI to set up a launch template
+Ensure the Instances are launched into a public subnet
+Assign appropriate security group
+Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
+TLS Certificates From Amazon Certificate Manager (ACM)
+You will need TLS certificates to handle secured connectivity to your Application Load Balancers (ALB).
+
+Navigate to AWS ACM
+Request a public wildcard certificate for the domain name you registered in Freenom
+Use DNS to validate the domain name
+Tag the resource
