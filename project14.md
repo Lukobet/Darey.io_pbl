@@ -388,3 +388,12 @@ update the jenkinsfile to look like this in order to complete the project
         }
     }
 ```
+Complete the following tasks to finish Project 14
+Introduce Jenkins agents/slaves – Add 2 more servers to be used as Jenkins slave. Configure Jenkins to run its pipeline jobs randomly on any available slave nodes.
+![Screenshot from 2023-08-21 14-55-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fd4a9fdd-6f1f-4e0a-bda8-679dd9939912)
+
+
+
+Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push.
+![Screenshot from 2023-08-21 15-01-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a52ac63b-622a-4ce2-9b92-b680d33fc4db)
+
