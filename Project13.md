@@ -80,5 +80,27 @@ I realised that it was downloaded into ansible-config-artifact path
 ![Screenshot from 2023-05-22 22-16-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1b653493-6f26-488d-86af-412d82129e37)
   
   
+  moving forward, what is needed to complete the task 
+  ![Screenshot from 2023-08-21 15-10-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/930b1440-5964-4d0d-b084-2679ea3de960)
+![Screenshot from 2023-08-21 15-10-18](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/eab0bda8-68fc-49e2-920a-3927ed895443)
+![Screenshot from 2023-08-21 15-10-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f8312638-85dd-4f90-b9f9-6417eec0fb33)
+
+* Update loadbalancers.yml file with the following snippet
+```
+- hosts: lb
+  roles:
+    - { role: nginx, when: enable_nginx_lb and load_balancer_is_required }
+    - { role: apache, when: enable_apache_lb and load_balancer_is_required }
+```
+
+
+* Update Site.yml with the following snippet
+```
+ enable_nginx_lb: true
+load_balancer_is_required: true
   
-  
+```
+  Now you can make use of env-vars\uat.yml file to define which loadbalancer to use in UAT environment by setting respective environmental variable to true.
+
+You will activate load balancer, and enable nginx by setting these in the respective environment’s env-vars file
+
