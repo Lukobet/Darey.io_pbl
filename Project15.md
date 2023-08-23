@@ -112,10 +112,57 @@ Application Load Balancers (ALB)*
 *Set Up Compute Resources for Nginx
 Provision EC2 Instances for Nginx
 Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to your customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
+
 ![Screenshot from 2023-08-23 21-35-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/acfa47e5-876c-4517-b20d-c1af858e0563)
 
 Ensure that it has the following software installed:
 python,ntp,net-tools,vim,wget,telnet,epel-release,htop
+
+# Nginx ami installation 
+-----------------------------------------
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+
+systemctl start chronyd
+
+systemctl enable chronyd
+```
+## configure selinux policies for the webservers and nginx servers
+```
+setsebool -P httpd_can_network_connect=1
+setsebool -P httpd_can_network_connect_db=1
+setsebool -P httpd_execmem=1
+setsebool -P httpd_use_nfs 1
+```
+## this section will instll amazon efs utils for mounting the target on the Elastic file system
+```
+git clone https://github.com/aws/efs-utils
+
+cd efs-utils
+
+yum install -y make
+
+yum install -y rpm-build
+
+make rpm 
+
+yum install -y  ./build/amazon-efs-utils*rpm
+```
+## seting up self-signed certificate for the nginx instance
+```
+sudo mkdir /etc/ssl/private
+
+sudo chmod 700 /etc/ssl/private
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ACS.key -out /etc/ssl/certs/ACS.crt
+
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+```
+
 #### certifacte generated
 ![Screenshot from 2023-08-23 22-04-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/df681147-c927-4ca4-891d-e00e1fc15cf9)
 
