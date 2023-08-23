@@ -109,7 +109,7 @@ TLS Certificates
 Application Load Balancers (ALB)*
 
 
-*Set Up Compute Resources for Nginx
+## Set Up Compute Resources for Nginx
 Provision EC2 Instances for Nginx
 Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to your customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
 
@@ -194,12 +194,21 @@ Set scale out if CPU utilization reaches 90%
 Ensure there is an SNS topic to send scaling notifications
 
 
-Set Up Compute Resources for Bastion
+## Set Up Compute Resources for Bastion
 Provision the EC2 Instances for Bastion
 Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) per each Availability Zone in the same Region and same AZ where you created Nginx server
 ![Screenshot from 2023-08-23 21-35-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/acfa47e5-876c-4517-b20d-c1af858e0563)
 Ensure that it has the following software installed
 python,ntp,net-tools,vim,wget,telnet,epel-release,htop
+# Bastion ami installation
+-------------------------------------
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+systemctl start chronyd
+systemctl enable chronyd
+```
 
 * Associate an Elastic IP with each of the Bastion EC2 Instances
 * Create an AMI out of the EC2 instance
@@ -221,23 +230,53 @@ Minimum capacity is 2
 Maximum capacity is 4
 Set scale out if CPU utilization reaches 90%
 Ensure there is an SNS topic to send scaling notifications
-Set Up Compute Resources for Webservers
+
+
+## Set Up Compute Resources for Webservers
 Provision the EC2 Instances for Webservers
 Now, you will need to create 2 separate launch templates for both the WordPress and Tooling websites
 
 Create an EC2 Instance (Centos) each for WordPress and Tooling websites per Availability Zone (in the same Region).
+![Screenshot from 2023-08-23 21-35-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/acfa47e5-876c-4517-b20d-c1af858e0563)
 
 Ensure that it has the following software installed
+python,ntp,net-tools,vim,wget,telnet,epel-release,htop
 
-python
-ntp
-net-tools
-vim
-wget
-telnet
-epel-release
-htop
-php
+# ami installation 
+-----------------------------------------
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+
+systemctl start chronyd
+
+systemctl enable chronyd
+```
+## configure selinux policies for the webservers and nginx servers
+```
+setsebool -P httpd_can_network_connect=1
+setsebool -P httpd_can_network_connect_db=1
+setsebool -P httpd_execmem=1
+setsebool -P httpd_use_nfs 1
+```
+## this section will instll amazon efs utils for mounting the target on the Elastic file system
+```
+git clone https://github.com/aws/efs-utils
+
+cd efs-utils
+
+yum install -y make
+
+yum install -y rpm-build
+
+make rpm 
+
+yum install -y  ./build/amazon-efs-utils*rpm
+
+
 Create an AMI out of the EC2 instance
 
 Prepare Launch Template For Webservers (One per subnet)
