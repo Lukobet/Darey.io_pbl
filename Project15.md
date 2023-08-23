@@ -83,16 +83,26 @@ Tag the resource
 
 *create Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) 
 ![Screenshot from 2023-08-23 07-06-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c406226a-a37a-48e8-af77-88c70dfde460)
+access point created for the filesystem
+
+![Screenshot from 2023-08-23 07-13-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/be80b49a-399b-4d56-8952-bcb63e84e490)
+
+Setup RDS
+Pre-requisite: Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance.
+![Screenshot from 2023-08-23 07-23-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a1a75f00-a433-4611-a6ba-13a05ceb8919)
+
+Subnet groups created
+![Screenshot from 2023-08-23 07-26-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fe86c307-7bea-46b4-ace3-9cc6443383e3)
 
 * Proceed With Compute Resources
 You will need to set up and configure compute resources inside your VPC. The recources related to compute are:
 
-EC2 Instances
+*EC2 Instances
 Launch Templates
 Target Groups
 Autoscaling Groups
 TLS Certificates
-Application Load Balancers (ALB)
+Application Load Balancers (ALB)*
 
 
 *Set Up Compute Resources for Nginx
