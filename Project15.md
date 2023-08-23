@@ -172,10 +172,12 @@ Create an AMI out of the EC2 instance
 
 Prepare Launch Template For Nginx (One Per Subnet)
 Make use of the AMI to set up a launch template
+![Screenshot from 2023-08-23 23-47-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0e000041-ffdf-4326-aac6-dcbeb07092fe)
 Ensure the Instances are launched into a public subnet
 Assign appropriate security group
 Configure Userdata to update yum package repository and install nginx
 Configure Target Groups
+![Screenshot from 2023-08-23 22-54-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2888a7fa-1444-4dfe-960c-6bcd920e9724)
 Select Instances as the target type
 Ensure the protocol HTTPS on secure TLS port 443
 Ensure that the health check path is /healthstatus
@@ -216,6 +218,8 @@ systemctl enable chronyd
   ![Screenshot from 2023-08-23 22-45-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c8bcbab6-a30e-4dc1-bbec-602d215a0423)
 * Prepare Launch Template For Bastion (One per subnet)
 * Make use of the AMI to set up a launch template
+  ![Screenshot from 2023-08-23 23-47-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0e000041-ffdf-4326-aac6-dcbeb07092fe)
+  
 * Ensure the Instances are launched into a public subnet
 * Assign appropriate security group
 * Configure Userdata to update yum package repository and install Ansible and git
