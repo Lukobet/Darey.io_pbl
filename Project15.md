@@ -78,6 +78,7 @@ Data Layer:
 Request a public wildcard certificate for the domain name you registered in Freenom
 Use DNS to validate the domain name
 Tag the resource
+![Screenshot from 2023-08-23 19-54-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/071f89f7-3045-42b6-873b-55a723fb0653)
 
 
 
