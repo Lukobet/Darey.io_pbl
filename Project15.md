@@ -112,17 +112,14 @@ Application Load Balancers (ALB)*
 *Set Up Compute Resources for Nginx
 Provision EC2 Instances for Nginx
 Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to your customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
+![Screenshot from 2023-08-23 21-35-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/acfa47e5-876c-4517-b20d-c1af858e0563)
 
 Ensure that it has the following software installed:
+python,ntp,net-tools,vim,wget,telnet,epel-release,htop
+#### certifacte generated
+![Screenshot from 2023-08-23 22-04-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/df681147-c927-4ca4-891d-e00e1fc15cf9)
 
-python
-ntp
-net-tools
-vim
-wget
-telnet
-epel-release
-htop
+
 Create an AMI out of the EC2 instance
 
 Prepare Launch Template For Nginx (One Per Subnet)
@@ -148,35 +145,27 @@ Minimum capacity is 2
 Maximum capacity is 4
 Set scale out if CPU utilization reaches 90%
 Ensure there is an SNS topic to send scaling notifications
+
+
 Set Up Compute Resources for Bastion
 Provision the EC2 Instances for Bastion
 Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) per each Availability Zone in the same Region and same AZ where you created Nginx server
+![Screenshot from 2023-08-23 21-35-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/acfa47e5-876c-4517-b20d-c1af858e0563)
 Ensure that it has the following software installed
+python,ntp,net-tools,vim,wget,telnet,epel-release,htop
 
-python
-ntp
-net-tools
-vim
-wget
-telnet
-epel-release
-htop
-Associate an Elastic IP with each of the Bastion EC2 Instances
-Create an AMI out of the EC2 instance
-Prepare Launch Template For Bastion (One per subnet)
-Make use of the AMI to set up a launch template
-Ensure the Instances are launched into a public subnet
-Assign appropriate security group
-Configure Userdata to update yum package repository and install Ansible and git
-Configure Target Groups
-Select Instances as the target type
-Ensure the protocol is TCP on port 22
-Register Bastion Instances as targets
-Ensure that health check passes for the target group
-Configure Autoscaling For Bastion
-Select the right launch template
-Select the VPC
-Select both public subnets
+* Associate an Elastic IP with each of the Bastion EC2 Instances
+* Create an AMI out of the EC2 instance
+* Prepare Launch Template For Bastion (One per subnet)
+* Make use of the AMI to set up a launch template
+* Ensure the Instances are launched into a public subnet
+* Assign appropriate security group
+* Configure Userdata to update yum package repository and install Ansible and git
+* Configure Target Groups
+* Select Instances as the target type
+* Ensure the protocol is TCP on port 22
+* Register Bastion Instances as targets
+* Ensure that health check passes for the target group, Configure Autoscaling For Bastion, Select the right launch template, Select the VPC, Select both public subnets
 Enable Application Load Balancer for the AutoScalingGroup (ASG)
 Select the target group you created before
 Ensure that you have health checks for both EC2 and ALB
