@@ -82,6 +82,7 @@ Tag the resource
 
 
 *create Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) 
+![Screenshot from 2023-08-23 07-06-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c406226a-a37a-48e8-af77-88c70dfde460)
 
 * Proceed With Compute Resources
 You will need to set up and configure compute resources inside your VPC. The recources related to compute are:
