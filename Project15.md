@@ -21,8 +21,14 @@ Move the DevOps account into the Dev OU.
 
 Login to the newly created AWS account using the new email address.
 
-Create a free domain name for your fictitious company at Freenom domain registrar here.
-Create a hosted zone in AWS, and map it to your free domain from Freenom
+Create a free domain name for your fictitious company 
+![Screenshot from 2023-08-23 05-36-57](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/085da3f5-472f-431f-b565-36562d6ccce2)
+
+Create a hosted zone in AWS, and map it to your free domain from HOSTINGER
+
+
+![Screenshot from 2023-08-23 05-34-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/01c9603b-3752-4f67-b8f2-d25a5f481400)
+
 ### TASK 1:Set Up a Virtual Private Network (VPC)
 futurescreenshot
 ![Screenshot from 2023-08-21 23-24-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/15eca66e-c4f3-45af-b3ad-f631c8477c31)
@@ -68,7 +74,14 @@ Data Layer:
 ![Screenshot from 2023-08-22 00-21-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fc92995b-a026-4dff-b5ac-e949d30ba0ed)
 
  
-*create a certificate, Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) 
+*Navigate to AWS ACM
+Request a public wildcard certificate for the domain name you registered in Freenom
+Use DNS to validate the domain name
+Tag the resource
+
+
+
+*create Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) 
 
 * Proceed With Compute Resources
 You will need to set up and configure compute resources inside your VPC. The recources related to compute are:
@@ -184,7 +197,7 @@ Configure Userdata to update yum package repository and install wordpress (Only 
 TLS Certificates From Amazon Certificate Manager (ACM)
 You will need TLS certificates to handle secured connectivity to your Application Load Balancers (ALB).
 
-Navigate to AWS ACM
-Request a public wildcard certificate for the domain name you registered in Freenom
-Use DNS to validate the domain name
-Tag the resource
+
+
+
+
