@@ -94,8 +94,10 @@ Pre-requisite: Create a KMS key from Key Management Service (KMS) to be used to 
 
 Subnet groups created
 ![Screenshot from 2023-08-23 07-26-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fe86c307-7bea-46b4-ace3-9cc6443383e3)
-Database created successfully
+RDS Database created successfully
 ![Screenshot from 2023-08-23 20-07-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2e98519a-21ac-4f2d-9548-04cc98ceda7d)
+
+
 * Proceed With Compute Resources
 You will need to set up and configure compute resources inside your VPC. The recources related to compute are:
 
