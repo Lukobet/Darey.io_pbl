@@ -168,6 +168,7 @@ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 
 Create an AMI out of the EC2 instance
+![Screenshot from 2023-08-23 22-45-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c8bcbab6-a30e-4dc1-bbec-602d215a0423)
 
 Prepare Launch Template For Nginx (One Per Subnet)
 Make use of the AMI to set up a launch template
@@ -212,6 +213,7 @@ systemctl enable chronyd
 
 * Associate an Elastic IP with each of the Bastion EC2 Instances
 * Create an AMI out of the EC2 instance
+  ![Screenshot from 2023-08-23 22-45-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c8bcbab6-a30e-4dc1-bbec-602d215a0423)
 * Prepare Launch Template For Bastion (One per subnet)
 * Make use of the AMI to set up a launch template
 * Ensure the Instances are launched into a public subnet
@@ -275,9 +277,20 @@ yum install -y rpm-build
 make rpm 
 
 yum install -y  ./build/amazon-efs-utils*rpm
+```
+## seting up self-signed certificate for the apache  webserver instance
+```
+yum install -y mod_ssl
 
+openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/ACS.key -x509 -days 365 -out /etc/pki/tls/certs/ACS.crt
+
+vi /etc/httpd/conf.d/ssl.conf
+```
+certificate generated 
+![Screenshot from 2023-08-23 22-37-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2325b304-4567-4477-8b52-1afbb2120006)
 
 Create an AMI out of the EC2 instance
+![Screenshot from 2023-08-23 22-45-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c8bcbab6-a30e-4dc1-bbec-602d215a0423)
 
 Prepare Launch Template For Webservers (One per subnet)
 Make use of the AMI to set up a launch template
