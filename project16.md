@@ -6,7 +6,10 @@ After you have built AWS infrastructure for 2 websites manually, it is time to a
 ##### Prerequisites before you begin writing Terraform code
 
 Create an IAM user, name it terraform (ensure that the user has only programatic access to your AWS account) and grant this user AdministratorAccess permissions.
-Copy the secret access key and access key ID. Save them in a notepad temporarily.
+![Screenshot from 2023-08-24 20-28-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/534def20-a18f-426c-b3c1-5b132fef746c)
+
+Copy the secret access key and access key ID. Save them in a notepad temporarily **====DONE**
+
 Configure programmatic access from your workstation to connect to AWS using the access keys copied above and a Python SDK (boto3). You must have Python 3.6 or higher on your workstation.
 
 
