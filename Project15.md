@@ -305,6 +305,16 @@ TLS Certificates From Amazon Certificate Manager (ACM)
 You will need TLS certificates to handle secured connectivity to your Application Load Balancers (ALB).
 
 
+## Configuring DNS with Route53
+Create other records such as CNAME, alias and A records.
+
+NOTE: You can use either CNAME or alias records to achieve the same thing. But alias record has better functionality because it is a faster to resolve DNS record, and can coexist with other records on that name. Read here to get to know more about the differences.
+
+Create an alias record for the root domain and direct its traffic to the ALB DNS name.
+Create an alias record for tooling.<yourdomain>.com and direct its traffic to the ALB DNS name.
+
+![Screenshot from 2023-08-24 01-23-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f3a672a9-01e4-4101-99f7-fb66770e9e3f)
+![Screenshot from 2023-08-24 01-23-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/062018c4-a037-4829-9298-ecef61d19ec).
 
 
 
