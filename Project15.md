@@ -314,7 +314,14 @@ Create an alias record for the root domain and direct its traffic to the ALB DNS
 Create an alias record for tooling.<yourdomain>.com and direct its traffic to the ALB DNS name.
 
 ![Screenshot from 2023-08-24 01-23-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f3a672a9-01e4-4101-99f7-fb66770e9e3f)
-![Screenshot from 2023-08-24 01-23-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/062018c4-a037-4829-9298-ecef61d19ec).
+![Screenshot from 2023-08-24 01-23-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/062018c4-a037-4829-9298-ecef61d19ecd).
 
+wordpress succesffully installed
+![Screenshot from 2023-08-24 01-31-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf512d0a-d56f-4f98-9452-eaf752f73e90)
+
+![Screenshot from 2023-08-24 01-33-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95a853f5-7f07-42d3-9c6d-8213f2f18a90)
+
+Tooling also working
+![Screenshot from 2023-08-24 01-35-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4d7c6fe0-06a4-498a-abe3-d1e5519c0796)
 
 
