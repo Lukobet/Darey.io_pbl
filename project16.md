@@ -6,7 +6,10 @@ After you have built AWS infrastructure for 2 websites manually, it is time to a
 ##### Prerequisites before you begin writing Terraform code
 
 Create an IAM user, name it terraform (ensure that the user has only programatic access to your AWS account) and grant this user AdministratorAccess permissions.
-![Screenshot from 2023-08-24 20-28-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/534def20-a18f-426c-b3c1-5b132fef746c)
+
+
+![Screenshot from 2023-08-24 20-28-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/943d2ca2-e432-4be2-ae08-151d4ff21ce3)
+
 
 Copy the secret access key and access key ID. Save them in a notepad temporarily **====DONE**
 
@@ -18,6 +21,8 @@ For easier authentication configuration – use AWS CLI with aws configure comma
 * Create an S3 bucket to store Terraform state file. You can name it something like <yourname>-dev-terraform-bucket (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming in this article).
 
  ![Screenshot from 2023-08-25 17-11-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b8421ad6-81bc-4ad2-b434-593b171069e1)
+
+ 
 When you have configured authentication and installed boto3, make sure you can programmatically access your AWS account by running following commands in >python:
 ```
 import boto3
