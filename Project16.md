@@ -163,7 +163,8 @@ resource "aws_vpc" "main" {
 
 The next thing we need to do, is to download necessary plugins for Terraform to work. These plugins are used by providers and provisioners. At this stage, we only have provider in our main.tf file. So, Terraform will just download plugin for AWS provider.
 
-![Screenshot from 2023-08-25 22-04-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95f8250f-244b-4484-884c-7aa27c382c7d)
+![Screenshot from 2023-08-25 22-04-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/62492997-8399-4d85-9e8c-771c544f2b39)
+
 
 According to our architectural design, we require 6 subnets:
 
