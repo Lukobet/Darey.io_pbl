@@ -13,7 +13,7 @@ Copy the secret access key and access key ID. Save them in a notepad temporarily
 Configure programmatic access from your workstation to connect to AWS using the access keys copied above and a Python SDK (boto3). You must have Python 3.6 or higher on your workstation.
 
 
-For easier authentication configuration – use AWS CLI with aws configure command.
+For easier authentication configuration – use AWS CLI with aws configure command.**===DONE**
 
 * Create an S3 bucket to store Terraform state file. You can name it something like <yourname>-dev-terraform-bucket (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming in this article). 
 When you have configured authentication and installed boto3, make sure you can programmatically access your AWS account by running following commands in >python:
