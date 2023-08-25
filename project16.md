@@ -15,7 +15,9 @@ Configure programmatic access from your workstation to connect to AWS using the 
 
 For easier authentication configuration – use AWS CLI with aws configure command.**===DONE**
 
-* Create an S3 bucket to store Terraform state file. You can name it something like <yourname>-dev-terraform-bucket (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming in this article). 
+* Create an S3 bucket to store Terraform state file. You can name it something like <yourname>-dev-terraform-bucket (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming in this article).
+
+ ![Screenshot from 2023-08-25 17-11-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b8421ad6-81bc-4ad2-b434-593b171069e1)
 When you have configured authentication and installed boto3, make sure you can programmatically access your AWS account by running following commands in >python:
 ```
 import boto3
