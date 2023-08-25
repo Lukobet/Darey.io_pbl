@@ -165,4 +165,30 @@ The next thing we need to do, is to download necessary plugins for Terraform to 
 
 ![Screenshot from 2023-08-25 22-04-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95f8250f-244b-4484-884c-7aa27c382c7d)
 
-Lets accomplish this with terraform init command as seen in the below demonstration.
+According to our architectural design, we require 6 subnets:
+
+2 public, 2 private for webservers and 2 private for data layer
+Let us create the first 2 public subnets.
+
+Add below configuration to the main.tf file:
+
+  ```
+# Create public subnets1
+    resource "aws_subnet" "public1" {
+    vpc_id                     = aws_vpc.main.id
+    cidr_block                 = "172.16.0.0/24"
+    map_public_ip_on_launch    = true
+    availability_zone          = "eu-central-1a"
+
+}
+
+# Create public subnet2
+    resource "aws_subnet" "public2" {
+    vpc_id                     = aws_vpc.main.id
+    cidr_block                 = "172.16.1.0/24"
+    map_public_ip_on_launch    = true
+    availability_zone          = "eu-central-1b"
+}
+```
+
+Run terraform plan and terraform apply
