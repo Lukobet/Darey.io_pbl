@@ -28,7 +28,7 @@ for bucket in s3.buckets.all():
 ```
 
 You shall see your previously created S3 bucket name – <yourname>-dev-terraform-bucket
-
+![Screenshot from 2023-08-25 17-20-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3a7ae430-ef3f-4f6b-8576-4851f6fa29fc)
 The secrets of writing quality Terraform code
 The secret recipe of a successful Terraform projects consists of:
 
