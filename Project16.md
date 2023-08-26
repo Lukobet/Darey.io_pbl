@@ -395,4 +395,70 @@ so to fix this declare a variable to store the desired number of public subnets,
 ```
 
 ![Screenshot from 2023-08-26 14-42-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cfafdeb3-c15a-4ee8-991e-57fa6621f386)
+A breakdown of it all 
+* The first part var.preferred_number_of_public_subnets == null checks if the value of the variable is set to null or has some value defined.
+* The second part ? and length(data.aws_availability_zones.available.names) means, if the first part is true, then use this. In other words, if preferred number of public subnets is null (Or not known) then set the value to the data returned by lenght function.
+* The third part : and var.preferred_number_of_public_subnets means, if the first condition is false, i.e preferred number of public subnets is not null then set the value to whatever is definied in var.preferred_number_of_public_subnets
 
+ You should try changing the value of preferred_number_of_public_subnets variable to null and notice how many subnets get created. 
+
+
+##### INTRODUCING VARIABLES.TF & TERRAFORM.TFVARS
+
+Instead of havng a long lisf of variables in main.tf file, we can actually make our code a lot more readable and better structured by moving out some parts of the configuration content to other files.
+
+We will put all variable declarations in a separate file
+And provide non default values to each of them
+
+* Create a new file and name it variables.tf
+* Copy all the variable declarations into the new file.
+* Create another file, name it terraform.tfvars
+* Set values for each of the variables.
+main.tf
+**variable.tf** will look like this
+   ```
+ variable "region" {
+      default = "eu-central-1"
+}
+
+variable "vpc_cidr" {
+    default = "172.16.0.0/16"
+}
+
+variable "enable_dns_support" {
+    default = "true"
+}
+
+variable "enable_dns_hostnames" {
+    default ="true" 
+}
+
+variable "enable_classiclink" {
+    default = "false"
+}
+
+variable "enable_classiclink_dns_support" {
+    default = "false"
+}
+
+  variable "preferred_number_of_public_subnets" {
+      default = null
+}
+```
+**terraform.tfvars**  will look like this
+
+```
+ region = "eu-central-1"
+
+vpc_cidr = "172.16.0.0/16" 
+
+enable_dns_support = "true" 
+
+enable_dns_hostnames = "true"  
+
+enable_classiclink = "false" 
+
+enable_classiclink_dns_support = "false" 
+
+preferred_number_of_public_subnets = 2
+```
