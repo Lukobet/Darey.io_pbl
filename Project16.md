@@ -401,6 +401,7 @@ A breakdown of it all
 * The third part : and var.preferred_number_of_public_subnets means, if the first condition is false, i.e preferred number of public subnets is not null then set the value to whatever is definied in var.preferred_number_of_public_subnets
 
  You should try changing the value of preferred_number_of_public_subnets variable to null and notice how many subnets get created. 
+![Screenshot from 2023-08-26 14-59-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/218ac13b-74f5-472a-9b3e-c6f4179f47b6)
 
 
 ##### INTRODUCING VARIABLES.TF & TERRAFORM.TFVARS
