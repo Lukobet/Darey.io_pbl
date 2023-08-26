@@ -276,3 +276,69 @@ Do the same to cidr value in the vpc block, and all the other arguments.
 
     }
 ```
+**Fixing multiple resource blocks:**
+Terraform has a functionality that allows us to pull data which exposes information to us. For example, every region has Availability Zones (AZ). Different regions have from 2 to 4 Availability Zones. With over 20 geographic regions and over 70 AZs served by AWS, it is impossible to keep up with the latest information by hard coding the names of AZs. Hence, we will explore the use of Terraform’s Data Sources to fetch information outside of Terraform. In this case, from AWS
+
+Let us fetch Availability zones from AWS, and replace the hard coded value in the subnet’s availability_zone section.
+```
+  # Get list of availability zones
+        data "aws_availability_zones" "available" {
+        state = "available"
+        }
+```
+
+change the info in the subnet 1 to this
+```
+
+
+   # Create public subnet1
+    resource "aws_subnet" "public" { 
+        count                   = 2
+        vpc_id                  = aws_vpc.main.id
+        cidr_block              = "172.16.1.0/24"
+        map_public_ip_on_launch = true
+        availability_zone       = data.aws_availability_zones.available.names[count.index]
+
+    }
+```
+this above means that the count tells us that we need 2 subnets. Therefore, Terraform will invoke a loop to create 2 subnets.
+The data resource will return a list object that contains a list of AZs. Internally, Terraform will receive the data like this
+  ["eu-central-1a", "eu-central-1b"]
+![Screenshot from 2023-08-26 14-21-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/23adb14a-f007-4ff2-af78-152712cb333e)
+
+but with the data bove it will fail, we need to change it to the codes below
+
+**Let’s make cidr_block dynamic.**
+We will introduce a function cidrsubnet() to make this happen. It accepts 3 parameters. Let us use it first by updating the configuration, then we will explore its internals.
+
+```
+ # Create public subnet1
+    resource "aws_subnet" "public" { 
+        count                   = 2
+        vpc_id                  = aws_vpc.main.id
+        cidr_block              = cidrsubnet(var.vpc_cidr, 4 , count.index)
+        map_public_ip_on_launch = true
+        availability_zone       = data.aws_availability_zones.available.names[count.index]
+
+    }
+```
+
+![Screenshot from 2023-08-26 14-22-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/68e83f54-50f5-4cd1-a768-897f7db4627d)
+
+A closer look at cidrsubnet – this function works like an algorithm to dynamically create a subnet CIDR per AZ. Regardless of the number of subnets created, it takes care of the cidr value per subnet.
+
+Its parameters are cidrsubnet(prefix, newbits, netnum)
+
+The **prefix** parameter must be given in CIDR notation, same as for VPC.
+The **newbits** parameter is the number of additional bits with which to extend the prefix. For example, if given a prefix ending with /16 and a newbits value of 4, the resulting subnet address will have length /20
+The **netnum** parameter is a whole number that can be represented as a binary integer with no more than newbits binary digits, which will be used to populate the additional bits added to the prefix.
+
+You can experiment how this works by entering the terraform console and keep changing the figures to see the output.
+
+On the terminal, run terraform console
+type cidrsubnet("172.16.0.0/16", 4, 0)
+Hit enter
+See the output
+Keep change the numbers and see what happens.
+To get out of the console, type exit
+![Screenshot from 2023-08-26 14-29-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/17399bb7-b25c-4217-be13-6bb2fd50219b)
