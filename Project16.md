@@ -208,3 +208,71 @@ vpc and subnets created
 
 ![Screenshot from 2023-08-26 13-53-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d9adc02f-e6c2-47b1-afab-25f6c29aa1a5)
 ![Screenshot from 2023-08-26 13-54-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/dc840a46-d45b-485e-a4b9-e3ca5f48a082)
+Now let us improve our code by refactoring it.
+
+First, destroy the current infrastructure. Since we are still in development, this is totally fine. Otherwise, DO NOT DESTROY an infrastructure that has been deployed to production.
+
+To destroy whatever has been created run terraform destroy command, and type yes after evaluating the plan.
+
+![Screenshot from 2023-08-26 13-58-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/97342ab1-da9e-4041-afc7-5bfc76a7b81a)
+
+
+![Screenshot from 2023-08-26 13-58-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf1fcc88-dc91-44f0-94fa-8af8401066c0)
+
+
+## FIXING THE PROBLEMS BY CODE REFACTORING
+
+**Fixing Hard Coded Values:** We will introduce variables, and remove hard coding.
+Starting with the provider block, declare a variable named region, give it a default value, and update the provider section by referring to the declared variable.
+```
+ variable "region" {
+        default = "eu-central-1"
+    }
+
+    provider "aws" {
+        region = var.region
+    }
+```
+
+Do the same to cidr value in the vpc block, and all the other arguments.
+
+```
+ 
+    variable "region" {
+        default = "eu-central-1"
+    }
+
+    variable "vpc_cidr" {
+        default = "172.16.0.0/16"
+    }
+
+    variable "enable_dns_support" {
+        default = "true"
+    }
+
+    variable "enable_dns_hostnames" {
+        default ="true" 
+    }
+
+    variable "enable_classiclink" {
+        default = "false"
+    }
+
+    variable "enable_classiclink_dns_support" {
+        default = "false"
+    }
+
+    provider "aws" {
+    region = var.region
+    }
+
+    # Create VPC
+    resource "aws_vpc" "main" {
+    cidr_block                     = var.vpc_cidr
+    enable_dns_support             = var.enable_dns_support 
+    enable_dns_hostnames           = var.enable_dns_support
+    enable_classiclink             = var.enable_classiclink
+    enable_classiclink_dns_support = var.enable_classiclink
+
+    }
+```
