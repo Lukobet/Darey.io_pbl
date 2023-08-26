@@ -415,7 +415,7 @@ And provide non default values to each of them
 * Copy all the variable declarations into the new file.
 * Create another file, name it terraform.tfvars
 * Set values for each of the variables.
-main.tf
+
 **variable.tf** will look like this
    ```
  variable "region" {
@@ -446,6 +446,9 @@ variable "enable_classiclink_dns_support" {
       default = null
 }
 ```
+
+![Screenshot from 2023-08-26 15-02-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4a482224-5aa2-49ab-aea8-ebee0234092a)
+
 **terraform.tfvars**  will look like this
 
 ```
@@ -463,3 +466,4 @@ enable_classiclink_dns_support = "false"
 
 preferred_number_of_public_subnets = 2
 ```
+![Screenshot from 2023-08-26 15-03-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7a03a074-69f8-4588-898c-6855bd2aa61c)
