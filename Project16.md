@@ -469,6 +469,6 @@ preferred_number_of_public_subnets = 2
 ![Screenshot from 2023-08-26 15-03-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7a03a074-69f8-4588-898c-6855bd2aa61c)
 file structure
 ![Screenshot from 2023-08-26 15-05-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/59135366-52de-4aca-adbb-b436ad6b74f5)
-
+do terraform plan
 ![Screenshot from 2023-08-26 15-07-53](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ac847d9b-b8df-47ec-9986-cedb4325cc5a)
 
