@@ -145,28 +145,35 @@ Set up Terraform CLI as per this instruction.
 * Add AWS as a provider, and a resource to create a VPC in the main.tf file.
 * Provider block informs Terraform that we intend to build infrastructure within AWS.
 * Resource block will create a VPC.
-  ```
-   provider "aws" {
+
+ 
+** provider "aws" {
   region = "eu-central-1"
 }
 
-#Create VPC
+# Create VPC
 resource "aws_vpc" "main" {
   cidr_block                     = "172.16.0.0/16"
   enable_dns_support             = "true"
   enable_dns_hostnames           = "true"
   enable_classiclink             = "false"
   enable_classiclink_dns_support = "false"
-} 
-
-
-![Screenshot from 2023-08-26 11-45-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d81843be-02c4-4510-9cd0-bfb6fea08e1f)
+}
+**
 
 The next thing we need to do, is to download necessary plugins for Terraform to work. These plugins are used by providers and provisioners. At this stage, we only have provider in our main.tf file. So, Terraform will just download plugin for AWS provider.
 
 ![Screenshot from 2023-08-25 22-04-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/62492997-8399-4d85-9e8c-771c544f2b39)
 
 ![Screenshot from 2023-08-26 11-42-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc050e83-fac1-4bdc-8558-6e177c550bac)
+
+
+while trying to create the aws-vpc i got this error when i implemented the terraform plan.
+
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b76d62a4-ea9e-4cca-941b-d2c4460f0980)
+Had to comment out line 10 and 11
+![Screenshot from 2023-08-26 12-09-58](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/879d007c-eced-404d-8df2-f9c05bbf0968)
+
 According to our architectural design, we require 6 subnets:
 
 2 public, 2 private for webservers and 2 private for data layer
