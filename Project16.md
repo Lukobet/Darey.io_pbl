@@ -201,3 +201,10 @@ Add below configuration to the main.tf file:
 ```
 
 Run terraform plan and terraform apply
+
+![Screenshot from 2023-08-26 13-45-40](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/422c19c2-48d2-448e-b0d8-b363432b669d)
+![Screenshot from 2023-08-26 13-51-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/67be1800-9efb-4109-9e48-38340487d06c)
+vpc and subnets created 
+
+![Screenshot from 2023-08-26 13-53-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d9adc02f-e6c2-47b1-afab-25f6c29aa1a5)
+![Screenshot from 2023-08-26 13-54-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/dc840a46-d45b-485e-a4b9-e3ca5f48a082)
