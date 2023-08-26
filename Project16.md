@@ -342,3 +342,57 @@ See the output
 Keep change the numbers and see what happens.
 To get out of the console, type exit
 ![Screenshot from 2023-08-26 14-29-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/17399bb7-b25c-4217-be13-6bb2fd50219b)
+#### The final problem to solve is removing hard coded count value.
+
+ Since the data resource returns all the AZs within a region, it makes sense to count the number of AZs returned and pass that number to the count argument.
+
+To do this, we can introduce (**length**) function, which basically determines the length of a given list, map, or string.
+
+Since data.aws_availability_zones.available.names returns a list like ["eu-central-1a", "eu-central-1b", "eu-central-1c"] we can pass it into a length function and get number of the AZs.
+
+length(["eu-central-1a", "eu-central-1b", "eu-central-1c"])
+
+Open up terraform console and try it
+![Screenshot from 2023-08-26 14-36-40](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b577c120-4593-4b1b-a942-a2a21131a176)
+
+Now we can simply update the public subnet1  block like this
+
+```
+ # Create public subnet1
+    resource "aws_subnet" "public" { 
+        count                   = length(data.aws_availability_zones.available.names)
+        vpc_id                  = aws_vpc.main.id
+        cidr_block              = cidrsubnet(var.vpc_cidr, 4 , count.index)
+        map_public_ip_on_launch = true
+        availability_zone       = data.aws_availability_zones.available.names[count.index]
+
+    }
+```
+![Screenshot from 2023-08-26 14-37-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7301b2ed-eae6-44d5-ad55-2d272e9f8de6)
+
+You will observe that What we have now, is sufficient to create the subnet resource required. But if you observe, it is not satisfying our business requirement of just 2 subnets. The length function will return number 3 to the count argument, but what we actually need is 2.
+so to fix this declare a variable to store the desired number of public subnets, and set the default value
+
+```
+ variable "preferred_number_of_public_subnets" {
+  default = 2
+}
+```
+
+![Screenshot from 2023-08-26 14-41-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/76611173-a120-4fbd-9f98-c03d96e43430)
+
+* Next, update the count argument with a condition. Terraform needs to check first if there is a desired number of subnets. Otherwise, use the data returned by the lenght function. See how that is presented below.
+```
+ # Create public subnet1
+    resource "aws_subnet" "public" { 
+        count                   = length(data.aws_availability_zones.available.names)
+        vpc_id                  = aws_vpc.main.id
+        cidr_block              = cidrsubnet(var.vpc_cidr, 4 , count.index)
+        map_public_ip_on_launch = true
+        availability_zone       = data.aws_availability_zones.available.names[count.index]
+
+    }
+```
+
+![Screenshot from 2023-08-26 14-42-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cfafdeb3-c15a-4ee8-991e-57fa6621f386)
+
