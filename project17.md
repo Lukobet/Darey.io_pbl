@@ -29,7 +29,7 @@ tags = merge(
 ```
 ![Screenshot from 2023-08-27 05-14-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12851419-9e17-4b4f-ba10-ebf8224345c2)
 
-Update the variables.tf to declare the variable tags used in this format
+Update the **variables.tf** to declare the variable tags used in this format
  ```
 variable "tags" {
   description = "A mapping of tags to assign to all resources."
@@ -39,7 +39,7 @@ variable "tags" {
 ```
 ![Screenshot from 2023-08-27 05-19-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2bf1139b-78d1-4d65-b40e-0f11b3b12d77)
 
-Update the terraform.tfvars to declare the variable tags used in this format;
+Update the **terraform.tfvars** to declare the variable tags used in this format;
  ```
 tags = {
   Enviroment      = "production" 
@@ -69,7 +69,7 @@ resource "aws_internet_gateway" "ig" {
 #### NAT Gateways
 Create 1 NAT Gateways and 1 Elastic IP (EIP) addresses
 
-Now use similar approach to create the NAT Gateways in a new file called natgateway.tf.
+Now use similar approach to create the NAT Gateways in a new file called **natgateway.tf**.
 
 ```
 resource "aws_eip" "nat_eip" {
@@ -107,7 +107,7 @@ But was solved by changing my region to us.east.1
 ![Screenshot from 2023-08-27 12-39-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c9bb334e-5b91-4ae8-b439-708bf919d8fc)
 
 ### AWS ROUTES
-* Create a file called route_tables.tf and use it to create routes for both public and private subnets, create the below resources. Ensure they are properly tagged.
+* Create a file called **route_tables.tf** and use it to create routes for both public and private subnets, create the below resources. Ensure they are properly tagged.
 
 aws_route_table
 aws_route
@@ -186,7 +186,8 @@ Check out the terraform documentation for security group
 
 Check out the terraform documentation for security group rule
 
-Create a file and name it security.tf, copy and paste the code below
+Create a file and name it **security.tf**, copy and paste the code below
+
  ```
 # security group for alb, to allow acess from any where for HTTP and HTTPS traffic
 resource "aws_security_group" "ext-alb-sg" {
@@ -438,7 +439,7 @@ resource "aws_security_group_rule" "inbound-mysql-webserver" {
 
 
 #### CREATE CERTIFICATE FROM AMAZON CERIFICATE MANAGER
-Create cert.tf file and add the following code snippets to it.
+Create **cert.tf** file and add the following code snippets to it.
 
  ```
 # The entire section create a certificate, public zone, and validate the certificate using DNS method
@@ -511,7 +512,7 @@ resource "aws_route53_record" "wordpress" {
 
 
 #### Create an external (Internet facing) Application Load Balancer (ALB)
-Create a file called alb.tf
+Create a file called **alb.tf**
 
 First of all we will create the ALB, then we create the target group and lastly we will create the lsitener rule.
 
