@@ -241,6 +241,7 @@ resource "aws_route53_record" "wordpress" {
   }
 }
 ```
+![Screenshot from 2023-08-27 13-33-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1677a3b-8de6-47b5-8960-48df3804e0b7)
 
 #### Create an external (Internet facing) Application Load Balancer (ALB)
 Create a file called alb.tf
@@ -417,3 +418,5 @@ resource "aws_lb_listener_rule" "tooling-listener" {
   }
 }
 ```
+
+![Screenshot from 2023-08-27 13-33-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/397cb37a-8f7c-4920-a994-dc85b8de3b32)
