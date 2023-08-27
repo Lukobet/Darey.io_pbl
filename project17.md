@@ -8,7 +8,7 @@ Create 4 private subnets keeping in mind following principles:
 * Use variables and cidrsubnet() function to allocate vpc_cidr for subnets
 * Keep variables and resources in separate files for better code structure and readability
 * Tags all the resources you have created so far. Explore how to use format() and count functions to automatically tag subnets with its respective number.
-
+![Screenshot from 2023-08-27 04-41-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4ba55cb0-91ed-462e-8847-83fd63ad994a)
 ##### Tagging
 Tagging is a straightforward, but a very powerful concept that helps you manage your resources much more efficiently:
 
@@ -27,7 +27,9 @@ tags = merge(
   )
 
 ```
- Update the variables.tf to declare the variable tags used in the format above;
+![Screenshot from 2023-08-27 05-14-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/12851419-9e17-4b4f-ba10-ebf8224345c2)
+
+Update the variables.tf to declare the variable tags used in the format above;
  ```
 variable "tags" {
   description = "A mapping of tags to assign to all resources."
@@ -35,3 +37,5 @@ variable "tags" {
   default     = {}
 }
 ```
+![Screenshot from 2023-08-27 05-19-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2bf1139b-78d1-4d65-b40e-0f11b3b12d77)
+
