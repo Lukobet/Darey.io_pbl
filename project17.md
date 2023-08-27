@@ -160,3 +160,15 @@ resource "aws_route_table_association" "public-subnets-assoc" {
 }
 
 ```
+Now if you run **terraform plan** and **terraform apply** it will add the following resources to AWS in multi-az set up:
+
+– Our main vpc
+– 2 Public subnets
+– 4 Private subnets
+– 1 Internet Gateway
+– 1 NAT Gateway
+– 1 EIP
+– 2 Route tables
+![Screenshot from 2023-08-27 13-02-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7ba67812-b9ba-45be-9fd5-1c041dee3ff2)
+didnt do terraform apply yet because i want to solve the problem of agrument deprecated
+
