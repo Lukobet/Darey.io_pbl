@@ -104,7 +104,59 @@ I keep getting this error
 ![Screenshot from 2023-08-27 06-04-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05e62a80-a0ae-4948-a83b-89d06c11a8ad)
 But was solved by changing my region to us.east.1
 
+![Screenshot from 2023-08-27 12-39-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c9bb334e-5b91-4ae8-b439-708bf919d8fc)
 
+### AWS ROUTES
+* Create a file called route_tables.tf and use it to create routes for both public and private subnets, create the below resources. Ensure they are properly tagged.
 
+aws_route_table
+aws_route
+aws_route_table_association
 
+ ```
+# create private route table
+resource "aws_route_table" "private-rtb" {
+  vpc_id = aws_vpc.main.id
 
+  tags = merge(
+    var.tags,
+    {
+      Name = format("%s-Private-Route-Table", var.name)
+    },
+  )
+}
+
+# associate all private subnets to the private route table
+resource "aws_route_table_association" "private-subnets-assoc" {
+  count          = length(aws_subnet.private[*].id)
+  subnet_id      = element(aws_subnet.private[*].id, count.index)
+  route_table_id = aws_route_table.private-rtb.id
+}
+
+# create route table for the public subnets
+resource "aws_route_table" "public-rtb" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    var.tags,
+    {
+      Name = format("%s-Public-Route-Table", var.name)
+    },
+  )
+}
+
+# create route for the public route table and attach the internet gateway
+resource "aws_route" "public-rtb-route" {
+  route_table_id         = aws_route_table.public-rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.ig.id
+}
+
+# associate all public subnets to the public route table
+resource "aws_route_table_association" "public-subnets-assoc" {
+  count          = length(aws_subnet.public[*].id)
+  subnet_id      = element(aws_subnet.public[*].id, count.index)
+  route_table_id = aws_route_table.public-rtb.id
+}
+
+```
