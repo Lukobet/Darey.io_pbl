@@ -1094,7 +1094,19 @@ resource "aws_autoscaling_attachment" "asg_attachment_tooling" {
 }
 ```
 ![Screenshot from 2023-08-27 17-25-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/08cced59-b7aa-4454-904f-2cd27abd5a05)
+i got this error because i was yet to create a file called outputs.tf
+![Screenshot from 2023-08-27 17-41-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4c01176d-4364-4217-997f-2d28be7259ef)
 
+in **outputs.tf,** include the below snippet:
+```
+output "alb_dns_name" {
+  value = aws_lb.ext-alb.dns_name
+}
+
+output "alb_target_group_arn" {
+  value = aws_lb_target_group.nginx-tgt.arn
+}
+```
  #### STORAGE AND DATABASE
  
 * Create Elastic File System (EFS)
@@ -1105,8 +1117,6 @@ AWS Key Management Service (KMS) makes it easy for you to create and manage cryp
 Add the following code to **efs.tf**
 
 ```
-
-
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
 
 ```
@@ -1127,3 +1137,8 @@ my complete variable.tf file has all this informations in it
 
 ```
 my complete terrafrom.tfvars file has all this informations in it
+
+```
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+
+```
