@@ -708,3 +708,16 @@ resource "aws_lb_target_group" "nginx-tgt" {
 ```
 ![Screenshot from 2023-08-27 13-33-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1677a3b-8de6-47b5-8960-48df3804e0b7)
 
+#### create the Auto Scaling Group (ASG)
+Based on our Architetcture we need for Auto Scaling Groups for bastion, nginx, wordpress and tooling, so we will create two files; asg-bastion-nginx.tf will contain Launch Template and Austoscaling froup for Bastion and Nginx, then asg-wordpress-tooling.tf will contain Launch Template and Autoscaling group for wordpress and tooling.
+Create **asg-bastion-nginx.tf** and paste all the code snippet below;
+```
+tags = merge(
+    var.tags,
+    {
+      Name = "Name of the resource"
+    },
+  )
+
+```
+
