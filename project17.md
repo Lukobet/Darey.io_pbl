@@ -169,8 +169,273 @@ Now if you run **terraform plan** and **terraform apply** it will add the follow
 – 1 NAT Gateway
 – 1 EIP
 – 2 Route tables
+
+
 ![Screenshot from 2023-08-27 13-02-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7ba67812-b9ba-45be-9fd5-1c041dee3ff2)
+
+
 didnt do terraform apply yet because i want to solve the problem of agrument deprecated
+
+
+#### CREATE SECURITY GROUPS
+We are going to create all the security groups in a single file, then we are going to refrence this security group within each resources that needs it.
+
+IMPORTANT:
+
+Check out the terraform documentation for security group
+
+Check out the terraform documentation for security group rule
+
+Create a file and name it security.tf, copy and paste the code below
+ ```
+# security group for alb, to allow acess from any where for HTTP and HTTPS traffic
+resource "aws_security_group" "ext-alb-sg" {
+  name        = "ext-alb-sg"
+  vpc_id      = aws_vpc.main.id
+  description = "Allow TLS inbound traffic"
+
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ tags = merge(
+    var.tags,
+    {
+      Name = "ext-alb-sg"
+    },
+  )
+
+}
+
+resource "aws_security_group_rule" "inbound-alb-http" {
+  type                     = "ingress"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  cidr_blocks              = ["0.0.0.0/0"]
+  security_group_id        = aws_security_group.ext-alb-sg.id
+}
+
+resource "aws_security_group_rule" "inbound-alb-https" {
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  cidr_blocks              = ["0.0.0.0/0"]
+  security_group_id        = aws_security_group.ext-alb-sg.id
+}
+
+# security group for bastion, to allow access into the bastion host from you IP
+resource "aws_security_group" "bastion_sg" {
+  name        = "bastion_sg"
+  vpc_id = aws_vpc.main.id
+  description = "Allow incoming HTTP connections."
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   tags = merge(
+    var.tags,
+    {
+      Name = "Bastion-SG"
+    },
+  )
+}
+
+
+
+#security group for nginx reverse proxy, to allow access only from the external load balancer and bastion instance
+resource "aws_security_group" "nginx-sg" {
+  name   = "nginx-sg"
+  vpc_id = aws_vpc.main.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   tags = merge(
+    var.tags,
+    {
+      Name = "nginx-SG"
+    },
+  )
+}
+
+resource "aws_security_group_rule" "inbound-nginx-https" {
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.ext-alb-sg.id
+  security_group_id        = aws_security_group.nginx-sg.id
+}
+
+resource "aws_security_group_rule" "inbound-bastion-ssh" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.bastion_sg.id
+  security_group_id        = aws_security_group.nginx-sg.id
+}
+
+
+# security group for ialb, to have acces only from nginx reverser proxy server
+resource "aws_security_group" "int-alb-sg" {
+  name   = "int-alb-sg"
+  vpc_id = aws_vpc.main.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "int-alb-sg"
+    },
+  )
+
+}
+
+resource "aws_security_group_rule" "inbound-ialb-https" {
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.nginx-sg.id
+  security_group_id        = aws_security_group.int-alb-sg.id
+}
+
+ 
+# security group for webservers, to have access only from the internal load balancer and bastion instance
+resource "aws_security_group" "webserver-sg" {
+  name   = "webserver-sg"
+  vpc_id = aws_vpc.main.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "webserver-sg"
+    },
+  )
+
+}
+
+resource "aws_security_group_rule" "inbound-web-https" {
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.int-alb-sg.id
+  security_group_id        = aws_security_group.webserver-sg.id
+}
+
+resource "aws_security_group_rule" "inbound-web-ssh" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.bastion_sg.id
+  security_group_id        = aws_security_group.webserver-sg.id
+}
+
+
+# security group for datalayer to alow traffic from websever on nfs and mysql port and bastiopn host on mysql port
+resource "aws_security_group" "datalayer-sg" {
+  name   = "datalayer-sg"
+  vpc_id = aws_vpc.main.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ tags = merge(
+    var.tags,
+    {
+      Name = "datalayer-sg"
+    },
+  )
+}
+
+resource "aws_security_group_rule" "inbound-nfs-port" {
+  type                     = "ingress"
+  from_port                = 2049
+  to_port                  = 2049
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.webserver-sg.id
+  security_group_id        = aws_security_group.datalayer-sg.id
+}
+
+resource "aws_security_group_rule" "inbound-mysql-bastion" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.bastion_sg.id
+  security_group_id        = aws_security_group.datalayer-sg.id
+}
+
+resource "aws_security_group_rule" "inbound-mysql-webserver" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.webserver-sg.id
+  security_group_id        = aws_security_group.datalayer-sg.id
+}
+```
+
+![Screenshot from 2023-08-27 13-44-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/573ffd31-9a75-43d3-b2e7-f0d5f737eb4f)
+
 
 #### CREATE CERTIFICATE FROM AMAZON CERIFICATE MANAGER
 Create cert.tf file and add the following code snippets to it.
@@ -241,7 +506,9 @@ resource "aws_route53_record" "wordpress" {
   }
 }
 ```
-![Screenshot from 2023-08-27 13-33-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1677a3b-8de6-47b5-8960-48df3804e0b7)
+![Screenshot from 2023-08-27 13-33-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/397cb37a-8f7c-4920-a994-dc85b8de3b32)
+
+
 
 #### Create an external (Internet facing) Application Load Balancer (ALB)
 Create a file called alb.tf
@@ -419,4 +686,24 @@ resource "aws_lb_listener_rule" "tooling-listener" {
 }
 ```
 
-![Screenshot from 2023-08-27 13-33-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/397cb37a-8f7c-4920-a994-dc85b8de3b32)
+To inform our ALB to where route the traffic we need to create a Target Group to point to its targets:
+
+```
+resource "aws_lb_target_group" "nginx-tgt" {
+  health_check {
+    interval            = 10
+    path                = "/healthstatus"
+    protocol            = "HTTPS"
+    timeout             = 5
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+  }
+  name        = "nginx-tgt"
+  port        = 443
+  protocol    = "HTTPS"
+  target_type = "instance"
+  vpc_id      = aws_vpc.main.id
+}
+```
+![Screenshot from 2023-08-27 13-33-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1677a3b-8de6-47b5-8960-48df3804e0b7)
+
