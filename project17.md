@@ -57,16 +57,15 @@ Create an Internet Gateway in a separate Terraform file internet_gateway.tf
  ```
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.main.id
-
   tags = merge(
     var.tags,
     {
-      Name = format("%s-%s!", aws_vpc.main.id,"IG")
-    } 
+      Name = format("%s-%s-%s!", var.name, aws_vpc.main.id, "IG")
+    },
   )
 }
 ```
-![Screenshot from 2023-08-27 05-45-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c4d68965-786f-47d5-aa20-a6243ed84496)
+![Screenshot from 2023-08-27 05-47-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36c7746b-8d57-48be-9294-686077fd62bc)
 #### NAT Gateways
 Create 1 NAT Gateways and 1 Elastic IP (EIP) addresses
 
@@ -100,3 +99,5 @@ resource "aws_nat_gateway" "nat" {
 
 ```
 ![Screenshot from 2023-08-27 05-44-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/01d25b0e-d4a0-4355-86b8-d4354745934a)
+
+
