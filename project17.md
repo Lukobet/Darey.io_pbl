@@ -942,6 +942,7 @@ resource "aws_autoscaling_attachment" "asg_attachment_nginx" {
   alb_target_group_arn   = aws_lb_target_group.nginx-tgt.arn
 }
 ```
+![Screenshot from 2023-08-27 16-08-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef0aeac2-7fc6-4841-9110-01ab0fe46b38)
 
 
 ```
