@@ -693,6 +693,80 @@ resource "aws_lb_target_group" "nginx-tgt" {
 ```
 ![Screenshot from 2023-08-27 13-33-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1677a3b-8de6-47b5-8960-48df3804e0b7)
 
+#### Create AssumeRole
+Assume Role uses Security Token Service (STS) API that returns a set of temporary security credentials that you can use to access AWS resources that you might not normally have access to. These temporary credentials consist of an access key ID, a secret access key, and a security token. Typically, you use AssumeRole within your account or for cross-account access.
+
+Add the following code to a new file named **roles.tf**
+
+```
+resource "aws_iam_role" "ec2_instance_role" {
+name = "ec2_instance_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "aws assume role"
+    },
+  )
+}
+
+```
+* add **IAM policy** for this role
+```
+resource "aws_iam_policy" "policy" {
+  name        = "ec2_instance_policy"
+  description = "A test policy"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+
+  })
+
+  tags = merge(
+    var.tags,
+    {
+      Name =  "aws assume policy"
+    },
+  )
+
+}
+```
+* Attach the Policy to the IAM Role
+```
+ resource "aws_iam_role_policy_attachment" "test-attach" {
+        role       = aws_iam_role.ec2_instance_role.name
+        policy_arn = aws_iam_policy.policy.arn
+    }
+```
+  
+* Create an Instance Profile and interpolate the IAM Role
+```
+resource "aws_iam_instance_profile" "ip" {
+        name = "aws_instance_profile_test"
+        role =  aws_iam_role.ec2_instance_role.name
+    }
+```
 #### create the Auto Scaling Group (ASG)
 Based on our Architetcture we need for Auto Scaling Groups for bastion, nginx, wordpress and tooling, so we will create two files; asg-bastion-nginx.tf will contain Launch Template and Austoscaling froup for Bastion and Nginx, then asg-wordpress-tooling.tf will contain Launch Template and Autoscaling group for wordpress and tooling.
 Create **asg-bastion-nginx.tf** and paste all the code snippet below;
