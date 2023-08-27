@@ -752,7 +752,7 @@ resource "aws_iam_policy" "policy" {
 
 }
 ```
-* Attach the Policy to the IAM Role
+* Attach **the Policy to the IAM Role**
 ```
  resource "aws_iam_role_policy_attachment" "test-attach" {
         role       = aws_iam_role.ec2_instance_role.name
@@ -760,13 +760,17 @@ resource "aws_iam_policy" "policy" {
     }
 ```
   
-* Create an Instance Profile and interpolate the IAM Role
+* Create an **Instance Profile** and **interpolate the IAM Role**
 ```
 resource "aws_iam_instance_profile" "ip" {
         name = "aws_instance_profile_test"
         role =  aws_iam_role.ec2_instance_role.name
     }
 ```
+
+![Screenshot from 2023-08-27 15-40-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1af0dc1f-3749-4f5c-917b-4a7e63962116)
+
+
 #### create the Auto Scaling Group (ASG)
 Based on our Architetcture we need for Auto Scaling Groups for bastion, nginx, wordpress and tooling, so we will create two files; asg-bastion-nginx.tf will contain Launch Template and Austoscaling froup for Bastion and Nginx, then asg-wordpress-tooling.tf will contain Launch Template and Autoscaling group for wordpress and tooling.
 Create **asg-bastion-nginx.tf** and paste all the code snippet below;
