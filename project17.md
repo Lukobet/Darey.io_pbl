@@ -1231,19 +1231,177 @@ resource "aws_efs_access_point" "tooling" {
 
   
 ```
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+# create DB subnet group from the private subnets
+resource "aws_db_subnet_group" "ACS-rds" {
+  name       = "acs-rds"
+  subnet_ids = [aws_subnet.private[2].id, aws_subnet.private[3].id]
 
+   tags = merge(
+    var.tags,
+    {
+      Name = "ACS-rds"
+    },
+  )
+}
+
+# create the RDS instance with the subnets group
+resource "aws_db_instance" "ACS-rds" {
+  allocated_storage      = 20
+  storage_type           = "gp2"
+  engine                 = "mysql"
+  engine_version         = "5.7"
+  instance_class         = "db.t2.micro"
+  username               = var.master-username
+  password               = var.master-password
+  parameter_group_name   = "default.mysql5.7"
+  db_subnet_group_name   = aws_db_subnet_group.ACS-rds.name
+  skip_final_snapshot    = true
+  vpc_security_group_ids = [aws_security_group.datalayer-sg.id]
+  multi_az               = "true"
+}
 ```
 
-my complete variable.tf file has all this informations in it
+##### my complete variable.tf file has all this informations in it
 
 ```
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "vpc_cidr" {
+  default = "172.16.0.0/16"
+}
+
+variable "enable_dns_support" {
+  default = "true"
+}
+
+variable "enable_dns_hostnames" {
+  default = "true"
+}
+
+variable "enable_classiclink" {
+  default = "false"
+}
+
+variable "enable_classiclink_dns_support" {
+  default = "false"
+}
+
+variable "preferred_number_of_public_subnets" {
+  type        = number
+  description = "Number of public subnets"
+}
+
+variable "preferred_number_of_private_subnets" {
+  type        = number
+  description = "Number of private subnets"
+}
+
+variable "name" {
+  type    = string
+  default = "ACS"
+
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "environment" {
+  type        = string
+  description  = "Environment"
+}
+
+variable "ami" {
+  type        = string
+  description = "AMI ID for the launch template"
+}
+
+variable "keypair" {
+  type        = string
+  description = "key pair for the instances"
+}
+
+variable "account_no" {
+  type        = number
+  description = "the account number"
+}
+
+variable "master-username" {
+  type        = string
+  description = "RDS admin username"
+}
+
+variable "master-password" {
+  type        = string
+  description = "RDS master password"
+}
+```
+##### my complete terrafrom.tfvars file has all this informations in it
 
 ```
-my complete terrafrom.tfvars file has all this informations in it
+region = "us-east-1"
 
-```
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+vpc_cidr = "172.16.0.0/16"
 
+enable_dns_support = "true"
+
+enable_dns_hostnames = "true"
+
+enable_classiclink = "false"
+
+enable_classiclink_dns_support = "false"
+
+preferred_number_of_public_subnets = 2
+
+preferred_number_of_private_subnets = 4
+
+environment = "dev"
+
+ami = "ami-0261755bbcb8c4a84"
+
+keypair = "newoluwatosin"
+
+account_no = "905846106539"
+
+master-password = "devopspblproject"
+
+master-username = "oluwatosin"
+
+tags = {
+  Owner-Email     = "tosinaws83@gmail.com"
+  Managed-By      = "Terraform"
+  Billing-Account = "905846106539"
+}
 ```
+### ADDITIONAL TASKS
+
+In addition to regular project submission include following:
+
+Summarise your understanding on Networking concepts like
+
+**IP Address**:IP Address (Internet Protocol address) is a given unique number(i.e more like a phone nunber) that is assigned to every device that connect (communicate with) to the internet or any other device. All devices use a public IP address to connect to the internet an d a private IP address to connect to the local network. While each individual device has its own private IP address, they also use the public address assigned to your network's router. your internet service provider (ISP) typically allocates on public IP adddress to your router, which means all your devices in the network should have the same public address.
+The IP address comes in 4 sets of numbers seperated by 3 dots which always starts with 192 because the network's router decided it to be .
+**my IP address**
+![Screenshot from 2023-08-27 21-40-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a4db948b-a607-47b3-8ec0-98a9e37576e9)
+
+**Subnets**: A subnet is a network inside a network.THrough subnetting, network traffic can travel a shorter distance without passing through unneccessary routers to reach its destination.
+
+**CIDR Notation**:CIDR stands for (Classless Inter-Domain Routing). It is a method of assigning IP addresses that improves the efficiency of address distribution and replaces the previous system based on Class A, Class B and Class C networks. CIDR addresses are made up of two sets of numbers; Prefix(a binary representation of the network address similar to what would be seen in a normal IP address) and the Suffix(this declares the total number of bits in the entire address.
+
+Example of CIDR notation is 192.168.129.23/17. Here the 17 is the number of bits in the address. IPv4 addresses support a maximum of 32 bits.
+
+**IP Routing**:THis is the process of sending packets from a host on one network to another host on a different remote network. This process is usually done by routers. Routers examine the destination IP address of a packet, determine the next-hop address, and forward the packet. Routers use routing tables to determine the next hop address to which the packet should be forwarded.
+For instance, Host A wants to communicate with host B, but Host B is on another network. Host A is configured to send all packets destined for remote networks to route R1. Route R1 receives teh packets, examines the destination IP address and forwards the packet to the outgoing interface associated with the destination network.
+
+**Internet Gateways**: This is a nework "node" taht connects two different networks that use different protocols(rules) for communicationg. It allows both inbound and outbound access to the internet.
+
+**NAT**: This Network Address Translation Gateway which is managed by AWS service taht is used so that instances in a private subnet can connect to services outside the vpc. Thess private resources do not allow any inbound traffic from the public internet.
+
+Explain the difference between assume role policy and role policy
+
+Assume Role Policy is a trust policy attached with IAM role to allow the IAM user to access the AWS resource using the temporary security credentials.
+
