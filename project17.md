@@ -1094,8 +1094,11 @@ resource "aws_autoscaling_attachment" "asg_attachment_tooling" {
 }
 ```
 ![Screenshot from 2023-08-27 17-25-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/08cced59-b7aa-4454-904f-2cd27abd5a05)
-i got this error because 
+i got this error
 ![Screenshot from 2023-08-27 17-41-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4c01176d-4364-4217-997f-2d28be7259ef)
+
+solved it by checking the arguments on terraform
+![Screenshot from 2023-08-27 18-09-03](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4d5e9cbf-f9ba-4496-9f44-339d27e99987)
 
 Add the following outputs to **outputs.tf,** include the below snippet to print them on screen :
 ```
