@@ -1110,6 +1110,8 @@ output "alb_target_group_arn" {
   value = aws_lb_target_group.nginx-tgt.arn
 }
 ```
+the output displayed on the screen
+![Screenshot from 2023-08-27 18-11-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/436f7edc-7257-4ce0-82a8-bcb16425243d)
  #### STORAGE AND DATABASE
  
 * Create Elastic File System (EFS)
