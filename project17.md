@@ -102,7 +102,7 @@ resource "aws_nat_gateway" "nat" {
 
 I keep getting this error
 ![Screenshot from 2023-08-27 06-04-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05e62a80-a0ae-4948-a83b-89d06c11a8ad)
-But was solved by
+But was solved by changing my region to us.east.1
 
 
 
