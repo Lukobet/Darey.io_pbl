@@ -773,7 +773,8 @@ resource "aws_iam_instance_profile" "ip" {
 
 #### create the Auto Scaling Group (ASG)
 Based on our Architetcture we need for Auto Scaling Groups for bastion, nginx, wordpress and tooling, so we will create two files; asg-bastion-nginx.tf will contain Launch Template and Austoscaling froup for Bastion and Nginx, then asg-wordpress-tooling.tf will contain Launch Template and Autoscaling group for wordpress and tooling.
-Create **asg-bastion-nginx.tf** and paste all the code snippet below;
+
+* Create **asg-bastion-nginx.tf** and paste all the code snippet below;
 ```
 # creating sns topic for all the auto scaling groups
 resource "aws_sns_topic" "david-sns" {
@@ -944,17 +945,185 @@ resource "aws_autoscaling_attachment" "asg_attachment_nginx" {
 ```
 ![Screenshot from 2023-08-27 16-08-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef0aeac2-7fc6-4841-9110-01ab0fe46b38)
 
+* Create **asg-wordpress-tooling.tf** and paste the following code
+  
+```
+# launch template for wordpress
+
+resource "aws_launch_template" "wordpress-launch-template" {
+  image_id               = var.ami
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.webserver-sg.id]
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ip.id
+  }
+
+  key_name = var.keypair
+
+
+  placement {
+    availability_zone = "random_shuffle.az_list.result"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = merge(
+    var.tags,
+    {
+      Name = "wordpress-launch-template"
+    },
+  )
+
+  }
+
+  user_data = filebase64("${path.module}/wordpress.sh")
+}
+
+# ---- Autoscaling for wordpress application
+
+resource "aws_autoscaling_group" "wordpress-asg" {
+  name                      = "wordpress-asg"
+  max_size                  = 2
+  min_size                  = 1
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
+  desired_capacity          = 1
+  vpc_zone_identifier = [
+
+    aws_subnet.private[0].id,
+    aws_subnet.private[1].id
+  ]
+
+
+  launch_template {
+    id      = aws_launch_template.wordpress-launch-template.id
+    version = "$Latest"
+  }
+  tag {
+    key                 = "Name"
+    value               = "ACS-wordpress"
+    propagate_at_launch = true
+  }
+}
+
+
+# attaching autoscaling group of  wordpress application to internal loadbalancer
+resource "aws_autoscaling_attachment" "asg_attachment_wordpress" {
+  autoscaling_group_name = aws_autoscaling_group.wordpress-asg.id
+  alb_target_group_arn   = aws_lb_target_group.wordpress-tgt.arn
+}
+
+
+
+# launch template for toooling
+resource "aws_launch_template" "tooling-launch-template" {
+  image_id               = var.ami
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.webserver-sg.id]
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ip.id
+  }
+
+  key_name = var.keypair
+
+
+  placement {
+    availability_zone = "random_shuffle.az_list.result"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = merge(
+    var.tags,
+    {
+      Name = "tooling-launch-template"
+    },
+  )
+  }
+
+  user_data = filebase64("${path.module}/tooling.sh")
+}
+
+
+
+
+# ---- Autoscaling for tooling -----
+
+resource "aws_autoscaling_group" "tooling-asg" {
+  name                      = "tooling-asg"
+  max_size                  = 2
+  min_size                  = 1
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
+  desired_capacity          = 1
+
+  vpc_zone_identifier = [
+
+    aws_subnet.private[0].id,
+    aws_subnet.private[1].id
+  ]
+
+  launch_template {
+    id      = aws_launch_template.tooling-launch-template.id
+    version = "$Latest"
+  }
+
+  tag {
+    key                 = "Name"
+    value               = "ACS-tooling"
+    propagate_at_launch = true
+  }
+}
+
+# attaching autoscaling group of  tooling application to internal loadbalancer
+resource "aws_autoscaling_attachment" "asg_attachment_tooling" {
+  autoscaling_group_name = aws_autoscaling_group.tooling-asg.id
+  alb_target_group_arn   = aws_lb_target_group.tooling-tgt.arn
+}
+```
+![Screenshot from 2023-08-27 17-25-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/08cced59-b7aa-4454-904f-2cd27abd5a05)
+
+ #### STORAGE AND DATABASE
+ 
+* Create Elastic File System (EFS)
+In order to create an **EFS **you need to create a **KMS** key.
+
+AWS Key Management Service (KMS) makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications.
+
+Add the following code to **efs.tf**
+
+```
+
+
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+
+```
+#### Create MySQL RDS
+
+* create the **RDS** itself using this snippet of code in **rds.tf** file:
+
+  
+```
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
+
+```
+
+my complete variable.tf file has all this informations in it
 
 ```
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
 
-``````
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
-
-``````
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
-
-``````
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef164ea5-6621-46cc-8a5c-89c695b5ea70)
-
 ```
+my complete terrafrom.tfvars file has all this informations in it
