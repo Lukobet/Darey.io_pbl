@@ -1,4 +1,27 @@
 ## AUTOMATE INFRASTRUCTURE WITH IAC USING TERRAFORM. PART 3 – REFACTORING
+### REFACTORING USING MODULES
+Break down your Terraform codes to have all resources in their respective modules. Combine resources of a similar type into directories within a ‘modules’ directory, for example, like this:
+```
+- modules
+  - ALB: For Apllication Load balancer and similar resources
+  - EFS: For Elastic file system resources
+  - RDS: For Databases resources
+  - Autoscaling: For Autosacling and launch template resources
+  - compute: For EC2 and rlated resources
+  - VPC: For VPC and netowrking resources such as subnets, roles, e.t.c.
+  - security: for creating security group resources
+```
+![Screenshot from 2023-08-28 14-36-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/89580073-3597-4fdf-9c78-8141515c4719)
+
+Each module shall contain outputs.tf,main.tf and variable.tf
+![Screenshot from 2023-08-28 15-51-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/affccdfa-98e9-4e89-a4af-c7c07104915c)
+![Screenshot from 2023-08-28 15-51-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4ac4372e-7ab5-4bd2-abc7-fb8f74e84281)
+![Screenshot from 2023-08-28 15-51-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3b83515f-e6e0-47b7-9b1b-3fda72d64f92)
+
+terraform plan successfully done
+
+![Screenshot from 2023-08-28 16-29-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/687dc703-549f-487e-ab0b-97a44975f3ea)
+
 #### Introducing Backend on S3
 Each Terraform configuration can specify a backend, which defines where and how operations are performed, where state snapshots are stored, etc
 
@@ -45,22 +68,3 @@ resource "aws_s3_bucket" "terraform_state" {
 * Delete the local tfstate file and check the one in S3 bucket
 * Add outputs
 * terraform apply
-### REFACTORING USING MODULES
-Break down your Terraform codes to have all resources in their respective modules. Combine resources of a similar type into directories within a ‘modules’ directory, for example, like this:
-```
-- modules
-  - ALB: For Apllication Load balancer and similar resources
-  - EFS: For Elastic file system resources
-  - RDS: For Databases resources
-  - Autoscaling: For Autosacling and launch template resources
-  - compute: For EC2 and rlated resources
-  - VPC: For VPC and netowrking resources such as subnets, roles, e.t.c.
-  - security: for creating security group resources
-```
-![Screenshot from 2023-08-28 14-36-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/89580073-3597-4fdf-9c78-8141515c4719)
-
-Each module shall contain outputs.tf,main.tf and variable.tf
-![Screenshot from 2023-08-28 15-51-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/affccdfa-98e9-4e89-a4af-c7c07104915c)
-![Screenshot from 2023-08-28 15-51-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4ac4372e-7ab5-4bd2-abc7-fb8f74e84281)
-![Screenshot from 2023-08-28 15-51-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3b83515f-e6e0-47b7-9b1b-3fda72d64f92)
-
