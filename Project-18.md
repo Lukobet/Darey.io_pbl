@@ -71,10 +71,16 @@ terraform {
 ```
 ![Screenshot from 2023-08-28 10-56-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1146032c-9101-4d92-b911-84eb3be3ed4c)
 
-
-
 * Update terraform block to introduce backend and locking
+
 * Re-initialize terraform
+
+![Screenshot from 2023-08-28 17-06-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d2ea9dca-b7b1-4516-aa94-aa081c094836)
+
+![Screenshot from 2023-08-28 17-08-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a5b05ec4-522e-4c2d-acdb-c09fcc8cc6a3)
+
+
+
 * Delete the local tfstate file and check the one in S3 bucket
 * Add outputs
 * terraform apply
