@@ -35,6 +35,9 @@ resources created
 ![Screenshot from 2023-08-28 16-44-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/904f205d-95be-4c56-8535-c35f966f945f)
 ![Screenshot from 2023-08-28 16-44-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/84bc1ba7-4106-4392-a51f-1950be347cc1)
 ![Screenshot from 2023-08-28 16-43-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c1b05666-3731-435b-a06e-2dbd8ab34a5d)
+![Screenshot from 2023-08-28 16-59-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a3710a74-a47c-4fa1-ad90-ea793d31a889)
+![Screenshot from 2023-08-28 16-59-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b06fd605-149e-4ca9-be9e-6ac50af63047)
+![Screenshot from 2023-08-28 16-58-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3f258a46-5329-4b48-ae1e-39db75b31f76)
 
 #### Introducing Backend on S3
 Each Terraform configuration can specify a backend, which defines where and how operations are performed, where state snapshots are stored, etc
@@ -56,20 +59,13 @@ Here is our plan to Re-initialize Terraform to use S3 backend:
 
 Create a file and name it **backend.tf**. Add the below code and replace the name of the S3 bucket you created in Project-16.
   ```
-#Note: The bucket name may not work for you since buckets are unique globally in AWS, so you must give it a unique name.
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "dev-terraform-bucket"
-  #Enable versioning so we can see the full revision history of our state files
-  versioning {
-    enabled = true
-  }
-  #Enable server-side encryption by default
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
+terraform {
+  backend "s3" {
+    bucket         = "tsn-dev-terraform-bucket"
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
   }
 }
 ```
