@@ -21,6 +21,20 @@ Each module shall contain outputs.tf,main.tf and variable.tf
 terraform plan successfully done
 
 ![Screenshot from 2023-08-28 16-29-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/687dc703-549f-487e-ab0b-97a44975f3ea)
+terrform apply done
+resources created
+
+
+
+
+![Screenshot from 2023-08-28 16-47-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a3f996dd-c526-42eb-a183-9cba23ea0cf4)
+![Screenshot from 2023-08-28 16-47-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3f9140d8-a41c-489e-aa31-b11bea3a07ce)
+![Screenshot from 2023-08-28 16-46-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fcd0800b-368a-473a-9947-e4007e1f9937)
+![Screenshot from 2023-08-28 16-45-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bfeee219-702b-43ff-bd08-c86fe9006bcb)
+![Screenshot from 2023-08-28 16-44-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8443afeb-b3e9-4ef2-a1ed-f4d819b9a5e6)
+![Screenshot from 2023-08-28 16-44-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/904f205d-95be-4c56-8535-c35f966f945f)
+![Screenshot from 2023-08-28 16-44-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/84bc1ba7-4106-4392-a51f-1950be347cc1)
+![Screenshot from 2023-08-28 16-43-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c1b05666-3731-435b-a06e-2dbd8ab34a5d)
 
 #### Introducing Backend on S3
 Each Terraform configuration can specify a backend, which defines where and how operations are performed, where state snapshots are stored, etc
