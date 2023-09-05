@@ -16,9 +16,13 @@ Terraform Cloud executes Terraform commands on disposable virtual machines, this
 * Configure a workspace
 We will use version control workflow as the most common and recommended way to run Terraform commands triggered from our git repository.
 
-Create a new repository in your GitHub and call it terraform-cloud, push your Terraform codes developed in the previous projects to the repository.
-Choose version control workflow and you will be prompted to connect your GitHub account to your workspace – follow the prompt and add your newly created repository to the workspace.
+Create a new repository in your GitHub and call it **terraform-cloud,** push your Terraform codes developed in the previous projects to the repository.
+
 ![Screenshot from 2023-09-05 04-48-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0baaafd3-d507-4894-9697-f8ab3bffea68)
+
+Choose version control workflow and you will be prompted to connect your GitHub account to your workspace – follow the prompt and add your newly created repository to the workspace.
+
+![Screenshot from 2023-09-05 04-54-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/719f1803-3acf-4cec-9376-bca8f7577f62)
 * Configure variables
 
 Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**, set the values that you used in Project 16. These credentials will be used to provision your AWS infrastructure by Terraform Cloud.
