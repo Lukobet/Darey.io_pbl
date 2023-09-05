@@ -9,16 +9,16 @@ Terraform Cloud executes Terraform commands on disposable virtual machines, this
 
 ### Task 1: Migrate your .tf codes to Terraform Cloud
 * Create a Terraform Cloud account
-
+![Screenshot from 2023-09-05 04-44-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5f5b7b81-9b91-49fa-ad22-f9d103330f36)
 * Create an organization
-Select “Start from scratch”, choose a name for your organization and create it.
+![Screenshot from 2023-09-05 04-46-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5d0004a0-3b47-43be-8b7b-ff1ebbcfc6cf)
 
 * Configure a workspace
 We will use version control workflow as the most common and recommended way to run Terraform commands triggered from our git repository.
 
 Create a new repository in your GitHub and call it terraform-cloud, push your Terraform codes developed in the previous projects to the repository.
 Choose version control workflow and you will be prompted to connect your GitHub account to your workspace – follow the prompt and add your newly created repository to the workspace.
-
+![Screenshot from 2023-09-05 04-48-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0baaafd3-d507-4894-9697-f8ab3bffea68)
 * Configure variables
 
 Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**, set the values that you used in Project 16. These credentials will be used to provision your AWS infrastructure by Terraform Cloud.
