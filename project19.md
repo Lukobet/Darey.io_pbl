@@ -24,8 +24,18 @@ Choose version control workflow and you will be prompted to connect your GitHub 
 
 ![Screenshot from 2023-09-05 04-54-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/719f1803-3acf-4cec-9376-bca8f7577f62)
 * Configure variables
-
 Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**, set the values that you used in Project 16. These credentials will be used to provision your AWS infrastructure by Terraform Cloud.
+* Install Packer and Ansible on the local machine
+ ![Screenshot from 2023-09-06 01-25-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/807f2092-3281-493c-a3b2-020ed0cc1399)
+  
+The files that would be Added is;
+
+AMI: for building packer images
+Ansible: for Ansible scripts to configure the infrastructure
+
+
+
+
 
 ### Task 2: Migrate your .tf codes to Terraform Cloud
 ### Task 3: Migrate your .tf codes to Terraform Cloud
