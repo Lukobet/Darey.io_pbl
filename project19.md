@@ -24,7 +24,10 @@ Choose version control workflow and you will be prompted to connect your GitHub 
 
 ![Screenshot from 2023-09-05 04-54-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/719f1803-3acf-4cec-9376-bca8f7577f62)
 * Configure variables
-Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**, set the values that you used in Project 16. These credentials will be used to provision your AWS infrastructure by Terraform Cloud.
+Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**,
+
+![Screenshot from 2023-09-06 01-50-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9db2e82a-35a8-41fb-8955-bbeed25e931d)
+
 * Install Packer and Ansible on the local machine
  ![Screenshot from 2023-09-06 01-25-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/807f2092-3281-493c-a3b2-020ed0cc1399)
   
@@ -33,7 +36,8 @@ The files that would be Added is;
 AMI: for building packer images
 Ansible: for Ansible scripts to configure the infrastructure
 
-
+I got this error while trying to build
+![Screenshot from 2023-09-06 02-22-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ebd9e4fc-e883-48aa-bc98-fe885c0e587e)
 
 
 
