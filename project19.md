@@ -30,7 +30,7 @@ Set two environment variables: **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY
 
 * Install Packer and Ansible on the local machine
  ![Screenshot from 2023-09-06 01-25-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/807f2092-3281-493c-a3b2-020ed0cc1399)
-  
+  We will be using Packer to build our images, and Ansible to configure the infrastructure
 The files that would be Added is;
 
 AMI: for building packer images
