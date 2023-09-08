@@ -38,7 +38,11 @@ Ansible: for Ansible scripts to configure the infrastructure
 
 I got this error while trying to build
 ![Screenshot from 2023-09-06 02-22-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ebd9e4fc-e883-48aa-bc98-fe885c0e587e)
+I think its working now, after trying to install packer again and the version now is 1.9.4
 
+![Screenshot from 2023-09-08 21-31-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7b867061-89b1-4eaa-a13e-e0f28b461288)
+![Screenshot from 2023-09-08 21-29-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3199ca20-4461-4c66-a00d-bad6a5098009)
+But the ami wasnt created
 
 
 ### Task 2: Migrate your .tf codes to Terraform Cloud
