@@ -51,6 +51,10 @@ But the ami wasn't created because i didnt change the AMI name.
 
 after so many editing on my documentations i finally got this result
 ![Screenshot from 2023-09-09 21-45-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9c63eac-c952-4518-98d7-eafcbdfec80a)
+Switch to “Runs” tab and click on “Queue plan manually” button. If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
+
+
+
 ### Task 2: Practice Task №1
 * Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
 * Make necessary configuration to trigger runs automatically only for dev environment
