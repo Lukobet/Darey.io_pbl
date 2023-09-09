@@ -47,7 +47,8 @@ But the ami wasn't created because i didnt change the AMI name.
 ![Screenshot from 2023-09-09 19-00-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/be16f598-2b45-43e8-9be6-624347bf6e1b)
 ![Screenshot from 2023-09-09 19-13-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc201811-6079-43a2-8f0a-363532db09d9)
 
-### Task 2: Migrate your .tf codes to Terraform Cloud
-### Task 3: Migrate your .tf codes to Terraform Cloud
-### Task 4: Migrate your .tf codes to Terraform Cloud
-### Task 5: Migrate your .tf codes to Terraform Cloud
+### Task 2: Practice Task №1
+* Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
+* Make necessary configuration to trigger runs automatically only for dev environment
+* Create an Email and Slack notifications for certain events (e.g. started plan or errored run) and test it
+* Apply destroy from Terraform Cloud web console
