@@ -46,6 +46,9 @@ But the ami wasn't created because i didnt change the AMI name.
 ![Screenshot from 2023-09-09 18-23-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2eb7713a-de44-4368-8e46-752a4a5ad554)
 ![Screenshot from 2023-09-09 19-00-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/be16f598-2b45-43e8-9be6-624347bf6e1b)
 ![Screenshot from 2023-09-09 19-13-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc201811-6079-43a2-8f0a-363532db09d9)
+
+* Run **terraform plan** and **terraform apply** from web console
+
 after so many editing on my documentations i finally got this result
 ![Screenshot from 2023-09-09 21-45-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9c63eac-c952-4518-98d7-eafcbdfec80a)
 ### Task 2: Practice Task №1
