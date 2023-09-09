@@ -51,7 +51,10 @@ But the ami wasn't created because i didnt change the AMI name.
 
 after so many editing on my documentations i finally got this result
 ![Screenshot from 2023-09-09 21-45-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9c63eac-c952-4518-98d7-eafcbdfec80a)
-Switch to “Runs” tab and click on “Queue plan manually” button. If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
+Switch to “Runs” tab and click on “Queue plan manually” button.
+![Screenshot from 2023-09-09 22-25-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/51d1a6b3-136f-4e5c-822a-a767f1867456)
+
+If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
 
 
 
