@@ -45,7 +45,7 @@ I think its working now, after trying to install packer again and the version no
 But the ami wasn't created because i didnt change the AMI name.
 ![Screenshot from 2023-09-09 18-23-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2eb7713a-de44-4368-8e46-752a4a5ad554)
 ![Screenshot from 2023-09-09 19-00-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/be16f598-2b45-43e8-9be6-624347bf6e1b)
-
+![Screenshot from 2023-09-09 19-13-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cc201811-6079-43a2-8f0a-363532db09d9)
 
 ### Task 2: Migrate your .tf codes to Terraform Cloud
 ### Task 3: Migrate your .tf codes to Terraform Cloud
