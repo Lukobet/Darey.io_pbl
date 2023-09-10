@@ -55,7 +55,8 @@ Switch to “Runs” tab and click on “Queue plan manually” button.
 ![Screenshot from 2023-09-09 22-25-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/51d1a6b3-136f-4e5c-822a-a767f1867456)
 
 If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
-
+Having problems with RDS AND KMS
+![Screenshot from 2023-09-10 23-46-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9a487335-24b3-4499-a301-ab678c49d317)
 
 
 ### Task 2: Practice Task №1
