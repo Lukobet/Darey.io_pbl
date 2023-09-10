@@ -64,7 +64,13 @@ SSH into the bastion server, input your acess key and seret key, update the ngin
 
 ![Screenshot from 2023-09-11 00-34-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c5889e5c-d99a-4973-8024-fdfcfe7774f8)
 
-update the mounting share in **tooling/tasks/main.yml** and **wordpress/tasks/main.yml** with codes from the file system access point: click and attach and copy the fsap first and paste here ![Screenshot from 2023-09-11 00-44-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1dfd84a-5b23-4ead-a82e-f2f9200c3b42), followed by fs and paste it here ![Screenshot from 2023-09-11 00-45-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/652d568a-6dcf-41bb-919d-69654488b292)
+update the mounting share in **tooling/tasks/main.yml** and **wordpress/tasks/main.yml** with codes from the file system access point: click and attach and copy the fsap first and paste here ![Screenshot from 2023-09-11 00-44-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1dfd84a-5b23-4ead-a82e-f2f9200c3b42), followed by fs and paste it here ![Screenshot from 2023-09-11 00-45-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/652d568a-6dcf-41bb-919d-69654488b292) 
+run the ansible playbook using
+'''
+ansible-playbook -i inventory/aws.ec2.yml playbooks/site.yml
+'''
+
+
 
 ### Task 2: Practice Task №1
 * Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
