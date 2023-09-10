@@ -63,3 +63,6 @@ If planning has been successful, you can proceed and confirm Apply – press “
 * Make necessary configuration to trigger runs automatically only for dev environment
 * Create an Email and Slack notifications for certain events (e.g. started plan or errored run) and test it
 * Apply destroy from Terraform Cloud web console
+
+
+### Task 3: Practice Task №2 Working with Private repository
