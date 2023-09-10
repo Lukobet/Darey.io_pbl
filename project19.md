@@ -59,6 +59,11 @@ Having problems with RDS AND KMS
 ![Screenshot from 2023-09-10 23-46-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9a487335-24b3-4499-a301-ab678c49d317)
 
 
+SSH into the baa]stion server, input your acess key and seret key, update the nginx file, tooling and wordpress tooling file with yout RDS access endpoint code so that a user can be created on the mysql database
+
+![Screenshot from 2023-09-11 00-34-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c5889e5c-d99a-4973-8024-fdfcfe7774f8)
+
+
 ### Task 2: Practice Task №1
 * Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
 * Make necessary configuration to trigger runs automatically only for dev environment
