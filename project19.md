@@ -55,14 +55,16 @@ Switch to “Runs” tab and click on “Queue plan manually” button.
 ![Screenshot from 2023-09-09 22-25-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/51d1a6b3-136f-4e5c-822a-a767f1867456)
 
 If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
-Having problems with RDS AND KMS
+Having problems with RDS AND KMS but i still went ahead with the project
 ![Screenshot from 2023-09-10 23-46-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9a487335-24b3-4499-a301-ab678c49d317)
+i have no RDS, KMS AND EFS 
+![Screenshot from 2023-09-11 00-41-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6fc85ee4-9472-4f33-95b6-c55638d2b975)
 
-
-SSH into the baa]stion server, input your acess key and seret key, update the nginx file, tooling and wordpress tooling file with yout RDS access endpoint code so that a user can be created on the mysql database
+SSH into the bastion server, input your acess key and seret key, update the nginx file, tooling and wordpress tooling file with yout RDS access endpoint code so that a user can be created on the mysql database
 
 ![Screenshot from 2023-09-11 00-34-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c5889e5c-d99a-4973-8024-fdfcfe7774f8)
 
+update the mounting share in **tooling/tasks/main.yml** and **wordpress/tasks/main.yml** with codes from the file system access point: click and attach and copy the fsap first and paste here ![Screenshot from 2023-09-11 00-44-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1dfd84a-5b23-4ead-a82e-f2f9200c3b42), followed by fs and paste it here ![Screenshot from 2023-09-11 00-45-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/652d568a-6dcf-41bb-919d-69654488b292)
 
 ### Task 2: Practice Task №1
 * Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
