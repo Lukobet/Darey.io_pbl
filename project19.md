@@ -57,7 +57,7 @@ Switch to “Runs” tab and click on “Queue plan manually” button.
 If planning has been successful, you can proceed and confirm Apply – press “Confirm and apply”, provide a comment and “Confirm plan”
 Having problems with RDS AND KMS but i still went ahead with the project
 ![Screenshot from 2023-09-10 23-46-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9a487335-24b3-4499-a301-ab678c49d317)
-i have no RDS, KMS AND EFS 
+i have no **RDS**, **KMS** AND **EFS**
 ![Screenshot from 2023-09-11 00-41-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6fc85ee4-9472-4f33-95b6-c55638d2b975)
 
 SSH into the bastion server, input your acess key and seret key, update the nginx file, tooling and wordpress tooling file with yout RDS access endpoint code so that a user can be created on the mysql database
