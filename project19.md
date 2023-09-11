@@ -72,13 +72,3 @@ run the ansible playbook using
 ansible-playbook -i inventory/aws.ec2.yml playbooks/site.yml
 '''
 
-
-
-### Task 2: Practice Task №1
-* Configure 3 branches in your terraform-cloud repository for dev, test, prod environments
-* Make necessary configuration to trigger runs automatically only for dev environment
-* Create an Email and Slack notifications for certain events (e.g. started plan or errored run) and test it
-* Apply destroy from Terraform Cloud web console
-
-
-### Task 3: Practice Task №2 Working with Private repository
