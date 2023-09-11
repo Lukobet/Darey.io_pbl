@@ -65,6 +65,8 @@ SSH into the bastion server, input your acess key and seret key, update the ngin
 ![Screenshot from 2023-09-11 00-34-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c5889e5c-d99a-4973-8024-fdfcfe7774f8)
 
 update the mounting share in **tooling/tasks/main.yml** and **wordpress/tasks/main.yml** with codes from the file system access point: click and attach and copy the fsap first and paste here ![Screenshot from 2023-09-11 00-44-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f1dfd84a-5b23-4ead-a82e-f2f9200c3b42), followed by fs and paste it here ![Screenshot from 2023-09-11 00-45-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/652d568a-6dcf-41bb-919d-69654488b292) 
+update the ansible.cfg file with the role path and ask ansible config to record the path ![Screenshot from 2023-09-11 00-53-19](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/068ade15-5cb1-43af-b0fe-acf0fc7fc719)
+
 run the ansible playbook using
 '''
 ansible-playbook -i inventory/aws.ec2.yml playbooks/site.yml
