@@ -72,3 +72,4 @@ run the ansible playbook using
 ansible-playbook -i inventory/aws.ec2.yml playbooks/site.yml
 '''
 
+![Screenshot from 2023-09-16 14-34-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7b6e0e27-44fb-4d11-b79a-b49f93ee5b09)
