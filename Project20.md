@@ -15,8 +15,12 @@ Docker Engine is an open source containerization technology for building and con
 * A command-line interface (CLI) client docker.
 The CLI uses Docker APIs to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI. The daemon creates and manage Docker objects, such as images, containers, networks, and volumes.
 
-I installed docker using the apt repository found here https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+I installed docker using the apt repository found here 
+```
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+```
 
+![Screenshot from 2023-09-16 15-17-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6b79df1f-a077-4723-ad27-9da50cbbec61)
 
 
 
