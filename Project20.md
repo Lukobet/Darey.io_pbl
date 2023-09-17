@@ -55,3 +55,57 @@ I relaised that i had to type sudo befroe every docker command for it to work
 docker ps -a
 ```
 
+![Screenshot from 2023-09-17 12-53-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/af89dc00-818d-4cfa-8b42-aaf90e02d4ab)
+
+
+#### CONNECTING TO THE MYSQL DOCKER CONTAINER
+
+
+**Step 3: Connecting to the MySQL Docker Container**
+
+We can either connect directly to the container running the MySQL server or use a second container as a MySQL client. Let us see what the first option looks like.
+
+**Approach 1**
+
+Connecting directly to the container running the MySQL server:
+
+```
+$ docker exec -it mysql bash
+
+or
+
+$ docker exec -it mysql mysql -uroot -p
+```
+![Screenshot from 2023-09-17 13-03-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c9be81ce-1513-4ebb-9d56-b151dbda365a)
+![Screenshot from 2023-09-17 13-06-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c77d0fb9-89a7-4c80-ba46-93f5854d33af)
+Flags used
+```
+exec used to execute a command from bash itself
+-it makes the execution interactive and allocate a pseudo-TTY
+bash this is a unix shell and its used as an entry-point to interact with our container
+mysql The second mysql in the command “docker exec -it mysql mysql -uroot -p” serves as the entry point to interact with mysql container just like bash or sh
+-u mysql username
+-p mysql password
+```
+**Approach 2**
+
+At this stage you are now able to create a docker container but we will need to add a network. So, stop and remove the previous mysql docker container.
+```
+docker ps -a
+docker stop mysql 
+docker rm mysql or <container ID> 
+```
+verify that the container is deleted
+```
+docker ps -a
+```
+
+![Screenshot from 2023-09-17 13-10-00](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cbc095fc-5e54-402f-96b5-dd099a6ae046)
+
+First, create a network:
+```
+docker network create --subnet=172.18.0.0/24 tooling_app_network 
+```
+
+![Screenshot from 2023-09-17 13-12-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/181f6055-abe8-486b-93ca-dc131cf7663b)
+
