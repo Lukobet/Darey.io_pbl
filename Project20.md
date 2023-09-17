@@ -34,17 +34,22 @@ Start by pulling the appropriate Docker image for MySQL. You can download a spec
 ```
 docker pull mysql/mysql-server:latest
 ```
+I relaised that i had to type sudo befroe every docker command for it to work
+![Screenshot from 2023-09-17 12-32-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a5677c36-6b6f-4e60-a279-c2636405058b)
+![Screenshot from 2023-09-17 12-33-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/033916d2-465f-4aae-9a43-47480782448a)
 **Step 2: Deploy the MySQL Container to your Docker Engine**
 1. Once you have the image, move on to deploying a new MySQL container with:
 
 ```
-docker run --name <container_name> -e MYSQL_ROOT_PASSWORD=<my-secret-pw> -d mysql/mysql-server:latest
+ sudo docker run --name tosin -e MYSQL_ROOT_PASSWORD=password -d mysql/mysql-server:latest
 ```
+
 * Replace <container_name> with the name of your choice. If you do not provide a name, Docker will generate a random one
 * The -d option instructs Docker to run the container as a service in the background
 * Replace <my-secret-pw> with your chosen password
 * In the command above, we used the latest version tag. This tag may differ according to the image you downloaded
-
+  
+![Screenshot from 2023-09-17 12-35-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf1f21b3-dd4d-4490-bcea-a8d75b8c58aa)
 2.  Then, check to see if the MySQL container is running: Assuming the container name specified is mysql-server
 ```
 docker ps -a
