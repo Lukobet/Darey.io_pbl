@@ -157,7 +157,8 @@ docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
 
 Had issues here
 ![Screenshot from 2023-09-17 13-30-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36aa3bff-f179-4d5e-b965-71ca46809624)
-
+i was able to acces it using the root user password gotten from docker logs 
+![Screenshot from 2023-09-17 15-55-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fbfc5118-ec61-4c06-b423-64be227c87a6)
 
 **Connecting to the MySQL server from a second container running the MySQL client utility**
 
