@@ -150,5 +150,75 @@ Ensure you are in the directory create_user.sql file is located or declare a pat
 ```
 docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql 
 ```
-HAad issues here
+
+
+
+
+
+Had issues here
 ![Screenshot from 2023-09-17 13-30-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36aa3bff-f179-4d5e-b965-71ca46809624)
+
+
+**Connecting to the MySQL server from a second container running the MySQL client utility**
+
+The good thing about this approach is that you do not have to install any client tool on your laptop, and you do not need to connect directly to the container running the MySQL server.
+
+* Run the MySQL Client Container:
+```
+ docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -u  -p 
+```
+Flags used
+```
+ --name gives the container a name
+-it runs in interactive mode and Allocate a pseudo-TTY
+--rm automatically removes the container when it exits
+--network connects a container to a network
+-h a MySQL flag specifying the MySQL server Container hostname
+-u user created from the SQL script
+admin username-for-user-created-from-the-SQL-script-create_user.sql
+-p password specified for the user created from the SQL script
+```
+**Prepare database schema**
+Now you need to prepare a database schema so that the Tooling application can connect to it.
+
+1. Clone the Tooling-app repository from
+```
+git clone https://github.com/darey-devops/tooling.git
+```
+2. On your terminal, export the location of the SQL file
+```
+ export tooling_db_schema=/tooling_db_schema.sql  
+```
+
+You can find the tooling_db_schema.sql in the tooling/html/tooling_db_schema.sql folder of cloned repo.
+
+Verify that the path is exported
+
+```
+echo $tooling_db_schema 
+```
+3. Use the SQL script to create the database and prepare the schema. With the docker exec command, you can execute a command in a running container.
+```
+ docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < $tooling_db_schema  
+```
+
+4.Update the .env file with connection details to the database
+The .env file is located in the html tooling/html/.env folder but not visible in terminal. you can use vi or nano
+```
+ sudo vi .env
+
+MYSQL_IP=mysqlserverhost
+MYSQL_USER=username
+MYSQL_PASS=client-secrete-password
+MYSQL_DBNAME=toolingdb
+```
+Flags used 
+```
+MYSQL_IP mysql ip address “leave as mysqlserverhost”
+MYSQL_USER mysql username for user export as environment variable
+MYSQL_PASS mysql password for the user exported as environment varaible
+MYSQL_DBNAME mysql databse name “toolingdb”  
+```
+
+5. Run the Tooling App
+Containerization of an application starts with creation of a file with a special name – ‘Dockerfile’ (without any extensions). This can be considered as a ‘recipe’ or ‘instruction’ that tells Docker how to pack your application into a container. In this project, you will build your container from a pre-created Dockerfile, but as a DevOps, you must also be able to write Dockerfiles.
