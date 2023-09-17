@@ -106,6 +106,49 @@ First, create a network:
 ```
 docker network create --subnet=172.18.0.0/24 tooling_app_network 
 ```
+Creating a custom network is not necessary because even if we do not create a network, Docker will use the default network for all the containers you run. By default, the network we created above is of DRIVER Bridge. So, also, it is the default network. You can verify this by running the docker network ls command.
+
+But there are use cases where this is necessary. For example, if there is a requirement to control the cidr range of the containers running the entire application stack. This will be an ideal situation to create a network and specify the --subnet
+
 
 ![Screenshot from 2023-09-17 13-12-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/181f6055-abe8-486b-93ca-dc131cf7663b)
+let us create an environment variable to store the root password:
+```
+export MYSQL_PW= 
+```
+```
+echo MYSQL_PW= 
+```
+![Screenshot from 2023-09-17 13-15-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/20230235-dbd8-4566-8be1-6985bde8d204)
 
+Then, pull the image and run the container, all in one command like below:
+
+```
+docker run --network tooling_app_network -h mysqlserverhost --name=mysql-server -e MYSQL_ROOT_PASSWORD=$MYSQL_PW  -d mysql/mysql-server:latest
+```
+Flags used
+```
+-d runs the container in detached mode
+--network connects a container to a network
+-h specifies a hostname
+```
+
+![Screenshot from 2023-09-17 13-18-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/836ab889-df45-45e4-bfd9-ed01fd6e7687)
+
+As you already know, it is best practice not to connect to the MySQL server remotely using the root user. Therefore, we will create an SQL script that will create a user we can use to connect remotely.
+
+Create a file and name it create_user.sql and add the below code in the file:
+```
+CREATE USER ''@'%' IDENTIFIED BY ''; GRANT ALL PRIVILEGES ON * . * TO ''@'%'; 
+```
+![Screenshot from 2023-09-17 13-21-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/50816562-3ff9-4eeb-8feb-75f03a4868fe)
+
+Run the script:
+Ensure you are in the directory create_user.sql file is located or declare a path
+
+
+```
+docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql 
+```
+HAad issues here
+![Screenshot from 2023-09-17 13-30-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36aa3bff-f179-4d5e-b965-71ca46809624)
