@@ -151,16 +151,12 @@ Ensure you are in the directory create_user.sql file is located or declare a pat
 docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql 
 ```
 
-
-
-
-
 Had issues here
 ![Screenshot from 2023-09-17 13-30-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36aa3bff-f179-4d5e-b965-71ca46809624)
 i was able to acces it using the root user password gotten from docker logs 
 ![Screenshot from 2023-09-17 15-55-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fbfc5118-ec61-4c06-b423-64be227c87a6)
 
-buts still the same. i joined the blocker session and was corrected of my errors. I didn't add the password i want to use in the script
+buts still the same. i joined the blocker session and my errorsbweere corrected . I didn't add the password i want to use in the script
 
 ```
 export MYSQL_PW= 
@@ -241,7 +237,7 @@ MYSQL_IP mysql ip address “leave as mysqlserverhost”
 MYSQL_USER mysql username for user export as environment variable
 MYSQL_PASS mysql password for the user exported as environment varaible
 MYSQL_DBNAME mysql databse name “toolingdb”  
-```
+``![Screenshot from 2023-09-18 20-15-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/917f0891-3690-451e-948d-77d681d85b24)`
 
 5. Run the Tooling App
 Containerization of an application starts with creation of a file with a special name – ‘Dockerfile’ (without any extensions). This can be considered as a ‘recipe’ or ‘instruction’ that tells Docker how to pack your application into a container. In this project, you will build your container from a pre-created Dockerfile, but as a DevOps, you must also be able to write Dockerfiles.
