@@ -237,14 +237,53 @@ MYSQL_IP mysql ip address “leave as mysqlserverhost”
 MYSQL_USER mysql username for user export as environment variable
 MYSQL_PASS mysql password for the user exported as environment varaible
 MYSQL_DBNAME mysql databse name “toolingdb”  
-``![Screenshot from 2023-09-18 20-15-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/917f0891-3690-451e-948d-77d681d85b24)`
+```
+![Screenshot from 2023-09-18 20-15-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/917f0891-3690-451e-948d-77d681d85b24)
 
 5. Run the Tooling App
 Containerization of an application starts with creation of a file with a special name – ‘Dockerfile’ (without any extensions). This can be considered as a ‘recipe’ or ‘instruction’ that tells Docker how to pack your application into a container. In this project, you will build your container from a pre-created Dockerfile, but as a DevOps, you must also be able to write Dockerfiles.
+
+Docker builds images automatically by reading the instructions from a Dockerfile which is a text file that contains all commands, in order, needed to build a given image.
+
+sample of a Dockerfile
+```
+#syntax=docker/dockerfile:1
+
+FROM ubuntu:22.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py 
+```
+here:
+FROM creates a layer from the ubuntu:22.04 Docker image.
+COPY adds files from your Docker client's current directory.
+RUN builds your application with make.
+CMD specifies what command to run within the container.
+
+
+So, let us containerize our Tooling application; here is the plan:
+
+* Make sure you have checked out your Tooling repo to your machine with Docker engine
+* First, we need to build the Docker image the tooling app will use. The Tooling repo you cloned above has a Dockerfile for this purpose. Explore it and make sure you understand the code inside it.
+* Run docker build command
+```
+ docker build -t tooling:0.0.1 .  
+```
+
+![Screenshot from 2023-09-18 20-43-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b315c838-cc2b-473f-8f9a-527cbe2b4b36)
+
+In the above command, we specify a parameter -t, so that the image can be tagged tooling"0.0.1 – Also, you have to notice the . at the end. This is important as that tells Docker to locate the Dockerfile in the current directory you are running the command. Otherwise, you would need to specify the absolute path to the Dockerfile.
+
+* Launch the container with docker run
+* Try to access your application via port exposed from a container
+
+
 6. Run the container:
 ```
  docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1  
 ```
+I got this error 
+![Screenshot from 2023-09-18 20-49-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3e8f8ef4-1b50-4ae9-870a-15fb4959595e)
 Let us observe those flags in the command.
 
 We need to specify the --network flag so that both the Tooling app and the database can easily connect on the same virtual network we created earlier.
