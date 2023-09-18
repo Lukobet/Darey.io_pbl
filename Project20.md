@@ -296,5 +296,6 @@ but tried it again in my homw directory and it was successful
 
 Error gotten while trying to access it
 ![Screenshot from 2023-09-18 21-14-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff751fa5-e598-4893-a26c-2f87aa4a272d)
+![Screenshot from 2023-09-18 21-42-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/871f04b9-f74e-4184-8794-60d7edaf2023)
 
 
