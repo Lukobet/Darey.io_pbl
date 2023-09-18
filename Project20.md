@@ -282,11 +282,19 @@ In the above command, we specify a parameter -t, so that the image can be tagged
 ```
  docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1  
 ```
-I got this error 
-![Screenshot from 2023-09-18 20-49-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3e8f8ef4-1b50-4ae9-870a-15fb4959595e)
+
 Let us observe those flags in the command.
 
 We need to specify the --network flag so that both the Tooling app and the database can easily connect on the same virtual network we created earlier.
 The -p flag is used to map the container port with the host port. Within the container, apache is the webserver running and, by default, it listens on port 80. You can confirm this with the CMD ["start-apache"] section of the Dockerfile. But we cannot directly use port 80 on our host machine because it is already in use. The workaround is to use another port that is not used by the host machine. In our case, port 8085 is free, so we can map that to port 80 running in the container.
-Error gotten
+
+I got this error 
+![Screenshot from 2023-09-18 20-49-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3e8f8ef4-1b50-4ae9-870a-15fb4959595e)
+
+but tried it again in my homw directory and it was successful
+![Screenshot from 2023-09-18 21-09-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf4fe6a1-f7c5-4e24-8c53-2b5c5dabf915)
+
+Error gotten while trying to access it
+![Screenshot from 2023-09-18 21-14-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff751fa5-e598-4893-a26c-2f87aa4a272d)
+
 
