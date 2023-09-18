@@ -160,6 +160,18 @@ Had issues here
 i was able to acces it using the root user password gotten from docker logs 
 ![Screenshot from 2023-09-17 15-55-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fbfc5118-ec61-4c06-b423-64be227c87a6)
 
+buts still the same. i joined the blocker session and was corrected of my errors. I didn't add the password i want to use in the script
+
+```
+export MYSQL_PW= 
+```
+now 
+```
+export MYSQL_PW=password
+```
+i deleted the container and run the container again and i gained access 
+![Screenshot from 2023-09-18 19-47-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/88293c87-9c39-41b5-9d23-a83d3972d42e)
+
 **Connecting to the MySQL server from a second container running the MySQL client utility**
 
 The good thing about this approach is that you do not have to install any client tool on your laptop, and you do not need to connect directly to the container running the MySQL server.
