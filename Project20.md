@@ -191,6 +191,9 @@ Flags used
 admin username-for-user-created-from-the-SQL-script-create_user.sql
 -p password specified for the user created from the SQL script
 ```
+![Screenshot from 2023-09-18 19-52-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/de0ef0cd-7f48-4f6d-8ccd-d0ad7e7e2416)
+
+
 **Prepare database schema**
 Now you need to prepare a database schema so that the Tooling application can connect to it.
 
@@ -214,8 +217,15 @@ echo $tooling_db_schema
 ```
  docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < $tooling_db_schema  
 ```
+![Screenshot from 2023-09-18 19-57-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8436903f-e55b-48f2-a239-1e0a0a6ee821)
+
+I encountered a difficulty here, but had to change the path to tooling
+adn run the command again
+![Screenshot from 2023-09-18 20-08-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d22d2ff5-715d-4110-9832-b40ab7fbf163)
+
 
 4.Update the .env file with connection details to the database
+
 The .env file is located in the html tooling/html/.env folder but not visible in terminal. you can use vi or nano
 ```
  sudo vi .env
