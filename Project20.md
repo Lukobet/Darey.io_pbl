@@ -312,6 +312,8 @@ Access the application from the browser
 ![Screenshot from 2023-09-20 18-18-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9771fbc1-8032-405c-88e2-0a1baec48f12)
 ![Screenshot from 2023-09-20 18-22-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/69646581-1ad5-4b31-b9bc-4b99b1bd7894)
 ![Screenshot from 2023-09-20 18-24-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7e01c6fb-ba49-4c89-82c0-0abe757a7d43)
+![Screenshot from 2023-09-20 21-55-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f6a118ce-2b4b-489e-b585-9f6433f613b8)
+
 
 
 Part 2
