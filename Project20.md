@@ -298,4 +298,25 @@ Error gotten while trying to access it
 ![Screenshot from 2023-09-18 21-14-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff751fa5-e598-4893-a26c-2f87aa4a272d)
 ![Screenshot from 2023-09-18 21-42-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/871f04b9-f74e-4184-8794-60d7edaf2023)
 
+### PRACTICE TASK
+**Practice Task №1 – Implement a POC to migrate the PHP-Todo app into a containerized application.**
+Download php-todo repository from here
+
+The project below will challenge you a little bit, but the experience there is very valuable for future projects.
+
+Part 1
+Write a Dockerfile for the TODO app
+Run both database and app on your laptop Docker Engine
+Access the application from the browser
+Part 2
+Create an account in Docker Hub
+Create a new Docker Hub repository
+Push the docker images from your PC to the repository
+Part 3
+Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
+Connect your repo to Jenkins
+Create a multi-branch pipeline
+Simulate a CI pipeline from a feature and master branch using previously created Jenkinsfile
+Ensure that the tagged images from your Jenkinsfile have a prefix that suggests which branch the image was pushed from. For example, feature-0.0.1.
+Verify that the images pushed from the CI can be found at the registry.
 
