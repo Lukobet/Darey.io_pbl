@@ -330,6 +330,7 @@ Push
 
 ![Screenshot from 2023-09-20 22-31-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/37bd1c11-56d5-4db1-ab5f-48c9d0e9c15a)
 
+![Screenshot from 2023-09-20 22-35-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05e66a01-9e27-49a3-9139-4144c170db05)
 
 Part 3
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
