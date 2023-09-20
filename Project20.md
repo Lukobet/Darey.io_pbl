@@ -314,12 +314,23 @@ Access the application from the browser
 ![Screenshot from 2023-09-20 18-24-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7e01c6fb-ba49-4c89-82c0-0abe757a7d43)
 ![Screenshot from 2023-09-20 21-55-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f6a118ce-2b4b-489e-b585-9f6433f613b8)
 
-
+now running the application
+![Screenshot from 2023-09-20 22-12-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ae7960cd-be1b-425e-b0a2-141495728402)
 
 Part 2
 Create an account in Docker Hub
 Create a new Docker Hub repository
 Push the docker images from your PC to the repository
+
+![Screenshot from 2023-09-20 22-26-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5b661014-e93b-467b-8389-a6046c15f403)
+tagging done
+
+![Screenshot from 2023-09-20 22-32-56](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c67a5718-719f-4452-a2e3-d8e40cb147ae)
+Push
+
+![Screenshot from 2023-09-20 22-31-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/37bd1c11-56d5-4db1-ab5f-48c9d0e9c15a)
+
+
 Part 3
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
 Connect your repo to Jenkins
