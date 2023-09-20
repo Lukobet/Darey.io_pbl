@@ -300,7 +300,7 @@ Error gotten while trying to access it
 
 ### PRACTICE TASK
 **Practice Task №1 – Implement a POC to migrate the PHP-Todo app into a containerized application.**
-Download php-todo repository from here
+Download php-todo repository 
 
 The project below will challenge you a little bit, but the experience there is very valuable for future projects.
 
@@ -308,6 +308,12 @@ Part 1
 Write a Dockerfile for the TODO app
 Run both database and app on your laptop Docker Engine
 Access the application from the browser
+
+![Screenshot from 2023-09-20 18-18-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9771fbc1-8032-405c-88e2-0a1baec48f12)
+![Screenshot from 2023-09-20 18-22-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/69646581-1ad5-4b31-b9bc-4b99b1bd7894)
+![Screenshot from 2023-09-20 18-24-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7e01c6fb-ba49-4c89-82c0-0abe757a7d43)
+
+
 Part 2
 Create an account in Docker Hub
 Create a new Docker Hub repository
