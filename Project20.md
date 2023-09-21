@@ -314,7 +314,11 @@ Access the application from the browser
 ![Screenshot from 2023-09-20 18-24-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7e01c6fb-ba49-4c89-82c0-0abe757a7d43)
 ![Screenshot from 2023-09-20 21-55-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f6a118ce-2b4b-489e-b585-9f6433f613b8)
 
-now running the application
+now running the application using this code 
+```
+sudo docker run --network php-todo_app_network -p 8090:8000 -idt todo:0.0.1 
+```
+
 ![Screenshot from 2023-09-20 22-12-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ae7960cd-be1b-425e-b0a2-141495728402)
 
 Part 2
