@@ -139,7 +139,8 @@ As you already know, it is best practice not to connect to the MySQL server remo
 
 Create a file and name it create_user.sql and add the below code in the file:
 ```
-CREATE USER ''@'%' IDENTIFIED BY ''; GRANT ALL PRIVILEGES ON * . * TO ''@'%'; 
+CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%'; 
 ```
 ![Screenshot from 2023-09-17 13-21-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/50816562-3ff9-4eeb-8feb-75f03a4868fe)
 
@@ -300,7 +301,7 @@ Error gotten while trying to access it
 
 ### PRACTICE TASK
 **Practice Task №1 – Implement a POC to migrate the PHP-Todo app into a containerized application.**
-Download php-todo repository 
+I created a php-todo repository from https://github.com/Tonybesto/php-todo/blob/main/Dockerfile
 
 The project below will challenge you a little bit, but the experience there is very valuable for future projects.
 
