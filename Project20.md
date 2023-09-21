@@ -345,3 +345,50 @@ Simulate a CI pipeline from a feature and master branch using previously created
 Ensure that the tagged images from your Jenkinsfile have a prefix that suggests which branch the image was pushed from. For example, feature-0.0.1.
 Verify that the images pushed from the CI can be found at the registry.
 
+
+#### Deployment with Docker Compose
+All we have done until now required quite a lot of effort to create an image and launch an application inside it. We should not have to always run Docker commands on the terminal to get our applications up and running. There are solutions that make it easy to write declarative code in YAML, and get all the applications and dependencies up and running with minimal effort by launching a single command.
+
+In this section, we will refactor the Tooling app POC so that we can leverage the power of Docker Compose.
+
+First, install Docker Compose on your workstation 
+Create a file, name it **tooling.yaml**
+Begin to write the Docker Compose definitions with YAML syntax. The YAML file is used for defining services, networks, and volumes:
+```
+version: "3.9"
+services:
+  tooling_frontend:
+    build: .
+    ports:
+      - "5000:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: <The database name required by Tooling app >
+      MYSQL_USER: <The user required by Tooling app >
+      MYSQL_PASSWORD: <The password required by Tooling app >
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  tooling_frontend:
+  db:
+```
+Run the command to start the containers
+
+```
+sudo docker-compose -f tooling.yaml  up -d  
+```
+**Practice Task №2 – Complete Continous Integration With A Test Stage**
+
+Document your understanding of all the fields specified in the Docker Compose file tooling.yaml
+Update your Jenkinsfile with a test stage before pushing the image to the registry.
+What you will be testing here is to ensure that the tooling site http endpoint is able to return status code 200. Any other code will be determined a stage failure.
+Implement a similar pipeline for the PHP-todo app.
+Ensure that both pipelines have a clean-up stage where all the images are deleted on the Jenkins server.
+
