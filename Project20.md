@@ -139,8 +139,8 @@ As you already know, it is best practice not to connect to the MySQL server remo
 
 Create a file and name it create_user.sql and add the below code in the file:
 ```
-CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%'; 
+CREATE USER 'tosin'@'%' IDENTIFIED BY 'passw1ord';
+GRANT ALL PRIVILEGES ON * . * TO 'tosin'@'%'; 
 ```
 ![Screenshot from 2023-09-17 13-21-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/50816562-3ff9-4eeb-8feb-75f03a4868fe)
 
@@ -231,11 +231,11 @@ adn run the command again
 
 The .env file is located in the html tooling/html/.env folder but not visible in terminal. you can use vi or nano
 ```
- sudo vi .env
+ sudo vi .env in the tooling/html 
 
 MYSQL_IP=mysqlserverhost
-MYSQL_USER=username
-MYSQL_PASS=client-secrete-password
+MYSQL_USER=tosin
+MYSQL_PASS=passw1ord
 MYSQL_DBNAME=toolingdb
 ```
 Flags used 
