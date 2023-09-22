@@ -190,8 +190,14 @@ admin username-for-user-created-from-the-SQL-script-create_user.sql
 ```
 ![Screenshot from 2023-09-18 19-52-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/de0ef0cd-7f48-4f6d-8ccd-d0ad7e7e2416)
 
+i reliased i havent been able to access the mysql i had to change the code to include the user name which affaected the final result on the browser
+```
+sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -utosin  -p 
+```
+![Screenshot from 2023-09-22 15-19-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/859d5583-fddf-4f79-b33a-302d9836df03)
 
 **Prepare database schema**
+
 Now you need to prepare a database schema so that the Tooling application can connect to it.
 
 1. Clone the Tooling-app repository from
@@ -338,6 +344,13 @@ Push
 ![Screenshot from 2023-09-20 22-35-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/05e66a01-9e27-49a3-9139-4144c170db05)
 
 ![Screenshot from 2023-09-21 16-08-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/19d244b1-b0e0-4bcc-b014-9b20c119a842)
+
+
+i reliased i havent been able to acess the mysql i had to change the code to include the user name 
+```
+sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -utosin  -p 
+```
+
 Part 3
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
 Connect your repo to Jenkins
