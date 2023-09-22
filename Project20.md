@@ -376,7 +376,7 @@ Push
 ![Screenshot from 2023-09-21 16-08-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/19d244b1-b0e0-4bcc-b014-9b20c119a842)
 
 
-i reliased i havent been able to acess the mysql i had to change the code to include the user name 
+i realised i havent been able to acess the mysql i had to change the code to include the user name 
 ```
 sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -utosin  -p 
 ```
