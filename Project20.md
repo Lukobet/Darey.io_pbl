@@ -337,7 +337,7 @@ sudo docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < $todo_db_schema
 
 sudo docker build -t todo:0.0.1 .
 
-sudo docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1
+sudo docker run --network php-todo_app_network -p 8090:8000 -idt todo:0.0.1
 ```
 
 ![Screenshot from 2023-09-20 18-18-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9771fbc1-8032-405c-88e2-0a1baec48f12)
