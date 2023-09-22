@@ -287,7 +287,7 @@ In the above command, we specify a parameter -t, so that the image can be tagged
 
 6. Run the container:
 ```
- docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1  
+sudo docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1
 ```
 
 Let us observe those flags in the command.
@@ -301,9 +301,16 @@ I got this error
 but tried it again in my homw directory and it was successful
 ![Screenshot from 2023-09-18 21-09-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf4fe6a1-f7c5-4e24-8c53-2b5c5dabf915)
 
-Error gotten while trying to access it
-![Screenshot from 2023-09-18 21-14-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff751fa5-e598-4893-a26c-2f87aa4a272d)
+Error gotten while trying to run it
 ![Screenshot from 2023-09-18 21-42-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/871f04b9-f74e-4184-8794-60d7edaf2023)
+
+
+i changed the code to this 
+sudo docker run --network tooling_app_network -p 8085:80 -idt tooling:0.0.1
+
+errror gotten on the browser
+![Screenshot from 2023-09-18 21-14-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff751fa5-e598-4893-a26c-2f87aa4a272d)
+
 
 ### PRACTICE TASK
 **Practice Task №1 – Implement a POC to migrate the PHP-Todo app into a containerized application.**
