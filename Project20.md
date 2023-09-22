@@ -322,6 +322,23 @@ Part 1
 Write a Dockerfile for the TODO app
 Run both database and app on your laptop Docker Engine
 Access the application from the browser
+```
+sudo docker run --network php-todo_app_network -h mysqlserverhost --name=mysql-server -e MYSQL_ROOT_PASSWORD=$MYSQL_PW  -d mysql/mysql-server:latest 
+
+sudo docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
+
+sudo docker run --network php-todo_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -uadmin  -p
+
+export todo_db_schema=php-todo/todo_db_schema.sql 
+
+echo $todo_db_schema
+
+sudo docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < $todo_db_schema
+
+sudo docker build -t todo:0.0.1 .
+
+sudo docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1
+```
 
 ![Screenshot from 2023-09-20 18-18-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9771fbc1-8032-405c-88e2-0a1baec48f12)
 ![Screenshot from 2023-09-20 18-22-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/69646581-1ad5-4b31-b9bc-4b99b1bd7894)
