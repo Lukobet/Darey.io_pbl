@@ -157,7 +157,7 @@ Had issues here
 i was able to acces it using the root user password gotten from docker logs 
 ![Screenshot from 2023-09-17 15-55-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fbfc5118-ec61-4c06-b423-64be227c87a6)
 
-buts still the same. i joined the blocker session and my errorsbweere corrected . I didn't add the password i want to use in the script
+buts still the same. i joined the blocker session and my errors were corrected . I didn't add the password i want to use in the script
 
 ```
 export MYSQL_PW= 
@@ -190,7 +190,7 @@ admin username-for-user-created-from-the-SQL-script-create_user.sql
 ```
 ![Screenshot from 2023-09-18 19-52-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/de0ef0cd-7f48-4f6d-8ccd-d0ad7e7e2416)
 
-i reliased i havent been able to access the mysql i had to change the code to include the user name which affaected the final result on the browser
+i realised i havent been able to access the mysql i had to change the code to include the user name which affected the final result on the browser
 ```
 sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -utosin  -p 
 ```
@@ -334,8 +334,14 @@ sudo docker run --network php-todo_app_network -p 8090:8000 -idt todo:0.0.1
 ```
 
 ![Screenshot from 2023-09-20 22-12-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ae7960cd-be1b-425e-b0a2-141495728402)
+![Screenshot from 2023-09-22 15-49-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cca8f7c7-05ea-479d-ada8-b4e8c17bc293)
+
+error from the browser
+![Screenshot from 2023-09-22 16-04-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7d9032ae-4a63-4cfe-aeb3-23bb102cd39f)
+
 
 Part 2
+
 Create an account in Docker Hub
 Create a new Docker Hub repository
 Push the docker images from your PC to the repository
