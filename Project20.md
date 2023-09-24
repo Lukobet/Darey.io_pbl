@@ -381,6 +381,12 @@ i realised i havent been able to acess the mysql i had to change the code to inc
 sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -utosin  -p 
 ```
 
+
+## i also realised that for me to stop putting that sudo first before and docker command i have to .....
+1. run sudo usermod -aG docker ubuntu
+2. newgrp docker
+3. then  try running the docker commands
+   
 Part 3
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
 Connect your repo to Jenkins
