@@ -387,7 +387,9 @@ sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql
 2. newgrp docker
 3. then  try running the docker commands
   ![Screenshot from 2023-09-24 14-30-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fcefa7e7-f5a6-492e-9204-db00b65958b3) 
-Part 3
+
+
+**Part 3**
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
 Connect your repo to Jenkins
 Create a multi-branch pipeline
@@ -467,7 +469,10 @@ sudo docker-compose -f tooling.yaml  up -d
 ```
 
 ![Screenshot from 2023-09-24 14-45-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6b4aabea-db37-4118-ad31-23d2763b506a)
-
+![Screenshot from 2023-09-24 14-58-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0583aa43-18f2-446a-9c38-1ec9015bef33)
+run 
+docker compose ls to see if its running
+![Screenshot from 2023-09-24 15-52-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a39685d3-820e-4c1d-858e-e111a9d8cfa0)
 
 **Practice Task №2 – Complete Continous Integration With A Test Stage**
 
