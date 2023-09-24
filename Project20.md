@@ -386,7 +386,7 @@ sudo docker run --network tooling_app_network --name mysql-client -it --rm mysql
 1. run sudo usermod -aG docker ubuntu
 2. newgrp docker
 3. then  try running the docker commands
-   
+  ![Screenshot from 2023-09-24 14-30-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fcefa7e7-f5a6-492e-9204-db00b65958b3) 
 Part 3
 Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
 Connect your repo to Jenkins
@@ -402,6 +402,9 @@ All we have done until now required quite a lot of effort to create an image and
 In this section, we will refactor the Tooling app POC so that we can leverage the power of Docker Compose.
 
 First, install Docker Compose on your workstation 
+
+![Screenshot from 2023-09-24 14-42-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b93e0fa7-f36a-4811-adf2-b1670c475861)
+
 Create a file, name it **tooling.yaml**
 Begin to write the Docker Compose definitions with YAML syntax. The YAML file is used for defining services, networks, and volumes:
 ```
@@ -429,11 +432,43 @@ volumes:
   tooling_frontend:
   db:
 ```
+edited version is 
+```
+version: "3"
+services:
+  frontend:
+    build: .
+    ports:
+      - "5000:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    links:
+      - db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${db}
+      MYSQL_USER: ${username}
+      MYSQL_PASSWORD: ${password}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  tooling_frontend:
+  db:
+```
 Run the command to start the containers
 
 ```
-sudo docker-compose -f tooling.yaml  up -d  
+sudo docker-compose -f tooling.yaml  up -d
 ```
+
+![Screenshot from 2023-09-24 14-45-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6b4aabea-db37-4118-ad31-23d2763b506a)
+
+
 **Practice Task №2 – Complete Continous Integration With A Test Stage**
 
 Document your understanding of all the fields specified in the Docker Compose file tooling.yaml
