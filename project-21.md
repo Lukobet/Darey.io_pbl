@@ -317,7 +317,7 @@ aws ec2 create-route \
   --destination-cidr-block 0.0.0.0/0 \
   --gateway-id ${INTERNET_GATEWAY_ID}
 ```
-outputs:
+outputs will be like this:
 ```
 {
     "AssociationId": "rtbassoc-07a8877e92504def7",
@@ -330,7 +330,62 @@ outputs:
 }
 ```
 ![Screenshot from 2023-09-25 20-03-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/98a88a98-d5ab-4e3e-bb0d-25ddd4836a07)
+![Screenshot from 2023-09-25 20-08-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/691f7ac8-ac33-4009-b0d9-21b50f1a1802)
 
+**Security Groups**
 
+* Configure security groups
+
+```
+# Create the security group and store its ID in a variable
+SECURITY_GROUP_ID=$(aws ec2 create-security-group \
+  --group-name ${NAME} \
+  --description "Kubernetes cluster security group" \
+  --vpc-id ${VPC_ID} \
+  --output text --query 'GroupId')
+
+# Create the NAME tag for the security group
+aws ec2 create-tags \
+  --resources ${SECURITY_GROUP_ID} \
+  --tags Key=Name,Value=${NAME}
+
+# Create Inbound traffic for all communication within the subnet to connect on ports used by the master node(s)
+aws ec2 authorize-security-group-ingress \
+    --group-id ${SECURITY_GROUP_ID} \
+    --ip-permissions IpProtocol=tcp,FromPort=2379,ToPort=2380,IpRanges='[{CidrIp=172.31.0.0/24}]'
+
+# # Create Inbound traffic for all communication within the subnet to connect on ports used by the worker nodes
+aws ec2 authorize-security-group-ingress \
+    --group-id ${SECURITY_GROUP_ID} \
+    --ip-permissions IpProtocol=tcp,FromPort=30000,ToPort=32767,IpRanges='[{CidrIp=172.31.0.0/24}]'
+
+# Create inbound traffic to allow connections to the Kubernetes API Server listening on port 6443
+aws ec2 authorize-security-group-ingress \
+  --group-id ${SECURITY_GROUP_ID} \
+  --protocol tcp \
+  --port 6443 \
+  --cidr 0.0.0.0/0
+
+# Create Inbound traffic for SSH from anywhere (Do not do this in production. Limit access ONLY to IPs or CIDR that MUST connect)
+aws ec2 authorize-security-group-ingress \
+  --group-id ${SECURITY_GROUP_ID} \
+  --protocol tcp \
+  --port 22 \
+  --cidr 0.0.0.0/0
+
+# Create ICMP ingress for all types
+aws ec2 authorize-security-group-ingress \
+  --group-id ${SECURITY_GROUP_ID} \
+  --protocol icmp \
+  --port -1 \
+  --cidr 0.0.0.0/0
+```
+
+  
+
+![Screenshot from 2023-09-25 20-10-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/36eaa91b-76a6-42d6-9a89-3ab1038f36b0)
+![Screenshot from 2023-09-25 20-13-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6d2a6622-f50b-4add-913c-c4e1501663f0)
+
+![Screenshot from 2023-09-25 20-23-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bc2d1d1b-85d4-4cc4-a305-81cc8b85bdcf)
 ##### TASK 2: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
 ##### TASK 3: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
