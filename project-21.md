@@ -610,32 +610,242 @@ The 3 important files here are:
 2. ca-key.pem – The Private Key
 3. ca.csr – The Certificate Signing Request
 
-   
-```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
-```
+ **Kubernetes API-Server Certificate and Private Key**  
+ * Generate the Certificate Signing Request (CSR), Private Key and the Certificate for the Kubernetes Master Nodes.
 
 ```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
+{
+cat > master-kubernetes-csr.json <<EOF
+{
+  "CN": "kubernetes",
+   "hosts": [
+   "127.0.0.1",
+   "172.31.0.10",
+   "172.31.0.11",
+   "172.31.0.12",
+   "ip-172-31-0-10",
+   "ip-172-31-0-11",
+   "ip-172-31-0-12",
+   "ip-172-31-0-10.${AWS_REGION}.compute.internal",
+   "ip-172-31-0-11.${AWS_REGION}.compute.internal",
+   "ip-172-31-0-12.${AWS_REGION}.compute.internal",
+   "${KUBERNETES_PUBLIC_ADDRESS}",
+   "kubernetes",
+   "kubernetes.default",
+   "kubernetes.default.svc",
+   "kubernetes.default.svc.cluster",
+   "kubernetes.default.svc.cluster.local"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "Kubernetes",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  master-kubernetes-csr.json | cfssljson -bare master-kubernetes
+}
 ```
+![Screenshot from 2023-09-25 20-52-19](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bfe24625-cd99-4e52-9a51-7983b24803e4)
+
+Creating the other certificates: for the following Kubernetes components:
+
+Scheduler Client Certificate
+Kube Proxy Client Certificate
+Controller Manager Client Certificate
+Kubelet Client Certificates
+K8s admin user Client Certificate
+
+* kube-scheduler Client Certificate and Private Key
+```
+{
+
+cat > kube-scheduler-csr.json <<EOF
+{
+  "CN": "system:kube-scheduler",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "system:kube-scheduler",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  kube-scheduler-csr.json | cfssljson -bare kube-scheduler
+
+}
+```
+![Screenshot from 2023-09-25 20-54-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/04205c80-2f3c-45af-8df2-40a1861081b9)
+
+* kube-proxy Client Certificate and Private Key
 
 ```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
+{
+
+cat > kube-proxy-csr.json <<EOF
+{
+  "CN": "system:kube-proxy",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "system:node-proxier",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  kube-proxy-csr.json | cfssljson -bare kube-proxy
+
+}
+```
+![Screenshot from 2023-09-25 20-56-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9cabbf9b-9483-4cd5-9735-899ad6bf6e53)
+
+* kube-controller-manager Client Certificate and Private Key
+
+```
+{
+cat > kube-controller-manager-csr.json <<EOF
+{
+  "CN": "system:kube-controller-manager",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "system:kube-controller-manager",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
+
+}
+```
+![Screenshot from 2023-09-25 20-58-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4f0a758d-e682-4e0f-9036-cce539bb30c6)
+
+* kubelet Client Certificate and Private Key
+
+```
+for i in 0 1 2; do
+  instance="${NAME}-worker-${i}"
+  instance_hostname="ip-172-31-0-2${i}"
+  cat > ${instance}-csr.json <<EOF
+{
+  "CN": "system:node:${instance_hostname}",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "system:nodes",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+
+  internal_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PrivateIpAddress')
+
+  cfssl gencert \
+    -ca=ca.pem \
+    -ca-key=ca-key.pem \
+    -config=ca-config.json \
+    -hostname=${instance_hostname},${external_ip},${internal_ip} \
+    -profile=kubernetes \
+    ${NAME}-worker-${i}-csr.json | cfssljson -bare ${NAME}-worker-${i}
+done
+```
+![Screenshot from 2023-09-25 21-02-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ff897c22-a005-417c-ac80-a8988e84f9d0)
+
+* kubernetes admin user's Client Certificate and Private Key
+```
+{
+cat > admin-csr.json <<EOF
+{
+  "CN": "admin",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "system:masters",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  admin-csr.json | cfssljson -bare admin
+}
 ```
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 
