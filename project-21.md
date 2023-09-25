@@ -91,6 +91,7 @@ You will create 3 EC2 Instances, and in the end, we will have the following part
 * Configured Node Network
 * Configured Pod Network
 ##### TASK 0: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
+**NOTE: ALL COMMANDS ARE TO BE RAN ON THE TERMINAL**
 
 First, you will need some client tools installed and configurations made on your client workstation:
 
@@ -328,6 +329,8 @@ outputs:
     "Return": true
 }
 ```
+![Screenshot from 2023-09-25 20-03-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/98a88a98-d5ab-4e3e-bb0d-25ddd4836a07)
+
 
 ##### TASK 2: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
 ##### TASK 3: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
