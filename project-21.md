@@ -85,6 +85,8 @@ You will create 3 EC2 Instances, and in the end, we will have the following part
 
 * One Kubernetes Master
 * Two Kubernetes Worker Nodes
+![Screenshot from 2023-09-25 16-50-47](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9af4751a-e856-42c1-9b03-4f17ea1c5a4f)
+
 * Configured SSL/TLS certificates for Kubernetes components to communicate securely
 * Configured Node Network
 * Configured Pod Network
@@ -93,9 +95,61 @@ You will create 3 EC2 Instances, and in the end, we will have the following part
 First, you will need some client tools installed and configurations made on your client workstation:
 
 * awscli – is a unified tool to manage your AWS services
+Generate access keys and store them in a safe place.
+  Install and configure AWS CLI
+  ![Screenshot from 2023-09-25 17-09-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/45baf144-fa75-4433-97c4-8cc5020e45bc)
+Test your AWS CLI by running:
+```
+aws ec2 describe-vpcs
+```
+![Screenshot from 2023-09-25 17-15-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cd92d2f6-c07b-4c18-9f40-1e67b21d2038)
 * kubectl – this command line utility will be your main control tool to manage your K8s cluster. You will use this tool so many times, so you will be able to type ‘kubetcl’ on your keyboard with a speed of light. You can always make a shortcut (alias) to just one character ‘k’. Also, add this extremely useful official kubectl
+
+  Kubernetes cluster has a Web API that can receive HTTP/HTTPS requests, but it is quite cumbersome to curl an API each and every time you need to send some command, so kubectl command tool was developed to ease a K8s administrator’s life.
+
+With this tool you can easily interact with Kubernetes to deploy applications, inspect and manage cluster resources, view logs and perform many more administrative operations.
+
+###### Install Kbectl
+**Download the binary**
+```
+wget https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl
+```
+**make it executable**
+```
+chmod +x kubectl
+```
+**move the bin directory**
+```
+sudo mv kubectl /usr/local/bin/
+```
+**Verify that kubectl version 1.21.0 or higher is installed:**
+```
+kubectl version --client
+```
+![Screenshot from 2023-09-25 17-18-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b6ca8b54-549e-4a77-849f-13fd7df376e9)
+
+
 * cheat Sheet to your bookmarks, it has examples of the most used ‘kubectl’ commands.
+
+  Install CFSSL and CFSSLJSON
 * cfssl – an open source toolkit for everything TLS/SSL from Cloudflare
+**cfssl** is an open source tool by Cloudflare used to setup a Public Key Infrastructure (PKI Infrastructure) for generating, signing and bundling TLS certificates. In previous projects you have experienced the use of Letsencrypt for the similar use case. Here, cfssl will be configured as a Certificate Authority which will issue the certificates required to spin up a Kubernetes cluster.
+
+**Download the binary**
+```
+wget -q --show-progress --https-only --timestamping \
+  https://storage.googleapis.com/kubernetes-the-hard-way/cfssl/1.4.1/linux/cfssl \
+  https://storage.googleapis.com/kubernetes-the-hard-way/cfssl/1.4.1/linux/cfssljson
+```
+**make it executable**
+
+```
+chmod +x cfssl cfssljson
+```
+**Move to the Bin directory**
+```
+sudo mv cfssl cfssljson /usr/local/bin/
+```
 * cfssljson – a program, which takes the JSON output from the cfssl and writes certificates, keys, CSRs, and bundles to disk.
 
 ##### TASK 1: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
