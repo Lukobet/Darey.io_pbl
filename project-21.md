@@ -1103,7 +1103,10 @@ TIPS: Use a terminal multi-plexer like multi-tabbed putty or tmux to work with m
   **SSH into the controller server**
 * Master-1
 ```
-KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+master_1_ip=$(aws ec2 describe-instances \
+--filters "Name=tag:Name,Values=${NAME}-master-0" \
+--output text --query 'Reservations[].Instances[].PublicIpAddress')
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@$3.230.125.61
 ```
 
 ```
