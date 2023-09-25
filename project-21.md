@@ -1100,16 +1100,24 @@ EOF
 ```
 ##### Bootstrap etcd cluster
 TIPS: Use a terminal multi-plexer like multi-tabbed putty or tmux to work with multiple terminal sessions simultaneously. It will make your life easier, especially when you need to work on multiple nodes and run the same command across all nodes. Imagine repeating the same commands on 10 different nodes, and you don not intend to start automating with a configuration management tool like Ansible yet.
+
+The primary purpose of the etcd component is to store the state of the cluster. This is because Kubernetes itself is stateless. Therefore, all its stateful data will persist in etcd. Since Kubernetes is a distributed system – it needs a distributed storage to keep persistent data in it. etcd is a highly-available key value store that fits the purpose. All K8s cluster configurations are stored in a form of key value pairs in etcd, it also stores the actual and desired states of the cluster. etcd cluster is intelligent enough to watch for changes made on one instance and almost instantly replicate those changes to the rest of the instances, so all of them will be always reconciled.
+
+
   **SSH into the controller server**
   i encounter a difficulty at this stage
   ![Screenshot from 2023-09-25 22-01-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d8cea092-502a-462e-a32f-a1213702b7ae)
+
+  but i found a way in. i located where the id_rsa is and tried this code
 * Master-1
 ```
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@$3.230.125.61
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-230-125-61.compute-1.amazonaws.com
 ```
+![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
+
 * Master-2
 ```
 master_2_ip=$(aws ec2 describe-instances \
@@ -1129,6 +1137,8 @@ ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${master_3_ip}
 wget -q --show-progress --https-only --timestamping \
   "https://github.com/etcd-io/etcd/releases/download/v3.4.15/etcd-v3.4.15-linux-amd64.tar.gz"
 ```
+![Screenshot from 2023-09-25 22-18-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5c549e72-9d39-475f-85cc-c0b75c81e73c)
+
 * Extract and install the etcd server and the etcdctl command line utility
 
 ```
@@ -1158,8 +1168,7 @@ echo ${ETCD_NAME}
 ```
 
 * Create the etcd.service systemd unit file:
-The flags used are :
-1. 
+The flags used are documented here:https://www.bookstack.cn/read/etcd-3.2.17-en/717bafd59fa87192.md
 
 ```
 cat <<EOF | sudo tee /etc/systemd/system/etcd.service
@@ -1194,6 +1203,56 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
+```
+* Start and enable the etcd Server
+  
+```
+
+{
+sudo systemctl daemon-reload
+sudo systemctl enable etcd
+sudo systemctl start etcd
+}
+```
+
+```
+
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+
+```
+
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+
+```
+
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+
+```
+
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
 ```
 
 ```
