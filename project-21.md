@@ -150,7 +150,45 @@ chmod +x cfssl cfssljson
 ```
 sudo mv cfssl cfssljson /usr/local/bin/
 ```
-* cfssljson – a program, which takes the JSON output from the cfssl and writes certificates, keys, CSRs, and bundles to disk.
+this above didnt work out, so i tried the steps bellow
+```
+VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+VNUMBER=${VERSION#"v"}
+wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssl_${VNUMBER}_linux_amd64 -O cfssl
+
+```
+**make it executable**
+
+```
+sudo mv cfssl /usr/local/bin
+```
+**Move to the Bin directory**
+```
+sudo mv cfssl /usr/local/bin
+```
+![Screenshot from 2023-09-25 17-50-03](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2870c564-9c46-4b52-892b-5f062b455e4f)
+
+**install cfssljson**
+
+```
+VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+VNUMBER=${VERSION#"v"}
+wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssljson_${VNUMBER}_linux_amd64 -O cfssljson
+```
+**make it executable**
+
+```
+chmod +x cfssljson
+```
+**Move to the Bin directory**
+```
+sudo mv cfssljson /usr/local/bin
+```
+verify the version
+```
+cfssljson -version
+```
+![Screenshot from 2023-09-25 17-56-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95c5acc9-308d-423f-89f7-e88154d0fecf)
 
 ##### TASK 1: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
 ##### TASK 2: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
