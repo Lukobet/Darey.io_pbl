@@ -1074,7 +1074,42 @@ Open up the kubeconfig files generated and review the 3 different sections that 
 ```
  ![Screenshot from 2023-09-25 21-33-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cd5d3c97-ec80-4a2a-be4e-3b4cb7591b95) 
 
- 
+ ##### STEP 6 PREPARE THE ETCD DATABASE FOR ENCRYPTION AT REST.
+ Kubernetes uses **etcd** (A distributed key value store) to store variety of data which includes the cluster state, application configurations, and secrets.
+
+ * Generate the encryption key and encode it using base64
+```
+ETCD_ENCRYPTION_KEY=$(head -c 64 /dev/urandom | base64) 
+```
+![Screenshot from 2023-09-25 21-36-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0f22a549-9556-4e05-b597-8a6c84a94661)
+*  Create an encryption-config.yaml file as documented officially by kubernetes
+```
+cat > encryption-config.yaml <<EOF
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: ${ETCD_ENCRYPTION_KEY}
+      - identity: {}
+EOF
+```
+##### Bootstrap etcd cluster
+TIPS: Use a terminal multi-plexer like multi-tabbed putty or tmux to work with multiple terminal sessions simultaneously. It will make your life easier, especially when you need to work on multiple nodes and run the same command across all nodes. Imagine repeating the same commands on 10 different nodes, and you don not intend to start automating with a configuration management tool like Ansible yet.
+  **SSH into the controller server**
+* Master-1
+```
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+```
+
+```
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+```
+
 ```
 KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
 ```
@@ -1090,6 +1125,6 @@ aws elbv2 create-listener \
 ```
 
 
-##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
