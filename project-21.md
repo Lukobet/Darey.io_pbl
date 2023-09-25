@@ -884,10 +884,103 @@ cfssl gencert \
 
 ```
 
-##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+##### STEP 4 – DISTRIBUTING THE CLIENT AND SERVER CERTIFICATES
+Now it is time to start sending all the client and server certificates to their respective instances.
 
+Copy these files securely to the worker nodes using **scp** utility
+
+* Root CA certificate – ca.pem
+* X509 Certificate for each worker node
+* Private Key of the certificate for each worker node
+  
+```
+for i in 0 1 2; do
+  instance="${NAME}-worker-${i}"
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    ca.pem ${instance}-key.pem ${instance}.pem ubuntu@${external_ip}:~/; \
+done
+```
+![Screenshot from 2023-09-25 21-08-30](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/04424431-28be-4b36-8b2f-d5e8a3bf731a)
+
+* Master or Controller node: – Note that only the api-server related files will be sent over to the master nodes.
+```
+for i in 0 1 2; do
+instance="${NAME}-master-${i}" \
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    ca.pem ca-key.pem service-account-key.pem service-account.pem \
+    master-kubernetes.pem master-kubernetes-key.pem ubuntu@${external_ip}:~/;
+done
+```
+![Screenshot from 2023-09-25 21-10-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/72760b87-83f9-441e-8dc8-054309dc69da)
+
+##### STEP 5 USE `KUBECTL` TO GENERATE KUBERNETES CONFIGURATION FILES FOR AUTHENTICATION
+All the work you are doing right now is ensuring that you do not face any difficulties by the time the Kubernetes cluster is up and running. In this step, you will create some files known as kubeconfig, which enables Kubernetes clients to locate and authenticate to the Kubernetes API Servers.
+First, let us create a few environment variables for reuse by multiple commands. **TO DO THIS I am still in the CA AUTHORITY FOLDER**
 
 ```
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+```
+* Generate the kubelet kubeconfig file
+
+  For each of the nodes running the kubelet component, it is very important that the client certificate configured for that node is used to generate the kubeconfig. This is because each certificate has the node’s DNS name or IP Address configured at the time the certificate was generated. It will also ensure that the appropriate authorization is applied to that node through the Node Authorizer
+  
+```
+for i in 0 1 2; do
+
+instance="${NAME}-worker-${i}"
+instance_hostname="ip-172-31-0-2${i}"
+
+ # Set the kubernetes cluster in the kubeconfig file
+  kubectl config set-cluster ${NAME} \
+    --certificate-authority=ca.pem \
+    --embed-certs=true \
+    --server=https://$KUBERNETES_API_SERVER_ADDRESS:6443 \
+    --kubeconfig=${instance}.kubeconfig
+
+# Set the cluster credentials in the kubeconfig file
+  kubectl config set-credentials system:node:${instance_hostname} \
+    --client-certificate=${instance}.pem \
+    --client-key=${instance}-key.pem \
+    --embed-certs=true \
+    --kubeconfig=${instance}.kubeconfig
+
+# Set the context in the kubeconfig file
+  kubectl config set-context default \
+    --cluster=${NAME} \
+    --user=system:node:${instance_hostname} \
+    --kubeconfig=${instance}.kubeconfig
+
+  kubectl config use-context default --kubeconfig=${instance}.kubeconfig
+done
+```
+![Screenshot from 2023-09-25 21-20-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8217a22d-1fe2-4c7c-8354-fe8232543107)
+
+List the output
+![Screenshot from 2023-09-25 21-21-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e99d6898-5f61-4fc6-a5a2-975384a3662f)
+
+Open up the kubeconfig files generated and review the 3 different sections that have been configured:
+
+1. Cluster
+2. Credentials
+3. Kube Context
+![Screenshot from 2023-09-25 21-24-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6c6450f6-a09d-44fe-a987-58a17b49b096)
+![Screenshot from 2023-09-25 21-23-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/109e9374-f79c-4264-a819-66aefb36162f)
+   
+```
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+```
+```
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+```
+
+```
+
 aws elbv2 create-listener \
 --load-balancer-arn ${LOAD_BALANCER_ARN} \
 --protocol TCP \
@@ -897,32 +990,6 @@ aws elbv2 create-listener \
 ```
 
 
-```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
-```
-```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
-```
-```
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
-```
-
-##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
