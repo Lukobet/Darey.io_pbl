@@ -971,10 +971,110 @@ Open up the kubeconfig files generated and review the 3 different sections that 
 3. Kube Context
 ![Screenshot from 2023-09-25 21-24-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6c6450f6-a09d-44fe-a987-58a17b49b096)
 ![Screenshot from 2023-09-25 21-23-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/109e9374-f79c-4264-a819-66aefb36162f)
-   
+
+   **Kubeconfig file** is used to organize information about **clusters**, **users**, **namespaces** and **authentication mechanisms**. By default, **kubectl** looks for a file named config in the **$HOME/.kube** directory.
+* Generate the kube-proxy kubeconfig  
 ```
-KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+{
+  kubectl config set-cluster ${NAME} \
+    --certificate-authority=ca.pem \
+    --embed-certs=true \
+    --server=https://${KUBERNETES_API_SERVER_ADDRESS}:6443 \
+    --kubeconfig=kube-proxy.kubeconfig
+
+  kubectl config set-credentials system:kube-proxy \
+    --client-certificate=kube-proxy.pem \
+    --client-key=kube-proxy-key.pem \
+    --embed-certs=true \
+    --kubeconfig=kube-proxy.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=${NAME} \
+    --user=system:kube-proxy \
+    --kubeconfig=kube-proxy.kubeconfig
+
+  kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
+}
 ```
+![Screenshot from 2023-09-25 21-28-26](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/51e1b47a-f8ed-495e-9406-347046804911)
+
+* Generate the Kube-Controller-Manager kubeconfig
+  Notice that the **--server** is set to use **127.0.0.1**. This is because, this component runs on the API-Server so there is no point routing through the Load Balancer.
+  
+```
+{
+  kubectl config set-cluster ${NAME} \
+    --certificate-authority=ca.pem \
+    --embed-certs=true \
+    --server=https://127.0.0.1:6443 \
+    --kubeconfig=kube-controller-manager.kubeconfig
+
+  kubectl config set-credentials system:kube-controller-manager \
+    --client-certificate=kube-controller-manager.pem \
+    --client-key=kube-controller-manager-key.pem \
+    --embed-certs=true \
+    --kubeconfig=kube-controller-manager.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=${NAME} \
+    --user=system:kube-controller-manager \
+    --kubeconfig=kube-controller-manager.kubeconfig
+
+  kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconfig
+}
+```
+* Generating the Kube-Scheduler Kubeconfig
+  
+```
+{
+  kubectl config set-cluster ${NAME} \
+    --certificate-authority=ca.pem \
+    --embed-certs=true \
+    --server=https://127.0.0.1:6443 \
+    --kubeconfig=kube-scheduler.kubeconfig
+
+  kubectl config set-credentials system:kube-scheduler \
+    --client-certificate=kube-scheduler.pem \
+    --client-key=kube-scheduler-key.pem \
+    --embed-certs=true \
+    --kubeconfig=kube-scheduler.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=${NAME} \
+    --user=system:kube-scheduler \
+    --kubeconfig=kube-scheduler.kubeconfig
+
+  kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
+}
+```
+ ![Screenshot from 2023-09-25 21-32-09](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ec1ab86d-d300-456f-bd2f-f43a6b410312)
+
+ * Finally, generate the kubeconfig file for the admin user
+```
+{
+  kubectl config set-cluster ${NAME} \
+    --certificate-authority=ca.pem \
+    --embed-certs=true \
+    --server=https://${KUBERNETES_API_SERVER_ADDRESS}:6443 \
+    --kubeconfig=admin.kubeconfig
+
+  kubectl config set-credentials admin \
+    --client-certificate=admin.pem \
+    --client-key=admin-key.pem \
+    --embed-certs=true \
+    --kubeconfig=admin.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=${NAME} \
+    --user=admin \
+    --kubeconfig=admin.kubeconfig
+
+  kubectl config use-context default --kubeconfig=admin.kubeconfig
+}
+```
+ ![Screenshot from 2023-09-25 21-33-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cd5d3c97-ec80-4a2a-be4e-3b4cb7591b95) 
+
+ 
 ```
 KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
 ```
