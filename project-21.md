@@ -198,7 +198,50 @@ cfssljson -version
 
 ![Screenshot from 2023-09-25 17-56-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95c5acc9-308d-423f-89f7-e88154d0fecf)
 
+### AWS CLOUD RESOURCES FOR KUBERNETES CLUSTER
 
-##### TASK 1: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
+##### Step 1 – Configure Network Infrastructure
+Virtual Private Cloud – VPC
+
+Create a directory named **k8s-cluster-from-ground-up**
+* Create a VPC and store the ID as a variable:
+```
+VPC_ID=$(aws ec2 create-vpc \
+--cidr-block 172.31.0.0/16 \
+--output text --query 'Vpc.VpcId'
+)
+```
+* Tag the VPC so that it is named:
+
+```
+NAME=k8s-cluster-from-ground-up
+
+aws ec2 create-tags \
+  --resources ${VPC_ID} \
+  --tags Key=Name,Value=${NAME}
+```
+**Domain Name System – DNS**
+
+* Enable DNS support for your VPC:
+
+```
+aws ec2 modify-vpc-attribute \
+--vpc-id ${VPC_ID} \
+--enable-dns-support '{"Value": true}'
+```
+* Enable DNS support for hostnames:
+
+```
+aws ec2 modify-vpc-attribute \
+--vpc-id ${VPC_ID} \
+--enable-dns-hostnames '{"Value": true}'
+```
+**AWS Region**
+* Set the required region
+```
+AWS_REGION=us-east-1
+```
+
+
 ##### TASK 2: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
 ##### TASK 3: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
