@@ -847,6 +847,43 @@ cfssl gencert \
   admin-csr.json | cfssljson -bare admin
 }
 ```
+![Screenshot from 2023-09-25 21-03-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8b135df2-b813-4bc5-817c-e01523a8c585)
+
+* kube-controller-manager certificate and private key
+
+  
+```
+{
+
+cat > service-account-csr.json <<EOF
+{
+  "CN": "service-accounts",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "Kubernetes",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  service-account-csr.json | cfssljson -bare service-account
+}
+
+```
+
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 
 
@@ -858,6 +895,8 @@ aws elbv2 create-listener \
 --default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
 --output text --query 'Listeners[].ListenerArn'
 ```
+
+
 ```
 aws elbv2 create-listener \
 --load-balancer-arn ${LOAD_BALANCER_ARN} \
