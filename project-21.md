@@ -521,9 +521,96 @@ for i in 0 1 2; do
     --tags "Key=Name,Value=${NAME}-worker-${i}"
 done
 ```
-##### TASK 3: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+
+The following components running on the Master node will require TLS certificates.
+
+* kube-controller-manager
+* kube-scheduler
+* etcd
+* kube-apiserver
+The following components running on the Worker nodes will require TLS certificates.
+
+* kubelet
+* kube-proxy
+Therefore, you will provision a PKI Infrastructure using cfssl which will have a Certificate Authority. The CA will then generate certificates for all the individual components.
+
+Self-Signed Root Certificate Authority (CA)
+```
+mkdir ca-authority && cd ca-authority
+```
+Generate the CA configuration file, Root Certificate, and Private key:
+```
+{
+
+cat > ca-config.json <<EOF
+{
+  "signing": {
+    "default": {
+      "expiry": "8760h"
+    },
+    "profiles": {
+      "kubernetes": {
+        "usages": ["signing", "key encipherment", "server auth", "client auth"],
+        "expiry": "8760h"
+      }
+    }
+  }
+}
+EOF
+
+cat > ca-csr.json <<EOF
+{
+  "CN": "Kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "UK",
+      "L": "England",
+      "O": "Kubernetes",
+      "OU": "DAREY.IO DEVOPS",
+      "ST": "London"
+    }
+  ]
+}
+EOF
+
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+
+}
+```
+![Screenshot from 2023-09-25 20-45-18](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/af0c6e4b-16f1-4046-9cbb-e3f74335c839)
+
+The file defines the following:
+CN – Common name for the authority
+
+algo – the algorithm used for the certificates
+
+size – algorithm size in bits
+
+C – Country
+
+L – Locality (city)
+
+ST – State or province
+
+O – Organization
+
+OU – Organizational Unit
 
 
+![Screenshot from 2023-09-25 20-48-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1a579927-faee-4c92-baec-97e3ef95d6e5)
+
+The 3 important files here are:
+
+1. ca.pem – The Root Certificate
+2. ca-key.pem – The Private Key
+3. ca.csr – The Certificate Signing Request
+
+   
 ```
 aws elbv2 create-listener \
 --load-balancer-arn ${LOAD_BALANCER_ARN} \
@@ -550,6 +637,8 @@ aws elbv2 create-listener \
 --default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
 --output text --query 'Listeners[].ListenerArn'
 ```
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+
 
 ```
 aws elbv2 create-listener \
@@ -559,3 +648,32 @@ aws elbv2 create-listener \
 --default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
 --output text --query 'Listeners[].ListenerArn'
 ```
+```
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+```
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+```
+aws elbv2 create-listener \
+--load-balancer-arn ${LOAD_BALANCER_ARN} \
+--protocol TCP \
+--port 6443 \
+--default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
+--output text --query 'Listeners[].ListenerArn'
+```
+
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
+##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
