@@ -131,10 +131,12 @@ kubectl version --client
 
 * cheat Sheet to your bookmarks, it has examples of the most used ‘kubectl’ commands.
 
-  Install CFSSL and CFSSLJSON
+  ##### Install CFSSL and CFSSLJSON
 * cfssl – an open source toolkit for everything TLS/SSL from Cloudflare
 **cfssl** is an open source tool by Cloudflare used to setup a Public Key Infrastructure (PKI Infrastructure) for generating, signing and bundling TLS certificates. In previous projects you have experienced the use of Letsencrypt for the similar use case. Here, cfssl will be configured as a Certificate Authority which will issue the certificates required to spin up a Kubernetes cluster.
 
+
+###### Install CFSSL
 **Download the binary**
 ```
 wget -q --show-progress --https-only --timestamping \
@@ -168,7 +170,8 @@ sudo mv cfssl /usr/local/bin
 ```
 ![Screenshot from 2023-09-25 17-50-03](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2870c564-9c46-4b52-892b-5f062b455e4f)
 
-**install cfssljson**
+
+###### Install CFSSL
 
 ```
 VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -180,15 +183,21 @@ wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssljson_
 ```
 chmod +x cfssljson
 ```
+
 **Move to the Bin directory**
+
 ```
 sudo mv cfssljson /usr/local/bin
 ```
-verify the version
+
+**verify the version**
+
 ```
 cfssljson -version
 ```
+
 ![Screenshot from 2023-09-25 17-56-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/95c5acc9-308d-423f-89f7-e88154d0fecf)
+
 
 ##### TASK 1: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
 ##### TASK 2: INSTALL CLIENT TOOLS BEFORE BOOTSTRAPPING THE CLUSTER.
