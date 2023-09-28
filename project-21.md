@@ -1137,7 +1137,7 @@ ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${master_3_ip}
 wget -q --show-progress --https-only --timestamping \
   "https://github.com/etcd-io/etcd/releases/download/v3.4.15/etcd-v3.4.15-linux-amd64.tar.gz"
 ```
-![Screenshot from 2023-09-25 22-18-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5c549e72-9d39-475f-85cc-c0b75c81e73c)
+![Screenshot from 2023-09-28 04-51-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/61c1443a-0dba-4f68-be70-27fde863da75)
 
 * Extract and install the etcd server and the etcdctl command line utility
 
@@ -1155,6 +1155,11 @@ sudo mv etcd-v3.4.15-linux-amd64/etcd* /usr/local/bin/
   sudo cp ca.pem master-kubernetes-key.pem master-kubernetes.pem /etc/etcd/
 }
 ```
+
+got this error on the 3 servers
+
+![Screenshot from 2023-09-28 05-03-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8a08f720-c3da-4228-83bb-643314b236e7)
+
 * The instance internal IP address will be used to serve client requests and communicate with etcd cluster peers. Retrieve the internal IP address for the current compute instance:
 ```
 export INTERNAL_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
