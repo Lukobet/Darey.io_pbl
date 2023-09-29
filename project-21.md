@@ -1270,7 +1270,77 @@ aws elbv2 create-listener \
 --output text --query 'Listeners[].ListenerArn'
 ```
 
+[1:10 PM] Anthony  Akoji
 
+VARIABLES FOR SETTING UP KUBERNETES
+
+ 
+
+ 
+
+ 
+
+NAME=k8s-cluster-from-ground-up
+
+ 
+
+VPC_ID=vpc-0b0847512ac862f2a
+
+ 
+
+AWS_REGION=us-east-1
+
+ 
+
+KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
+
+--load-balancer-arns ${LOAD_BALANCER_ARN} \
+
+--output text --query 'LoadBalancers[].DNSName')
+
+ 
+
+ 
+
+DHCP_OPTION_SET_ID=dopt-07d26622afb08b29b
+
+ 
+
+SUBNET_ID=subnet-03fbbf0c6315ba8d3
+
+ 
+
+INTERNET_GATEWAY_ID=igw-0cd4d2b7519120ed5
+
+ 
+
+ROUTE_TABLE_ID=rtb-0e95363f7f31e2712
+
+ 
+
+SECURITY_GROUP_ID=sg-05a164a0cf93106f3
+
+ 
+
+LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:571131858325:loadbalancer/net/k8s-cluster-from-ground-up/09e0aae55e555a75
+
+ 
+
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:571131858325:targetgroup/k8s-cluster-from-ground-up/908f491009d4e163
+
+ 
+
+KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-09e0aae55e555a75.elb.us-east-1.amazonaws.com
+
+ 
+
+IMAGE_ID=ami-0172070f66a8ebe63
+
+ 
+
+ 
+
+KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
 
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
