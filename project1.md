@@ -124,6 +124,8 @@ In fact, it is the same content that you previously got by ‘curl’ command, b
 
 
 result= ![Screenshot from 2022-08-28 15-08-38](https://user-images.githubusercontent.com/110517150/188636550-7e94a85b-f0da-47f8-a660-3efb5a28ac23.png)
+![Screenshot from 2022-08-28 15-08-38](https://user-images.githubusercontent.com/110517150/188636550-7e94a85b-f0da-47f8-a660-3efb5a28ac23.png)
+
 
 ### STEP 2 — INSTALLING MYSQL
 Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. MySQL is a popular relational database management system used within PHP environments, so we will use it in our project.
@@ -334,45 +336,55 @@ http://<Public-DNS-Name>:80
 ```
 You can leave this file in place as a temporary landing page for your application until you set up an index.php file to replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would take precedence over an index.php file by default.
 
+### STEP 5 — ENABLE PHP ON THE WEBSITE
+With the default DirectoryIndex settings on Apache, a file named index.html will always take precedence over an index.php file. This is useful for setting up maintenance pages in PHP applications, by creating a temporary index.html file containing an informative message to visitors. Because this page will take precedence over the index.php page, it will then become the landing page for the application. Once maintenance is over, the index.html is renamed or removed from the document root, bringing back the regular application page.
 
+In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and change the order in which the index.php file is listed within the DirectoryIndex directive:
 ```
-000-default.conf  default-ssl.conf  projectlamp.conf
+sudo vim /etc/apache2/mods-enabled/dir.conf
 ```
-
+display
 ```
-000-default.conf  default-ssl.conf  projectlamp.conf
-```
-```
-000-default.conf  default-ssl.conf  projectlamp.conf
-```
-
-```
-000-default.conf  default-ssl.conf  projectlamp.conf
-```
-```
-000-default.conf  default-ssl.conf  projectlamp.conf
+<IfModule mod_dir.c>
+        #Change this:
+        #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+        #To this:
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
 ```
 
+After saving and closing the file, you will need to reload Apache so the changes take effect:
 ```
-000-default.conf  default-ssl.conf  projectlamp.conf
+sudo systemctl reload apache2
 ```
+Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
 
-```
-VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-VNUMBER=${VERSION#"v"}
-wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssl_${VNUMBER}_linux_amd64 -O cfssl
+Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
 
+Create a new file named index.php inside your custom web root folder:
 ```
+vim /var/www/projectlamp/index.php
 ```
-VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-VNUMBER=${VERSION#"v"}
-wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssl_${VNUMBER}_linux_amd64 -O cfssl
-
+This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 ```
+<?php
+phpinfo();
+```
+When you are finished, save and close the file, refresh the page 
+
+This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
+
+If you can see this page in your browser, then your PHP installation is working as expected.
+
+After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment -and your Ubuntu server. You can use rm to do so:
+```
+sudo rm /var/www/projectlamp/index.php
+```
+You can always recreate this page if you need to access the information again later.
 
 
-STEP 1. INSTANCE CREATION AND CONNECTION
-![Screenshot from 2022-08-28 15-08-38](https://user-images.githubusercontent.com/110517150/188636550-7e94a85b-f0da-47f8-a660-3efb5a28ac23.png)
+Congratulations! You have finished your very first REAL LIFE PROJECT by deploying a LAMP stack website in AWS Cloud!
+
 
 
 After the installation of APACHE, MYSQL AND PHP, i have the following proof for review:
