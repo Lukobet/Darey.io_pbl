@@ -153,7 +153,8 @@ chmod +x cfssl cfssljson
 ```
 sudo mv cfssl cfssljson /usr/local/bin/
 ```
-this above didnt work out, so i tried the steps bellow
+this above didnt work out, so i tried the steps below
+
 ```
 VERSION=$(curl --silent "https://api.github.com/repos/cloudflare/cfssl/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
 VNUMBER=${VERSION#"v"}
@@ -453,7 +454,7 @@ IMAGE_ID=$(aws ec2 describe-images --owners 099720109477 \
   --filters \
   'Name=root-device-type,Values=ebs' \
   'Name=architecture,Values=x86_64' \
-  'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*' \
+  'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20230516*' \
   | jq -r '.Images|sort_by(.Name)[-1]|.ImageId')
 ```
 got this error. ![Screenshot from 2023-09-25 20-32-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/792af42e-cdf4-4e16-876e-abea2d8099b4)
@@ -1330,7 +1331,7 @@ TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:571131858325:targetgroup
 
  
 
-KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-09e0aae55e555a75.elb.us-east-1.amazonaws.com
+KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com
 
  
 
@@ -1340,7 +1341,7 @@ IMAGE_ID=ami-0172070f66a8ebe63
 
  
 
-KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
+KUBERNETES_API_SERVER_ADDRESS=$(k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com)
 
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
