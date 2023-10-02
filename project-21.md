@@ -1144,6 +1144,22 @@ resources:
       - identity: {}
 EOF
 ```
+**send this file to master node**
+
+```
+for i in 0 1 2; do
+  instance="${NAME}-worker-${i}"
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    encryption-config.yaml ubuntu@${external_ip}:~/; \
+done
+ 
+```
+![Screenshot from 2023-10-02 03-56-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7b9c5bda-1597-415a-bc97-aedf0912bb58)
+
+
 ##### Bootstrap etcd cluster
 TIPS: Use a terminal multi-plexer like multi-tabbed putty or tmux to work with multiple terminal sessions simultaneously. It will make your life easier, especially when you need to work on multiple nodes and run the same command across all nodes. Imagine repeating the same commands on 10 different nodes, and you don not intend to start automating with a configuration management tool like Ansible yet.
 
