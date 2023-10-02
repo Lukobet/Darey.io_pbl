@@ -1108,7 +1108,7 @@ done
 
 ```
 for i in 0 1 2; do
-  instance="${NAME}-worker-${i}"
+  instance="${NAME}-master-${i}"
   external_ip=$(aws ec2 describe-instances \
     --filters "Name=tag:Name,Values=${instance}" \
     --output text --query 'Reservations[].Instances[].PublicIpAddress')
@@ -1148,7 +1148,7 @@ EOF
 
 ```
 for i in 0 1 2; do
-  instance="${NAME}-worker-${i}"
+  instance="${NAME}-master-${i}"
   external_ip=$(aws ec2 describe-instances \
     --filters "Name=tag:Name,Values=${instance}" \
     --output text --query 'Reservations[].Instances[].PublicIpAddress')
@@ -1176,7 +1176,7 @@ The primary purpose of the etcd component is to store the state of the cluster. 
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-89-191-110.compute-1.amazonaws.com
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-23-20-186-37.compute-1.amazonaws.com
 ```
 ![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
 
@@ -1185,14 +1185,14 @@ ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-89-191-110.compute-1.ama
 master_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-145-94-117.compute-1.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-89-191-110.compute-1.amazonaws.com 
 ```
 * Master-3
 ```
 master_3_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-2" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-23-20-186-37.compute-1.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-145-94-117.compute-1.amazonaws.com
 ```
 * Download and install etcd
 ```
@@ -1282,16 +1282,16 @@ sudo systemctl enable etcd
 sudo systemctl start etcd
 }
 ```
+Verify the etcd installation
 
 ```
-
-aws elbv2 create-listener \
---load-balancer-arn ${LOAD_BALANCER_ARN} \
---protocol TCP \
---port 6443 \
---default-actions Type=forward,TargetGroupArn=${TARGET_GROUP_ARN} \
---output text --query 'Listeners[].ListenerArn'
+sudo ETCDCTL_API=3 etcdctl member list \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/etcd/ca.pem \
+  --cert=/etc/etcd/master-kubernetes.pem \
+  --key=/etc/etcd/master-kubernetes-key.pem
 ```
+![Screenshot from 2023-10-02 04-19-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5ebf79de-db81-437f-a120-aad3e89f3e94)
 
 ```
 
@@ -1345,63 +1345,27 @@ VARIABLES FOR SETTING UP KUBERNETES
 
 NAME=k8s-cluster-from-ground-up
 
- 
-
-VPC_ID=vpc-0b0847512ac862f2a
-
- 
+VPC_ID=vpc-0a2acbc4e3a8c461a
 
 AWS_REGION=us-east-1
 
+DHCP_OPTION_SET_ID=dopt-0d9313e09ae345cf6
+
+SUBNET_ID=subnet-0fc10f7746cb8e1de
  
+INTERNET_GATEWAY_ID=igw-0631e44916f969db7
 
-KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
+ROUTE_TABLE_ID=rtb-0be192c4f7c296b26
 
---load-balancer-arns ${LOAD_BALANCER_ARN} \
+SECURITY_GROUP_ID=sg-098f35b15fb386436
 
---output text --query 'LoadBalancers[].DNSName')
+LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:loadbalancer/net/k8s-cluster-from-ground-up/20ac4d5cd9f292c2
 
- 
-
- 
-
-DHCP_OPTION_SET_ID=dopt-07d26622afb08b29b
-
- 
-
-SUBNET_ID=subnet-03fbbf0c6315ba8d3
-
- 
-
-INTERNET_GATEWAY_ID=igw-0cd4d2b7519120ed5
-
- 
-
-ROUTE_TABLE_ID=rtb-0e95363f7f31e2712
-
- 
-
-SECURITY_GROUP_ID=sg-05a164a0cf93106f3
-
- 
-
-LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:571131858325:loadbalancer/net/k8s-cluster-from-ground-up/09e0aae55e555a75
-
- 
-
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:571131858325:targetgroup/k8s-cluster-from-ground-up/908f491009d4e163
-
- 
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:targetgroup/k8s-cluster-from-ground-up/05893da1c9bc9efe
 
 KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com
 
- 
-
-IMAGE_ID=ami-0172070f66a8ebe63
-
- 
-
- 
+IMAGE_ID=ami-053b0d53c279acc90
 
 KUBERNETES_API_SERVER_ADDRESS=$(k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com)
 
