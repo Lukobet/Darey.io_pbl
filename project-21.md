@@ -1176,7 +1176,7 @@ The primary purpose of the etcd component is to store the state of the cluster. 
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-230-125-61.compute-1.amazonaws.com
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-89-191-110.compute-1.amazonaws.com
 ```
 ![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
 
@@ -1185,14 +1185,14 @@ ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-230-125-61.compute-1.ama
 master_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${master_2_ip}
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-145-94-117.compute-1.amazonaws.com
 ```
 * Master-3
 ```
 master_3_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-2" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${master_3_ip}
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-23-20-186-37.compute-1.amazonaws.com
 ```
 * Download and install etcd
 ```
@@ -1218,7 +1218,7 @@ sudo mv etcd-v3.4.15-linux-amd64/etcd* /usr/local/bin/
 }
 ```
 
-got this error on the 3 servers
+got this error on the 3 servers but had to start all over again
 
 ![Screenshot from 2023-09-28 05-03-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8a08f720-c3da-4228-83bb-643314b236e7)
 
@@ -1233,6 +1233,7 @@ ETCD_NAME=$(curl -s http://169.254.169.254/latest/user-data/ \
 
 echo ${ETCD_NAME}
 ```
+![Screenshot from 2023-10-02 04-10-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7f1c8631-92c1-4550-8229-744b336b80d9)
 
 * Create the etcd.service systemd unit file:
 The flags used are documented here:https://www.bookstack.cn/read/etcd-3.2.17-en/717bafd59fa87192.md
