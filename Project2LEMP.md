@@ -449,6 +449,7 @@ You should see a page like this, showing the content you’ve inserted in your t
 
 That means your PHP environment is ready to connect and interact with your MySQL server.
 
+# project results
 
 ![1 ](https://user-images.githubusercontent.com/110517150/188638499-dcb0316a-d09c-4af2-8e4e-6d18677cca69.png)
 
