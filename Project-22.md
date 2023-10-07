@@ -42,7 +42,7 @@ When it comes to using a Kubernetes cluster, there is a number of options availa
 
 On the other hand, if you need something more robust, suitable for a production workload and with more advanced capabilities such as horizontal scaling of the worker nodes, then you can consider building own Kubernetes cluster from scratch just as you did in Project 21. If you have been able to automate the entire bootstrap using Ansible, you can easily spin up your nodes with Terraform, and configure the cluster with your Ansible configuration scripts.
 
-It it a great combination of tools responsible for different parts of your applications:
+It is a great combination of tools responsible for different parts of your applications:
 
 * Terraform for infrastructure provisioning
 * Ansible for cluster master and worker nodes configuration
