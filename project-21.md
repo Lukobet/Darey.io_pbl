@@ -1130,6 +1130,11 @@ done
 ```
 ETCD_ENCRYPTION_KEY=$(head -c 64 /dev/urandom | base64) 
 ```
+
+See the output that will be generated when called. Yours will be a different random string.
+```
+echo $ETCD_ENCRYPTION_KEY
+```
 ![Screenshot from 2023-09-25 21-36-05](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0f22a549-9556-4e05-b597-8a6c84a94661)
 *  Create an encryption-config.yaml file as documented officially by kubernetes
 ```
@@ -1147,7 +1152,7 @@ resources:
       - identity: {}
 EOF
 ```
-**send this file to master node**
+**send this file to master node**Send the encryption file to the Controller nodes using scp and a for loop.
 
 ```
 for i in 0 1 2; do
@@ -1179,7 +1184,7 @@ The primary purpose of the etcd component is to store the state of the cluster. 
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-23-20-186-37.compute-1.amazonaws.com
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-18-210-17-28.compute-1.amazonaws.com
 ```
 ![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
 
@@ -1188,14 +1193,14 @@ ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-23-20-186-37.compute-1.ama
 master_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-89-191-110.compute-1.amazonaws.com 
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-236-41-53.compute-1.amazonaws.com
 ```
 * Master-3
 ```
 master_3_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-2" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-145-94-117.compute-1.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-52-87-18-248.compute-1.amazonaws.com
 ```
 * Download and install etcd
 ```
@@ -1483,7 +1488,8 @@ sudo systemctl status kube-controller-manager
 sudo systemctl status kube-scheduler
 }
 ```
-
+the kube-apiserver didnt work
+![Screenshot from 2023-10-07 22-47-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bb9d04cc-4a62-41d6-b198-656a1e0fa175)
 
 NOTE: There is a trap in the entire setup you have been going through, and so the api-server will not start up on your server if you have followed the exact steps so far. As a DevOps engineer, you must be able to solve problems.
 
