@@ -165,7 +165,7 @@ wget https://github.com/cloudflare/cfssl/releases/download/${VERSION}/cfssl_${VN
 **make it executable**
 
 ```
-sudo mv cfssl /usr/local/bin
+chmod +x cfssl 
 ```
 **Move to the Bin directory**
 ```
