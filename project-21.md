@@ -1089,7 +1089,34 @@ for i in 0; do
     kube-proxy.kubeconfig k8s-cluster-from-ground-up-worker-${i}.kubeconfig ubuntu@${external_ip}:~/; \
 done
 
+for i in 0; do
+  instance="${NAME}-worker-${i}"
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    admin.kubeconfig ubuntu@${external_ip}:~/; \
+done
+
 for i in 1; do
+  instance="${NAME}-worker-${i}"
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    kube-proxy.kubeconfig k8s-cluster-from-ground-up-worker-${i}.kubeconfig ubuntu@${external_ip}:~/; \
+done
+
+for i in 1; do
+  instance="${NAME}-worker-${i}"
+  external_ip=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=${instance}" \
+    --output text --query 'Reservations[].Instances[].PublicIpAddress')
+  scp -i ../ssh/${NAME}.id_rsa \
+    admin.kubeconfig ubuntu@${external_ip}:~/; \
+done
+
+for i in 2; do
   instance="${NAME}-worker-${i}"
   external_ip=$(aws ec2 describe-instances \
     --filters "Name=tag:Name,Values=${instance}" \
@@ -1104,8 +1131,9 @@ for i in 2; do
     --filters "Name=tag:Name,Values=${instance}" \
     --output text --query 'Reservations[].Instances[].PublicIpAddress')
   scp -i ../ssh/${NAME}.id_rsa \
-    kube-proxy.kubeconfig k8s-cluster-from-ground-up-worker-${i}.kubeconfig ubuntu@${external_ip}:~/; \
+    admin.kubeconfig ubuntu@${external_ip}:~/; \
 done
+
 ```
 ![Screenshot from 2023-10-02 03-47-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a031c15d-8e00-4694-8b28-9b013f927d5b)
 
@@ -1288,6 +1316,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
 sudo systemctl start etcd
+sudo systemctl status etcd
 }
 ```
 Verify the etcd installation
@@ -1501,6 +1530,8 @@ At this point i could connect to the kubectl
 
 ![Screenshot from 2023-10-02 06-04-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d57f1997-84c0-42cc-82ee-b04d0ad07dfc)
 
+**it started because i moved the admin.config certificate**
+![Screenshot from 2023-10-07 23-15-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b5e12c81-0d9e-45d7-9e86-f210bd7705c7)
 
 #### TEST THAT EVERYTHING IS WORKING FINE
 Test that Everything is working fine
@@ -2084,7 +2115,7 @@ LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:loadbalanc
 
 TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:targetgroup/k8s-cluster-from-ground-up/432e5b3f3354032e
 
-KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com
+KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-aae4bd31cd997d7b.elb.us-east-1.amazonaws.com
 
 IMAGE_ID=ami-053b0d53c279acc90
 
