@@ -1539,6 +1539,10 @@ To get the cluster details run:
 ```
 kubectl cluster-info  --kubeconfig admin.kubeconfig
 ```
+
+Getting this error
+![Screenshot from 2023-10-07 23-32-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/398cafe6-e792-44d9-aa57-0f0d6fa494b5)
+
 To get the current namespaces:
 
 ```
