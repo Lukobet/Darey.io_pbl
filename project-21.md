@@ -1075,6 +1075,9 @@ Open up the kubeconfig files generated and review the 3 different sections that 
 }
 ```
  ![Screenshot from 2023-09-25 21-33-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cd5d3c97-ec80-4a2a-be4e-3b4cb7591b95) 
+
+**TASK:** Distribute the files to their respective servers, using scp and a for loop like we have done previously. This is a test to validate that you understand which component must go to which node.
+ 
 distributing for worker node and master
 ```
 for i in 0; do
@@ -2057,23 +2060,23 @@ Congratulations!
 variables
 NAME=k8s-cluster-from-ground-up
 
-VPC_ID=vpc-0a2acbc4e3a8c461a
+VPC_ID=vpc-039cb938ba9966c1f
 
 AWS_REGION=us-east-1
 
-DHCP_OPTION_SET_ID=dopt-0d9313e09ae345cf6
+DHCP_OPTION_SET_ID=dopt-07ab7cff07a90b716
 
-SUBNET_ID=subnet-0fc10f7746cb8e1de
+SUBNET_ID=subnet-0a72f181e89208755
  
-INTERNET_GATEWAY_ID=igw-0631e44916f969db7
+INTERNET_GATEWAY_ID=igw-087d9a44dcb6c68af
 
-ROUTE_TABLE_ID=rtb-0be192c4f7c296b26
+ROUTE_TABLE_ID=rtb-0f8fbdee2c04b8de7
 
-SECURITY_GROUP_ID=sg-098f35b15fb386436
+SECURITY_GROUP_ID=sg-0a12420b31aeb36df
 
-LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:loadbalancer/net/k8s-cluster-from-ground-up/20ac4d5cd9f292c2
+LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:loadbalancer/net/k8s-cluster-from-ground-up/aae4bd31cd997d7b
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:targetgroup/k8s-cluster-from-ground-up/05893da1c9bc9efe
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:targetgroup/k8s-cluster-from-ground-up/432e5b3f3354032e
 
 KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com
 
