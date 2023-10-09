@@ -1212,7 +1212,7 @@ The primary purpose of the etcd component is to store the state of the cluster. 
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-18-210-17-28.compute-1.amazonaws.com
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-140-198-79.us-east-2.compute.amazonaws.com
 ```
 ![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
 
@@ -1221,14 +1221,14 @@ ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-18-210-17-28.compute-1.ama
 master_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-54-236-41-53.compute-1.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-142-12-230.us-east-2.compute.amazonaws.com
 ```
 * Master-3
 ```
 master_3_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-2" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-52-87-18-248.compute-1.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-145-179-66.us-east-2.compute.amazonaws.com
 ```
 * Download and install etcd
 ```
@@ -2101,29 +2101,29 @@ Congratulations!
 variables
 NAME=k8s-cluster-from-ground-up
 
-VPC_ID=vpc-039cb938ba9966c1f
+VPC_ID=vpc-06ac9d303683923d1
 
-AWS_REGION=us-east-1
+AWS_REGION=us-east-2
 
-DHCP_OPTION_SET_ID=dopt-07ab7cff07a90b716
+DHCP_OPTION_SET_ID=dopt-0e20092c40e00b40b
 
-SUBNET_ID=subnet-0a72f181e89208755
+SUBNET_ID=subnet-0856fe1a1d1056143
  
-INTERNET_GATEWAY_ID=igw-087d9a44dcb6c68af
+INTERNET_GATEWAY_ID=igw-080b5b0d1bc8c8bbb
 
-ROUTE_TABLE_ID=rtb-0f8fbdee2c04b8de7
+ROUTE_TABLE_ID=rtb-0580d972e77ea7550
 
-SECURITY_GROUP_ID=sg-0a12420b31aeb36df
+SECURITY_GROUP_ID=sg-0dc3ba7b4c9bfbbed
 
-LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:loadbalancer/net/k8s-cluster-from-ground-up/aae4bd31cd997d7b
+LOAD_BALANCER_ARN=arn:aws:elasticloadbalancing:us-east-2:501194760749:loadbalancer/net/k8s-cluster-from-ground-up/6821212ef5d81193
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:501194760749:targetgroup/k8s-cluster-from-ground-up/432e5b3f3354032e
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-2:501194760749:targetgroup/k8s-cluster-from-ground-up/15bf2d1f4cc03653
 
-KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-aae4bd31cd997d7b.elb.us-east-1.amazonaws.com
+KUBERNETES_PUBLIC_ADDRESS=k8s-cluster-from-ground-up-6821212ef5d81193.elb.us-east-2.amazonaws.com
 
 IMAGE_ID=ami-053b0d53c279acc90
 
-KUBERNETES_API_SERVER_ADDRESS=$(k8s-cluster-from-ground-up-20ac4d5cd9f292c2.elb.us-east-1.amazonaws.com)
+KUBERNETES_API_SERVER_ADDRESS=k8s-cluster-from-ground-up-6821212ef5d81193.elb.us-east-2.amazonaws.com
 
 
 ##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
