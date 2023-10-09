@@ -245,7 +245,7 @@ aws ec2 modify-vpc-attribute \
 AWS_REGION=us-east-1
 ```
 Dynamic Host Configuration Protocol – DHCP
-
+Dynamic Host Configuration Protocol (DHCP) is a network management protocol used on Internet Protocol networks for automatically assigning IP addresses and other communication parameters to devices connected to the network using a client–server architecture.
 * Configure DHCP Options Set:
 
 ```
