@@ -535,7 +535,7 @@ The following components running on the Worker nodes will require TLS certificat
 
 * kubelet
 * kube-proxy
-Therefore, you will provision a PKI Infrastructure using cfssl which will have a Certificate Authority. The CA will then generate certificates for all the individual components.
+Therefore, you will provision a PKI Infrastructure using **cfssl** which will have a Certificate Authority. The CA will then generate certificates for all the individual components.
 
 Self-Signed Root Certificate Authority (CA)
 ```
