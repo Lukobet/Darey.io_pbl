@@ -301,6 +301,8 @@ Run curl and point to the IP address of the Nginx Pod (Use the IP address of you
 ```
 # curl -v 172.50.202.214:80
 ```
+**This didnt work** 
+
 Output:
 
 > GET / HTTP/1.1
@@ -458,13 +460,40 @@ Then go to your web browser and enter localhost:8089 – You should now be able 
 
 ![Screenshot from 2023-10-10 23-22-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f77b9ad9-10a6-4782-bf92-606f6abb2a5e)
 
-```
-sudo mv cfssl /usr/local/bin
-```
-```
-sudo mv cfssl /usr/local/bin
-```
 
+### CREATE A REPLICA SET
+Let us create a rs.yaml manifest for a ReplicaSet object:
+```
+#Part 1
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    app: nginx-pod
+#Part 2
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+         app: nginx-pod
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-pod
+        ports:
+        - containerPort: 80
+          protocol: TCP
+```
+```
+kubectl apply -f rs.yaml
+```
+This didnt go well, i got this error
+![Screenshot from 2023-10-10 23-29-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/46b8da4d-117c-45c1-b56a-bb961af2599d)
+
+i solved it by 
 ```
 sudo mv cfssl /usr/local/bin
 ``````
