@@ -2117,6 +2117,10 @@ Reload configurations and start both services
 Now you should have the worker nodes joined to the cluster, and in a READY state.
 ![Screenshot from 2023-10-10 14-16-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/99b46dde-154d-48f6-9e4d-2f29e46ec043)
 
+Testing
+![Screenshot from 2023-10-10 14-20-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5bcdd4f4-44d9-411f-b2c1-f594542a7116)
+
+
 
 Troubleshooting Tips: If you have issues at this point. Consider the below:
 
@@ -2154,5 +2158,3 @@ IMAGE_ID=ami-053b0d53c279acc90
 
 KUBERNETES_API_SERVER_ADDRESS=k8s-cluster-from-ground-up-6821212ef5d81193.elb.us-east-2.amazonaws.com
 
-
-##### STEP 3 PREPARE THE SELF-SIGNED CERTIFICATE AUTHORITY AND GENERATE TLS CERTIFICATES
