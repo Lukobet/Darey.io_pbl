@@ -608,15 +608,3 @@ This will terminate the running pod and spin up a new one.
 Congratulations!!!
 
 
-```
-kubectl get service nginx-service -o wide
-```
-```
-kubectl get service nginx-service -o wide
-```
-```
-kubectl get service nginx-service -o wide
-```
-```
-kubectl get service nginx-service -o wide
-```
