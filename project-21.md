@@ -1543,16 +1543,17 @@ kubectl cluster-info  --kubeconfig admin.kubeconfig
 Getting this error
 ![Screenshot from 2023-10-07 23-32-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/398cafe6-e792-44d9-aa57-0f0d6fa494b5)
 
-Problem solvedProblem solved when i joined the one-one session with Bomasi. i changed the ETCD_ENCRYPTION_KEY=$(head -c 64 /dev/urandom | base64) to ETCD_ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64) and moved it into the /var/lib/kubernetes/ (but i deleted the initial one there first)
-![Screenshot from 2023-10-10 12-54-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c960ef3c-b2f4-4f5d-bb7d-58acef942f8c)
+Problem solved when i joined the one-one session with Bomasi. i changed the ETCD_ENCRYPTION_KEY=$(head -c 64 /dev/urandom | base64) to ETCD_ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64) and moved it into the /var/lib/kubernetes/ (but i deleted the initial one there first)
+![Screenshot from 2023-10-10 13-02-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4535c916-94bd-48cc-bf92-886899059c6e)
 
+![Screenshot from 2023-10-10 12-54-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c960ef3c-b2f4-4f5d-bb7d-58acef942f8c)
 
 To get the current namespaces:
 
 ```
 kubectl get namespaces --kubeconfig admin.kubeconfig
 ```
-
+![Screenshot from 2023-10-10 13-07-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/509bb92b-3b66-48b3-86a9-15ed28621acc)
 To reach the Kubernetes API Server publicly
 ```
 curl --cacert /var/lib/kubernetes/ca.pem https://$INTERNAL_IP:6443/version
@@ -1562,6 +1563,9 @@ To get the status of each component:
 ```
 kubectl get componentstatuses --kubeconfig admin.kubeconfig
 ```
+
+![Screenshot from 2023-10-10 13-09-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fddb006e-e88a-44c6-abda-8b49f1ddd328)
+
 On one of the controller nodes, configure Role Based Access Control (RBAC) so that the api-server has necessary authorization for for the kubelet.
 Create the ClusterRole:
 ```
@@ -1605,6 +1609,8 @@ subjects:
     name: kubernetes
 EOF
 ```
+![Screenshot from 2023-10-10 13-21-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/624f632d-be47-4b8f-8771-97d99c12f90f)
+
 ### Configuring the Kubernetes Worker nodes
 Before we begin to bootstrap the worker nodes, it is important to understand that the K8s API Server authenticates to the kubelet as the kubernetes user using the same kubernetes.pem certificate.
 
@@ -1670,14 +1676,14 @@ Worker-1
 worker_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-worker-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${worker_1_ip}
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-18-118-121-255.us-east-2.compute.amazonaws.com
 ```
 Worker-2
 ```
 worker_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-worker-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@${worker_2_ip}
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-133-127-83.us-east-2.compute.amazonaws.com
 ```
 Worker-3
 ```
@@ -1751,7 +1757,7 @@ Read more about this notice here
 If you install Docker, it will work. But be aware of this huge change.
 
 NOTE: Do not install docker and containerd on the same machine, you will have to choose which container runtime you want to run on the node.
-Docker
+**Docker**
 
 ```
 sudo apt update -y && \
@@ -1765,7 +1771,10 @@ sudo usermod -aG docker ${USER} && \
 sudo systemctl status docker
 ```
 NOTE: exit the shell and log back in. Otherwise, you will face a permission denied error. Alternatively, you can run newgrp docker without exiting the shell. But you will need to provide the password of the logged in user
-Containerd
+
+I choose CONTAINERD 
+![Screenshot from 2023-10-10 13-39-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/08d09b65-412d-4e25-b0bf-30ecfd050d3e)
+**Containerd**
 
 Download binaries for runc, cri-ctl, and containerd
 ```
@@ -1835,6 +1844,8 @@ sudo mkdir -p \
   /var/lib/kubernetes \
   /var/run/kubernetes
 ```
+![Screenshot from 2023-10-10 13-42-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2e3051dd-cb30-42b1-9bf4-84b80be79e03)
+
 Download and Install CNI
 CNI (Container Network Interface), a Cloud Native Computing Foundation project, consists of a specification and libraries for writing plugins to configure network interfaces in Linux containers. It also comes with a number of plugins.
 
@@ -1850,13 +1861,15 @@ Install CNI into /opt/cni/bin/
 ```
 sudo tar -xvf cni-plugins-linux-amd64-v0.9.1.tgz -C /opt/cni/bin/
 ```
+![Screenshot from 2023-10-10 13-44-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fbc072a3-8808-4f5d-beb7-1e9f45ef690d)
+
 There are few other plugins that are not included in the CNI, which are also widely used in the industry. They all have their unique implementation approach and set of features.
 
 Click to read more about each of the network plugins below:
 
-Calico
-Weave Net
-flannel
+Calico https://www.tigera.io/project-calico/
+Weave Net   https://www.weave.works/docs/net/latest/overview/
+flannel  https://github.com/flannel-io/flannel
 
 
 source
@@ -1871,6 +1884,9 @@ wget -q --show-progress --https-only --timestamping \
   https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kube-proxy \
   https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubelet
 ```
+![Screenshot from 2023-10-10 13-45-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/68f1edc8-aaf0-4888-985a-cbe558438b99)
+
+
 Install the downloaded binaries
 ```
 {
@@ -1893,12 +1909,8 @@ POD_CIDR=$(curl -s http://169.254.169.254/latest/user-data/ \
   | tr "|" "\n" | grep "^pod-cidr" | cut -d"=" -f2)
 echo "${POD_CIDR}"
 ```
-```
-{
-  chmod +x  kubectl kube-proxy kubelet  
-  sudo mv  kubectl kube-proxy kubelet /usr/local/bin/
-}
-```
+![Screenshot from 2023-10-10 14-04-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8aa26ccf-2563-4ea2-9e37-e17aaec1e7b3)
+
 In case you are wondering where this POD_CIDR is coming from. Well, this was configured at the time of creating the worker nodes. Remember the for loop below? The --user-data flag is where we specified what we want the POD_CIDR to be. It is very important to ensure that the CIDR does not overlap with EC2 IPs within the subnet. In the real world, this will be decided in collaboration with the Network team.
 
 Why do we need a network plugin? And why network configuration is crucial to implementing a Kubernetes cluster?
@@ -1961,6 +1973,9 @@ cat > 99-loopback.conf <<EOF
 }
 EOF
 ```
+![Screenshot from 2023-10-10 14-04-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8aa26ccf-2563-4ea2-9e37-e17aaec1e7b3)
+
+
 Move the files to the network configuration directory:
 ```
 sudo mv 172-20-bridge.conf 99-loopback.conf /etc/cni/net.d/
@@ -1972,9 +1987,11 @@ WORKER_NAME=${NAME}-$(curl -s http://169.254.169.254/latest/user-data/ \
   | tr "|" "\n" | grep "^name" | cut -d"=" -f2)
 echo "${WORKER_NAME}"
 ```
+![Screenshot from 2023-10-10 14-09-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0b4b7bb4-955d-4be1-9f41-330841d95055)
+
 
 Move the certificates and kubeconfig file to their respective configuration directories:
-v
+```
 sudo mv ${WORKER_NAME}-key.pem ${WORKER_NAME}.pem /var/lib/kubelet/
 sudo mv ${WORKER_NAME}.kubeconfig /var/lib/kubelet/kubeconfig
 sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
@@ -1988,6 +2005,8 @@ WORKER_NAME=${NAME}-$(curl -s http://169.254.169.254/latest/user-data/ \
   | tr "|" "\n" | grep "^name" | cut -d"=" -f2)
 echo "${WORKER_NAME}"
 ```
+![Screenshot from 2023-10-10 14-11-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c94b3e8a-7ee8-423a-9833-5d60f167c3a5)
+
 ```
 cat <<EOF | sudo tee /var/lib/kubelet/kubelet-config.yaml
 kind: KubeletConfiguration
@@ -2010,6 +2029,9 @@ tlsCertFile: "/var/lib/kubelet/${WORKER_NAME}.pem"
 tlsPrivateKeyFile: "/var/lib/kubelet/${WORKER_NAME}-key.pem"
 EOF
 ```
+![Screenshot from 2023-10-10 14-12-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d5ef2057-f715-46bc-9437-6ebd1a8e2d84)
+
+
 ### FINAL STEPS
 Let us talk about the configuration file kubelet-config.yaml and the actual configuration for a bit. Before creating the systemd file for kubelet, it is recommended to create the kubelet-config.yaml and set the configuration there rather than using multiple startup flags in systemd. You will simply point to the yaml file.
 
@@ -2065,6 +2087,9 @@ mode: "iptables"
 clusterCIDR: "172.31.0.0/16"
 EOF
 ```
+![Screenshot from 2023-10-10 14-14-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b823233b-74b6-416d-9798-1286a0d65b69)
+
+
 Configure the Kube Proxy systemd service
 
 ```
@@ -2090,7 +2115,7 @@ Reload configurations and start both services
 }
 ```
 Now you should have the worker nodes joined to the cluster, and in a READY state.
-
+![Screenshot from 2023-10-10 14-16-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/99b46dde-154d-48f6-9e4d-2f29e46ec043)
 
 
 Troubleshooting Tips: If you have issues at this point. Consider the below:
