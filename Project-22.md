@@ -493,10 +493,139 @@ kubectl apply -f rs.yaml
 This didnt go well, i got this error
 ![Screenshot from 2023-10-10 23-29-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/46b8da4d-117c-45c1-b56a-bb961af2599d)
 
-i solved it by 
+i solved it by changing to this
 ```
-sudo mv cfssl /usr/local/bin
-``````
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-pod
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+         app: nginx-pod
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-pod
+        ports:
+        - containerPort: 80
+          protocol: TCP
+
+```
+![Screenshot from 2023-10-11 00-10-17](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/39217b7d-0e72-4f59-9f36-3535cd4d81b5)
+
+The manifest file of ReplicaSet consist of the following fields:
+
+**apiVersion:** This field specifies the version of kubernetes Api to which the object belongs. ReplicaSet belongs to apps/v1 apiVersion.
+**kind:** This field specify the type of object for which the manifest belongs to. Here, it is ReplicaSet.
+**metadata:** This field includes the metadata for the object. It mainly includes two fields: name and labels of the ReplicaSet.
+**spec:** This field specifies the label selector to be used to select the Pods, number of replicas of the Pod to be run and the container or list of containers which the Pod will run. In the above example, we are running 3 replicas of nginx container.
+
+Let us check what Pods have been created:
+```
+kubectl get pods
+```
+output:
+NAME              READY   STATUS    RESTARTS   AGE     IP               NODE                                              NOMINATED NODE   READINESS GATES
+nginx-pod-j784r   1/1     Running   0          7m41s   172.50.197.5     ip-172-50-197-52.eu-central-1.compute.internal    <none>           <none>
+nginx-pod-kg7v6   1/1     Running   0          7m41s   172.50.192.152   ip-172-50-192-173.eu-central-1.compute.internal   <none>           <none>
+nginx-pod-ntbn4   1/1     Running   0          7m41s   172.50.202.162   ip-172-50-202-18.eu-central-1.compute.internal    <none>           <none>
+
+![Screenshot from 2023-10-11 00-13-53](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7152c439-f36d-427e-b32b-9f86d2855687)
+
+
+Here we see three ngix-pods with some random suffixes (e.g., -j784r) – it means, that these Pods were created and named automatically by some other object (higher level of abstraction) such as ReplicaSet.
+
+Try to delete one of the Pods:
+```
+kubectl delete po nginx-pod-j784r
+```
+
+Output:
+
+pod "nginx-pod-j784r" deleted
+```
+ kubectl get pods
+```
+NAME              READY   STATUS    RESTARTS   AGE
+nginx-rc-7xt8z   1/1     Running   0          22s
+nginx-rc-kg7v6   1/1     Running   0          34m
+nginx-rc-ntbn4   1/1     Running   0          34m
+
+You can see, that we still have all 3 Pods, but one has been recreated (can you differentiate the new one?)
+
+![Screenshot from 2023-10-11 00-17-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9abfe6d8-9fc3-4c49-971b-d1fd92f05031)
+
+Explore the ReplicaSet created:
+```
+kubectl get rs -o wide
+```
+Output:
+
+NAME        DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+nginx-rs   3         3         3       34m   nginx-pod    nginx:latest   app=nginx-pod
+
+Notice, that ReplicaSet understands which Pods to create by using SELECTOR key-value pair.
+
+Get detailed information of a ReplicaSet
+
+To display detailed information about any Kubernetes object, you can use 2 differen commands:
+```
+kubectl describe %object_type% %object_name% (e.g. kubectl describe rs nginx-rs)
+kubectl get %object_type% %object_name% -o yaml (e.g. kubectl describe rs nginx-rs -o yaml)
+```
+![Screenshot from 2023-10-11 00-20-28](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/34c39b89-3ebf-4691-b4ba-ce5b2def5f2a)
+
+Try both commands in action and see the difference. Also try get with -o json instead of -o yaml and decide for yourself which output option is more readable for you.
+
+**Scale ReplicaSet up and down:**
+In general, there are 2 approaches of Kubernetes Object Management: imperative and declarative.
+
+Let us see how we can use both to scale our Replicaset up and down:
+
+Imperative:
+
+We can easily scale our ReplicaSet up by specifying the desired number of replicas in an imperative command, like this:
+
+```
+kubectl scale rs nginx-rs --replicas=5
+```
+
+replicationcontroller/nginx-rc scaled
+![Screenshot from 2023-10-11 00-22-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6ec1dcf4-2344-4c7a-89ad-b110a05a497b)
+
+```
+ kubectl get pods
+```
+
+NAME             READY   STATUS    RESTARTS   AGE
+nginx-rc-4kgpj   1/1     Running   0          4m30s
+nginx-rc-4z2pn   1/1     Running   0          4m30s
+nginx-rc-g4tvg   1/1     Running   0          6s
+nginx-rc-kmh8m   1/1     Running   0          6s
+nginx-rc-zlgvp   1/1     Running   0          4m30s
+Scaling down will work the same way, so scale it down to 3 replicas.
+![Screenshot from 2023-10-11 00-23-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d5954eab-baaa-482f-8478-cfbf4ff16a66)
+
+Declarative:
+
+Declarative way would be to open our rs.yaml manifest, change desired number of replicas in respective section
+
+spec:
+  replicas: 3
+and applying the updated manifest:
+
+kubectl apply -f rs.yaml
+There is another method – ‘ad-hoc’, it is definitely not the best practice and we do not recommend using it, but you can edit an existing ReplicaSet with following command:
+
+
+```
 sudo mv cfssl /usr/local/bin
 ```
 ```
