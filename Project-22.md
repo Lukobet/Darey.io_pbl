@@ -624,22 +624,69 @@ and applying the updated manifest:
 kubectl apply -f rs.yaml
 There is another method – ‘ad-hoc’, it is definitely not the best practice and we do not recommend using it, but you can edit an existing ReplicaSet with following command:
 
+```
+kubectl edit -f rs.yaml
+```
+**Advanced label matching**
+As Kubernetes mature as a technology, so does its features and improvements to k8s objects. ReplicationControllers do not meet certain complex business requirements when it comes to using selectors. Imagine if you need to select Pods with multiple lables that represents things like:
+
+**Application tier**: such as Frontend, or Backend
+**Environment**: such as Dev, SIT, QA, Preprod, or Prod
+So far, we used a simple selector that just matches a key-value pair and check only ‘equality’:
 
 ```
-sudo mv cfssl /usr/local/bin
+selector:
+    app: nginx-pod
 ```
-```
-sudo mv cfssl /usr/local/bin
-```
+But in some cases, we want ReplicaSet to manage our existing containers that match certain criteria, we can use the same simple label matching or we can use some more complex conditions, such as:
+
 
 ```
-sudo mv cfssl /usr/local/bin
-``````
-sudo mv cfssl /usr/local/bin
+- in
+ - not in
+ - not equal
+ - etc...
 ```
+Let us look at the following manifest file:
 ```
-sudo mv cfssl /usr/local/bin
+piVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      env: prod
+    matchExpressions:
+    - { key: tier, operator: In, values: [frontend] }
+  template:
+    metadata:
+      name: nginx
+      labels: 
+        env: prod
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+
 ```
+
+In the above spec file, under the selector, matchLabels and matchExpression are used to specify the key-value pair. The matchLabel works exactly the same way as the equality-based selector, and the matchExpression is used to specify the set based selectors. This feature is the main differentiator between ReplicaSet and previously mentioned obsolete ReplicationController.
+
+Get the replication set:
+
+```
+kubectl get rs nginx-rs -o wide
+```
+
+NAME       DESIRED   CURRENT   READY   AGE     CONTAINERS        IMAGES         SELECTOR
+nginx-rs   3         3         3       5m34s   nginx-container   nginx:latest   env=prod,tier in (frontend)
+
 
 ```
 sudo mv cfssl /usr/local/bin
