@@ -1212,7 +1212,7 @@ The primary purpose of the etcd component is to store the state of the cluster. 
 master_1_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-0" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-140-198-79.us-east-2.compute.amazonaws.com
+ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-18-119-213-55.us-east-2.compute.amazonaws.com
 ```
 ![Screenshot from 2023-09-25 22-53-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b4cf9e16-59dd-4f81-a745-a5018ce5f8fb)
 
@@ -1221,14 +1221,14 @@ ssh -i "k8s-cluster-from-ground-up.id_rsa" ubuntu@ec2-3-140-198-79.us-east-2.com
 master_2_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-1" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-142-12-230.us-east-2.compute.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-18-225-175-211.us-east-2.compute.amazonaws.com
 ```
 * Master-3
 ```
 master_3_ip=$(aws ec2 describe-instances \
 --filters "Name=tag:Name,Values=${NAME}-master-2" \
 --output text --query 'Reservations[].Instances[].PublicIpAddress')
-ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-145-179-66.us-east-2.compute.amazonaws.com
+ssh -i k8s-cluster-from-ground-up.id_rsa ubuntu@ec2-3-144-83-4.us-east-2.compute.amazonaws.com
 ```
 * Download and install etcd
 ```
@@ -1542,6 +1542,10 @@ kubectl cluster-info  --kubeconfig admin.kubeconfig
 
 Getting this error
 ![Screenshot from 2023-10-07 23-32-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/398cafe6-e792-44d9-aa57-0f0d6fa494b5)
+
+Problem solvedProblem solved when i joined the one-one session with Bomasi. i changed the ETCD_ENCRYPTION_KEY=$(head -c 64 /dev/urandom | base64) to ETCD_ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64) and moved it into the /var/lib/kubernetes/ (but i deleted the initial one there first)
+![Screenshot from 2023-10-10 12-54-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c960ef3c-b2f4-4f5d-bb7d-58acef942f8c)
+
 
 To get the current namespaces:
 
