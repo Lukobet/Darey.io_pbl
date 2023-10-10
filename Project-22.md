@@ -389,6 +389,9 @@ output:
 NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 kubernetes      ClusterIP   10.100.0.1      <none>        443/TCP   68d
 nginx-service   ClusterIP   10.100.71.130   <none>        80/TCP    85s
+
+![Screenshot from 2023-10-10 23-08-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f4b07583-1c81-4877-8594-26a9a77d9b54)
+
 Observation:
 
 The TYPE column in the output shows that there are different service types.
@@ -435,6 +438,8 @@ Apply the manifest with:
 ```
 kubectl apply -f nginx-pod.yaml
 ```
+At this point i wasnt creating in the namespace again. i had to edit the service.yaml also
+![Screenshot from 2023-10-10 23-17-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e727b8ed-dc99-467e-90a9-1904760d3b50)
 
 Run kubectl port-forward command again
 ```
@@ -444,13 +449,14 @@ kubectl  port-forward svc/nginx-service 8089:80
 output:
 ```
 kubectl  port-forward svc/nginx-service 8089:80
-```
-
 Forwarding from 127.0.0.1:8089 -> 80
 Forwarding from [::1]:8089 -> 80
+```
+![Screenshot from 2023-10-10 23-24-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/14d24b71-5653-4abb-b2bc-ad6efb5a531d)
+
 Then go to your web browser and enter localhost:8089 – You should now be able to see the nginx page in the browser.
 
-
+![Screenshot from 2023-10-10 23-22-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f77b9ad9-10a6-4782-bf92-606f6abb2a5e)
 
 ```
 sudo mv cfssl /usr/local/bin
