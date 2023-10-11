@@ -908,9 +908,11 @@ nginx-deployment-56466d4948-xctfh   1/1     Running   0          6s
 ![Screenshot from 2023-10-11 02-05-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f2e59f79-73c3-4c1f-bd89-a2a94ae521d0)
 
 ![Screenshot from 2023-10-11 02-08-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/90530971-3a73-4f9d-9d04-9a6ebb3af5d7)
+
+
 Exec into one of the Pod’s container to run Linux commands
 ```
-kubectl exec -it nginx-deployment-56466d4948-78j9c bash
+kubectl exec -it nginx-deployment-6b8c9c4d56-rtsfq bash
 ```
 
 List the files and folders in the Nginx directory
@@ -976,24 +978,70 @@ server {
     #}
 }
 ```
+![Screenshot from 2023-10-11 02-12-53](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c9ce795b-d2b9-4ea4-9b8a-6f0d6d48a1e7)
 
 Now, as we have got acquaited with most common Kubernetes workloads to deploy applications:
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/689949d6-a11d-4a7c-8b42-1b7a9c30b01b)
+
+it is time to explore how Kubernetes is able to manage persistent data.
+
+### PERSISTING DATA FOR PODS
+Deployments are stateless by design. Hence, any data stored inside the Pod’s container does not persist when the Pod dies.
+
+If you were to update the content of the index.html file inside the container, and the Pod dies, that content will not be lost since a new Pod will replace the dead one.
+
+Let us try that:
+
+1. Scale the Pods down to 1 replica.
+
+2. Exec into the running container (figure out the command yourself)
+
+3. Install vim so that you can edit the file
+```
+apt-get update
+apt-get install vim
+```
+4. Update the content of the file and add the code below /usr/share/nginx/html/index.html
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to DAREY.IO!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to DAREY.IO!</h1>
+<p>I love experiencing Kubernetes</p>
+
+<p>Learning by doing is absolutely the best strategy at 
+<a href="https://darey.io/">www.darey.io</a>.<br/>
+for skills acquisition
+<a href="https://darey.io/">www.darey.io</a>.</p>
+
+<p><em>Thank you for learning from DAREY.IO</em></p>
+</body>
+</html>
+```
+5. Check the browser – You should see this
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b0b7ce8c-42d4-4916-bfe6-3c90cb893e16)
 
 
-
+6. Now, delete the only running Pod
+ ```
+kubectl delete po nginx-deployment-56466d4948-tg9j8
 ```
-sudo mv cfssl /usr/local/bin
+output
 ```
-
-```
-sudo mv cfssl /usr/local/bin
-``````
-sudo mv cfssl /usr/local/bin
-```
-```
-sudo mv cfssl /usr/local/bin
+pod "nginx-deployment-56466d4948-tg9j8" deleted
 ```
 
-```
-sudo mv cfssl /usr/local/bin
-```
+
+Refresh the web page – You will see that the content you saved in the container is no longer there. That is because Pods do not store data when they are being recreated – that is why they are called ephemeral or stateless. (But not to worry, we will address this with persistent volumes in the next project)
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6c03ed78-0af0-4d3e-a20b-6d38f5a7aff4)
