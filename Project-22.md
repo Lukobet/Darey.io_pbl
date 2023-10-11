@@ -871,16 +871,20 @@ Get the Deployment
 
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           39s
+
 Get the ReplicaSet
 
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-deployment-56466d4948   3         3         3       24s
+
 Get the Pods
 
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-56466d4948-5zdbx   1/1     Running   0          12s
 nginx-deployment-56466d4948-tg9j8   1/1     Running   0          12s
 nginx-deployment-56466d4948-ttn5t   1/1     Running   0          12s
+
+
 Scale the replicas in the Deployment to 15 Pods
 
 NAME                                READY   STATUS    RESTARTS   AGE
@@ -900,6 +904,10 @@ nginx-deployment-56466d4948-vfmjx   1/1     Running   0          6s
 nginx-deployment-56466d4948-vlgbs   1/1     Running   0          6s
 nginx-deployment-56466d4948-xctfh   1/1     Running   0          6s
 
+
+![Screenshot from 2023-10-11 02-05-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f2e59f79-73c3-4c1f-bd89-a2a94ae521d0)
+
+![Screenshot from 2023-10-11 02-08-02](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/90530971-3a73-4f9d-9d04-9a6ebb3af5d7)
 Exec into one of the Pod’s container to run Linux commands
 ```
 kubectl exec -it nginx-deployment-56466d4948-78j9c bash
