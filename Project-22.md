@@ -687,12 +687,54 @@ kubectl get rs nginx-rs -o wide
 NAME       DESIRED   CURRENT   READY   AGE     CONTAINERS        IMAGES         SELECTOR
 nginx-rs   3         3         3       5m34s   nginx-container   nginx:latest   env=prod,tier in (frontend)
 
+encountered a difficulty here
 
+![Screenshot from 2023-10-11 01-12-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cb4ee898-42ec-4e9f-94ce-482d9589b953)
+i had to delete the previous one and apply the new one and it worked
+
+![Screenshot from 2023-10-11 01-42-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/70428d62-8405-4c62-b48f-7e70246a334a)
+
+
+### USING AWS LOAD BALANCER TO ACCESS YOUR SERVICE IN KUBERNETES.
+**Note:** You will only be able to test this using AWS EKS. You don not have to set this up in current project yet. In the next project, you will update your Terraform code to build an EKS cluster.
+
+You have previously accessed the Nginx service through ClusterIP, and NodeIP, but there is another service type – Loadbalancer. This type of service does not only create a Service object in K8s, but also provisions a real external Load Balancer (e.g. Elastic Load Balancer – ELB in AWS)
+
+To get the experience of this service type, update your service manifest and use the LoadBalancer type. Also, ensure that the selector references the Pods in the replica set.
 ```
-sudo mv cfssl /usr/local/bin
-``````
-sudo mv cfssl /usr/local/bin
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80 # This is the port the Loadbalancer is listening at
+      targetPort: 80 # This is the port the container is listening at
 ```
+Apply the configuration:
+```
+kubectl apply -f nginx-service.yaml
+```
+Get the newly created service :
+```
+kubectl get service nginx-service
+```
+
+output:
+
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP                                                                  PORT(S)        AGE
+nginx-service   LoadBalancer   10.100.71.130   aab159950f39e43d39195e23c77417f8-1167953448.eu-central-1.elb.amazonaws.com   80:31388/TCP   5d18h
+
+![Screenshot from 2023-10-11 01-45-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/db9b45d8-5627-4a0d-ba76-c0973d4416b7)
+
+An ELB resource will be created in your AWS console.
+
+
+
 ```
 sudo mv cfssl /usr/local/bin
 ```
