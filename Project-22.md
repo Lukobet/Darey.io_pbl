@@ -1001,6 +1001,8 @@ Let us try that:
 apt-get update
 apt-get install vim
 ```
+![Screenshot from 2023-10-11 02-21-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a7917b2f-b842-40bf-9e69-f42e2da0acfa)
+
 4. Update the content of the file and add the code below /usr/share/nginx/html/index.html
 
 ```
@@ -1035,13 +1037,13 @@ for skills acquisition
 
 6. Now, delete the only running Pod
  ```
-kubectl delete po nginx-deployment-56466d4948-tg9j8
+kubectl delete po nginx-deployment-6b8c9c4d56-tcht6
 ```
 output
 ```
 pod "nginx-deployment-56466d4948-tg9j8" deleted
 ```
-
+![Screenshot from 2023-10-11 02-27-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e542f2da-d22b-4410-8ec6-aad51b20718b)
 
 Refresh the web page – You will see that the content you saved in the container is no longer there. That is because Pods do not store data when they are being recreated – that is why they are called ephemeral or stateless. (But not to worry, we will address this with persistent volumes in the next project)
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6c03ed78-0af0-4d3e-a20b-6d38f5a7aff4)
