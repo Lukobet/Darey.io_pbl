@@ -2,18 +2,23 @@
 
 
 **NOTE:** Create EKS cluster first before the below section
-![Screenshot from 2023-10-13 20-29-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f5d40ffc-f769-48bd-b679-b323eee66c00)
 
+aws configure using the credentials (root user or iam user.NB you must be logged into it in the GUI before creating any cluster and for it to work on the CUI)
 aws eks update-kubeconfig --region us-east-2 --name new
-aws eks describe-nodegroup --cluster-name your-cluster-name --nodegroup-name your-nodegroup-name
+
+![Screenshot from 2023-10-13 20-29-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f5d40ffc-f769-48bd-b679-b323eee66c00)
 
 ![Screenshot from 2023-10-13 20-23-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ad57b144-eae8-4fd7-a680-10fd3821bc71)
 
 i can use Eksctl to create an instance after you have done aws configure
+for fargate 
+
 eksctl create cluster --name demo-cluster --region us-east-2 --fargate
 
 
 or 
+for nodes
+
 
 eksctl create cluster \
     --name demo-cluster \
