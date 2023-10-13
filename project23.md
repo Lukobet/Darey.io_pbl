@@ -1,5 +1,6 @@
 # PERSISTING DATA IN KUBERNETES
-eksctl create cluster --name demo-cluster --region us-east-2 --fargate
+
+
 **NOTE:** Create EKS cluster first before the below section
 ![Screenshot from 2023-10-13 20-29-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f5d40ffc-f769-48bd-b679-b323eee66c00)
 
@@ -8,7 +9,8 @@ aws eks describe-nodegroup --cluster-name your-cluster-name --nodegroup-name you
 
 ![Screenshot from 2023-10-13 20-23-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ad57b144-eae8-4fd7-a680-10fd3821bc71)
 
-
+i can use Eksctl to create an instance after you have done aws configure
+eksctl create cluster --name demo-cluster --region us-east-2 --fargate
 
 Now we know that containers are stateless by design, which means that data does not persist in the containers. Even when you run the containers in kubernetes pods, they still remain stateless unless you ensure that your configuration supports statefulness.
 
