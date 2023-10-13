@@ -12,6 +12,18 @@ aws eks describe-nodegroup --cluster-name your-cluster-name --nodegroup-name you
 i can use Eksctl to create an instance after you have done aws configure
 eksctl create cluster --name demo-cluster --region us-east-2 --fargate
 
+
+or 
+
+eksctl create cluster \
+    --cluster demo-cluster \
+    --version 1.17 \
+    --region us-east-2 \
+    --nodegroup-name sample \
+    --node-type t2.micro \
+    --nodes 2
+
+
 Now we know that containers are stateless by design, which means that data does not persist in the containers. Even when you run the containers in kubernetes pods, they still remain stateless unless you ensure that your configuration supports statefulness.
 
 To achieve statefuleness in kubernetes, you must understand how volumes, persistent volumes, and persistent volume claims work.
