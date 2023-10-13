@@ -1,5 +1,5 @@
 # PERSISTING DATA IN KUBERNETES
-
+eksctl create cluster --name demo-cluster --region us-east-2 --fargate
 **NOTE:** Create EKS cluster first before the below section
 ![Screenshot from 2023-10-13 20-29-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/f5d40ffc-f769-48bd-b679-b323eee66c00)
 
