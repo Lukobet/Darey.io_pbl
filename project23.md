@@ -1,6 +1,6 @@
 # PERSISTING DATA IN KUBERNETES
 
-
+aws eks update-kubeconfig --region us-east-2 --name Practicecluster
 Mark as CompletedSubmit Project for Review
 **NOTE:** Create EKS cluster first before the below section
 
