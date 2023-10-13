@@ -30,11 +30,15 @@ eksctl create cluster \
 
 ![Screenshot from 2023-10-13 22-36-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9f0a411b-2063-41fd-b512-be200ac06e86)
 
+![Screenshot from 2023-10-13 22-55-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6913190c-150c-4130-9d1d-7d65ff268ef6)
+![Screenshot from 2023-10-13 22-56-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/72d02a2d-8aac-465b-bbd8-2636709ac080)
+
 then run
 
 aws eks update-kubeconfig --region us-east-2 --name demo-cluster
 aws eks describe-nodegroup --cluster-name demo-cluster --nodegroup-name sample
 
+![Screenshot from 2023-10-13 22-58-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1db85460-9bd7-4c79-b030-a7ee5ec6fc12)
 
 To deploy the below codes use 
 
@@ -123,14 +127,20 @@ spec:
         - containerPort: 80
 EOF
 ```
+![Screenshot from 2023-10-13 22-59-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/181d501a-96ba-40e1-8fe6-a395ff853721)
+
 **Tasks**
 
 1. Verify that the pod is running
-2. Check the logs of the pod
-3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
-4. Open the config files to see the default configuration.
-
 ![Screenshot from 2023-10-13 20-34-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/741497dc-13e8-4733-95aa-6c8a330d1d7d)
+
+2. Check the logs of the pod
+
+![Screenshot from 2023-10-13 23-03-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ab54d5f-411d-47dd-a727-d1557825cbe5)
+
+3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
+
+4. Open the config files to see the default configuration.
 
 
 **NOTE:** There are some restrictions when using an awsElasticBlockStore volume:
