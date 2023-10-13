@@ -474,6 +474,9 @@ Now lets check the dynamically created PV
 ```
 kubectl get pv
 ```
+**I COULDNT GET THE PV, SO I TRIED CHANGING FROM "/tmp/dare" to "/tmp/oluwatosin" STILL THE SAME RESPONSE "NO RESOURCES"**
+
+![Screenshot from 2023-10-14 00-18-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4819cbae-6e45-46df-908c-6a08978d5df1)
 
 NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
 pvc-89ba00d9-68f4-4039-b19e-a6471aad6a1e 2Gi RWO Delete Bound default/nginx-volume-claim gp2 7s
