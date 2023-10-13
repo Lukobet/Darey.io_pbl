@@ -317,6 +317,10 @@ output:
 NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
   gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  18d
 ***
+![Screenshot from 2023-10-13 23-51-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c81324d6-3ff1-438c-be2d-9a416e18ee5d)
+
+
+
 Of course, if the cluster is not EKS, then the storage class will be different. For example if the cluster is based on Google’s GKE or Azure’s AKS, then the storage class will be different.
 
 If there is no storage class in your cluster, below manifest is an example of how one would be created
@@ -379,7 +383,10 @@ Create a manifest file for a PVC, and based on the gp2 storageClass a PV will be
       storageClassName: gp2
   ```
 Apply the manifest file and you will get an output like below
+***
 persistentvolumeclaim/nginx-volume-claim created
+***
+![Screenshot from 2023-10-14 00-03-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0aaff8d2-c844-4e15-9d8d-c0f86544931e)
 
 Run get on the pvc and you will notice that it is in pending state. 
 ```
@@ -408,9 +415,12 @@ Type Reason Age From Message
 
 Normal WaitForFirstConsumer 7s (x11 over 2m24s) persistentvolume-controller waiting for first consumer to be created before binding
 
+![Screenshot from 2023-10-14 00-05-12](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/8c22a04f-c3cc-4e25-b9ed-c3578e7eda77)
 
 If you run `kubectl get pv` you will see that no PV is created yet. The *waiting for first consumer to be created before binding* is a configuration setting from the storageClass. See the `VolumeBindingMode` section below.
+```
 kubectl describe storageclass gp2
+```
 Name: gp2
 IsDefaultClass: Yes
 Annotations: kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"},"name":"gp2"},"parameters":{"fsType":"ext4","type":"gp2"},"provisioner":"kubernetes.io/aws-ebs","volumeBindingMode":"WaitForFirstConsumer"}
@@ -423,6 +433,7 @@ ReclaimPolicy: Delete
 VolumeBindingMode: WaitForFirstConsumer
 Events:
 
+![Screenshot from 2023-10-14 00-06-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1e74d031-c4cc-4527-a086-935b64db82be)
 
 To proceed, simply apply the new deployment configuration below.
 
@@ -457,7 +468,7 @@ spec:
         persistentVolumeClaim:
           claimName: nginx-volume-claim
 ```
-Notice that the volumes section nnow has a `persistentVolumeClaim`. With the new deployment manifest, the `/tmp/dare` directory will be persisted, and any data written in there will be sotred permanetly on the volume, which can be used by another Pod if the current one gets replaced.
+Notice that the volumes section now has a `persistentVolumeClaim`. With the new deployment manifest, the `/tmp/dare` directory will be persisted, and any data written in there will be stored permanently on the volume, which can be used by another Pod if the current one gets replaced.
 
 Now lets check the dynamically created PV
 ```
@@ -469,7 +480,7 @@ pvc-89ba00d9-68f4-4039-b19e-a6471aad6a1e 2Gi RWO Delete Bound default/nginx-volu
 
 
 
-You can copy the PV Name and search in the AWS console. You will notice that the volum has been dynamically created there.
+You can copy the PV Name and search in the AWS console. You will notice that the volume has been dynamically created there.
 
 ![](https://www.dareyio.com/wp-content/uploads/2022/04/PV-volume.png)
 
