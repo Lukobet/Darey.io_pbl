@@ -99,6 +99,10 @@ EOF
 2. Check the logs of the pod
 3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
 4. Open the config files to see the default configuration.
+
+![Screenshot from 2023-10-13 20-34-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/741497dc-13e8-4733-95aa-6c8a330d1d7d)
+
+
 **NOTE:** There are some restrictions when using an awsElasticBlockStore volume:
 
 1. The nodes on which pods are running must be AWS EC2 instances
