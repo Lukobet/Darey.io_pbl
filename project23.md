@@ -16,13 +16,18 @@ eksctl create cluster --name demo-cluster --region us-east-2 --fargate
 or 
 
 eksctl create cluster \
-    --cluster demo-cluster \
-    --version 1.17 \
+    --name demo-cluster \
+    --version 1.28 \
     --region us-east-2 \
     --nodegroup-name sample \
     --node-type t2.micro \
     --nodes 2
 
+![Screenshot from 2023-10-13 22-36-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9f0a411b-2063-41fd-b512-be200ac06e86)
+
+then run
+
+aws eks update-kubeconfig --region us-east-2 --name demo-cluster
 
 Now we know that containers are stateless by design, which means that data does not persist in the containers. Even when you run the containers in kubernetes pods, they still remain stateless unless you ensure that your configuration supports statefulness.
 
