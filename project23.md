@@ -1,8 +1,12 @@
 # PERSISTING DATA IN KUBERNETES
 
-aws eks update-kubeconfig --region us-east-2 --name Practicecluster
-Mark as CompletedSubmit Project for Review
 **NOTE:** Create EKS cluster first before the below section
+aws eks update-kubeconfig --region us-east-2 --name new
+aws eks describe-nodegroup --cluster-name your-cluster-name --nodegroup-name your-nodegroup-name
+
+![Screenshot from 2023-10-13 20-23-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ad57b144-eae8-4fd7-a680-10fd3821bc71)
+
+
 
 Now we know that containers are stateless by design, which means that data does not persist in the containers. Even when you run the containers in kubernetes pods, they still remain stateless unless you ensure that your configuration supports statefulness.
 
