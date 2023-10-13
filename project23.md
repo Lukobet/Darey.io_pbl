@@ -139,9 +139,15 @@ EOF
 ![Screenshot from 2023-10-13 23-03-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ab54d5f-411d-47dd-a727-d1557825cbe5)
 
 3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
+using
 
-4. Open the config files to see the default configuration.
+kubectl exec -it nginx-deployment-fc79b9898-gl844 -c nginx bash
 
+![Screenshot from 2023-10-13 23-16-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c6fab4e4-e950-44f8-a202-360ddf2adca5)
+
+
+5. Open the config files to see the default configuration.
+![Screenshot from 2023-10-13 23-17-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ecbdf6f2-409b-4d87-a29a-705325e61b5c)
 
 **NOTE:** There are some restrictions when using an awsElasticBlockStore volume:
 
