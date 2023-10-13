@@ -161,39 +161,45 @@ Now that we have the pod running without a volume, Lets now create a volume from
 2. Click on Volumes
 3. At the top right, click on Create Volume
 
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1dcd24e4-e926-4919-a6bc-f2bafa43fed9)
+![Screenshot from 2023-10-13 23-19-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/497b890e-5e81-4c71-b1a6-3cd7296cead9)
+
+
 Part of the requirements is to ensure that the volume exists in the same region and availability zone as the EC2 instance running the pod. Hence, we need to find out
 
 * Which node is running the pod (replace the pod name with yours)
+
+kubectl get po nginx-deployment-fc79b9898-gl844 -o wide
 
 Output:
 ***
 NAME                                READY   STATUS    RESTARTS   AGE   IP           NODE                                       NOMINATED NODE   READINESS GATES
 nginx-deployment-6fdcffd8fc-thcfp   1/1     Running   0          64m   10.0.3.159   ip-10-0-3-233.eu-west-2.compute.internal   <none>           <none>
 ***
+![Screenshot from 2023-10-13 23-22-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2384dce8-3397-450a-b689-c2c54969017d)
+
+
 The NODE column shows the node the pode is running on
-```
-kubectl get po nginx-deployment-6fdcffd8fc-thcfp -o wide
-```
 
 * In which Availability Zone the node is running.
 ```
-kubectl describe node ip-10-0-3-233.eu-west-2.compute.internal 
+kubectl describe node ip-192-168-23-253.us-east-2.compute.internal
 ```
 
 The information is written in the labels section of the descibe command.
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c205710b-6628-4414-84ae-b18941901eaa)
+![Screenshot from 2023-10-13 23-24-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7fdb3d9c-0da6-494b-a7ce-77284f48897f)
+
+
 4. So, in the case above, we know the AZ for the node is in eu-west-2c hence, the volume must be created in the same AZ. Choose the size of the required volume.
-The create volume selection should be like:
+The create volume selection should be like this :
 
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a56a25c5-2d3c-4552-8b59-b9692d483fec)
-
+#### BY DEFAULT BECAUSE I USED THE EKSCTL VOLUMES WHERE CREATED AUTOMATICALLY FOR ME, SO I DIDNT HAVE TO CREATE VOLUMES AGAIN..
+![Screenshot from 2023-10-13 23-28-24](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/255a0f8b-2498-4f1a-96c9-3c0f198704f0)
 5. Copy the volumeID
 
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/11eea068-fa25-4ee3-b436-9ede8ee6b218)
 6. Update the deployment configuration with the volume spec.
 ```
-sudo cat <<EOF | sudo tee ./nginx-pod.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -221,10 +227,12 @@ spec:
         awsElasticBlockStore:
           volumeID: "vol-0e194e56f1b5302ee"
           fsType: ext4
-EOF
 ```
 Apply the new configuration and check the pod. As you can see, the old pod is being terminated while the updated one is up and running.
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/db1f370b-8f8d-4103-80b2-f49a0dc64724)
+![Screenshot from 2023-10-13 23-33-42](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c167a04a-ab5c-4ed8-892b-15e5849dc867)
+
+![Screenshot from 2023-10-13 23-35-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3436a669-054b-4ebb-9fdf-e714aa2e8449)
+
 Now, the new pod has a volume attached to it, and can be used to run a container for statefuleness. Go ahead and explore the running pod. Run describe on both the pod and deployment
 
 At this point, even though the pod can be used for a stateful application, the configuration is not yet complete. This is because, the volume is not yet mounted onto any specific filesystem inside the container. The directory /usr/share/nginx/html which holds the software/website code is still ephemeral, and if there is any kind of update to the index.html file, the new changes will only be there for as long as the pod is still running. If the pod dies after, all previously written data will be erased.
@@ -279,7 +287,7 @@ In as much as we now have a way to persist data, we also have new problems.
 1. If you port forward the service and try to reach the endpoint, you will get a 403 error. This is because mounting a volume on a filesystem that already contains data will automatically erase all the existing data. This strategy for statefulness is preferred if the mounted volume already contains the data which you want to be made available to the container
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/653b4e6c-8791-4ab1-a0bf-d342eec0fc74)
 
-2. It is still a manual process to create a volume, manually ensure that the volume created is in the same Avaioability zone in which the pod is running, and then update the manifest file to use the volume ID. All of these is against DevOps principles because it will mean having a lot of road blocks to getting a simple thing done.
+2. It is still a manual process to create a volume, manually ensure that the volume created is in the same Availability zone in which the pod is running, and then update the manifest file to use the volume ID. All of these is against DevOps principles because it will mean having a lot of road blocks to getting a simple thing done.
 
 The more elegant way to achieve this is through Persistent Volume and Persistent Volume claims.
 
