@@ -141,7 +141,7 @@ EOF
 3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
 using
 
-kubectl exec -it nginx-deployment-fc79b9898-gl844 -c nginx bash
+kubectl exec -it ip-192-168-23-253.us-east-2.compute.internal -c nginx bash
 
 ![Screenshot from 2023-10-13 23-16-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c6fab4e4-e950-44f8-a202-360ddf2adca5)
 
@@ -493,6 +493,7 @@ Approach 2 (Attempt this on your own). [See an example here](https://www.elastic
 2. Then use the PVC name just as Approach 1 above.
 
 So rather than have 2 manifest files, you will define everything within the deployment manifest.
+
 ### CONFIGMAP
 Using configMaps for persistence is not something you would consider for data storage. Rather it is a way to manage configuration files and ensure they are not lost as a result of Pod replacement.
 
@@ -501,6 +502,8 @@ to demonstrate this, we will use the HTML file that came with Nginx. This file c
 Lets go through the below process so that you can see an example of a configMap use case.
 
 1. Remove the volumeMounts and PVC sections of the manifest and use kubectl to apply the configuration
+
+![Screenshot from 2023-10-14 00-56-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c29af2b6-b2ea-4893-ad41-075ffc84a7a2)
 
 2. port forward the service and ensure that you are able to see the "Welcome to nginx" page
 
