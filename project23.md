@@ -632,6 +632,8 @@ NAME                 DATA   AGE
 kube-root-ca.crt     1      17d
 website-index-file   1      46m
 
+![Screenshot from 2023-10-14 01-26-23](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d2e4f57a-03b7-443d-82d2-d4bf5f674661)
+
 We are interested in the website-index-file configmap
 
 Update the configmap. You can either update the manifest file, or the kubernetes object directly. Lets use the latter approach this time.
@@ -677,8 +679,9 @@ data:
     </html>
 ```
 Without restarting the pod, your site should be loaded automatically.
-
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2a80ea3a-56ad-4a04-96da-df19f457f636)
+My didnt work automatically i ad to go and portforward again
+![Screenshot from 2023-10-14 01-36-45](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bf5a9d7f-ee05-403a-9dd4-2c678e59e604)
+![Screenshot from 2023-10-14 01-35-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/84ddef9b-c35c-4fab-b219-5ed7d1a5197f)
 
 If you wish to restart the deployment for any reason, simply use the command
 ```
@@ -689,6 +692,7 @@ output:
 ***
 deployment.apps/nginx-deployment restarted
 ***
+![Screenshot from 2023-10-14 01-37-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0c5f06f7-8ff6-4096-9a99-512d7f5421cb)
 
 This will terminate the running pod and spin up a new one.
 
