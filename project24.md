@@ -147,7 +147,7 @@ state = "available"
 data "aws_caller_identity" "current" {} # used for accesing Account ID and ARN
 ```
 ## BUILDING ELASTIC KUBERNETES SERVICE (EKS) WITH TERRAFORM – PART 2
-8. Create a file – eks.tf and provision EKS cluster (Create the file only if you are not using your existing Terraform code. Otherwise you can simply append it to the main.tf from your existing code) Read more about this module from the official documentation here – Reading it will help you understand more about the rich features of the module.
+8. Create a file – eks.tf and provision EKS cluster (Create the file only if you are not using your existing Terraform code. Otherwise you can simply append it to the main.tf from your existing code) Read more about this module from the official documentation here – Reading it will help you understand more about the rich features of the module. https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/18.20.5
 ```
 module "eks_cluster" {
   source  = "terraform-aws-modules/eks/aws"
@@ -283,23 +283,6 @@ provider "random" {
 }
 ```
 
-12. Create a file – variables.tfvars to set values for variables.
-```
-cluster_name            = "tooling-app-eks"
-iac_environment_tag     = "development"
-name_prefix             = "darey-io-eks"
-main_network_block      = "10.0.0.0/16"
-subnet_prefix_extension = 4
-zone_offset             = 8
-
-# Ensure that these users already exist in AWS IAM. Another approach is that you can introduce an iam.tf file to manage users separately, get the data source and interpolate their ARN.
-admin_users                              = ["dare", "solomon"]
-developer_users                          = ["leke", "david"]
-asg_instance_types                       = ["t3.small", "t2.small"]
-autoscaling_minimum_size_by_az           = 1
-autoscaling_maximum_size_by_az           = 10
-autoscaling_average_cpu                  = 30
-```
 13. Run terraform init
 
 14. Run Terraform plan – Your plan should have an output
