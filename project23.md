@@ -697,5 +697,6 @@ deployment.apps/nginx-deployment restarted
 This will terminate the running pod and spin up a new one.
 
 Congratulations!!!
-
-
+I deleted the clust using
+eksctl delete cluster --name demo-cluster
+![Screenshot from 2023-10-14 01-43-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c3c2b3b9-4d6a-48cb-9da7-1907950a11a7)
