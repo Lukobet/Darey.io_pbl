@@ -508,16 +508,17 @@ Lets go through the below process so that you can see an example of a configMap 
 2. port forward the service and ensure that you are able to see the "Welcome to nginx" page
 
 ![Screenshot from 2023-10-14 01-01-40](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/451dea30-5c96-4aa0-be47-64d92c0597e5)
+![Screenshot from 2023-10-14 01-07-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/91ee49c0-9eed-4401-9a67-a15adcb6c1d7)
 
 3. exec into the running container and keep a copy of the index.html file somewhere. For example
 ```
-kubectl exec -it nginx-deployment-79d8c764bc-j6sp9 -- bash
+kubectl exec -it nginx-deployment-fc79b9898-5trxr -- /bin/bash
 ```
 ```
   cat /usr/share/nginx/html/index.html 
 ```
+![Screenshot from 2023-10-14 01-10-43](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/65b95641-80d7-4e16-96bf-adcce1d36e42)
 
-![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1baf2828-08d6-4e27-a564-16a83851aeb8)
 
 4. Copy the output and save the file on your local pc because we will need it to create a configmap.
 
@@ -605,6 +606,7 @@ spec:
             path: index.html
 EOF
 ```
+![Screenshot from 2023-10-14 01-21-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/88c1eeb3-885c-4d2f-b1ec-2cc8518ff07b)
 
 Now the index.html file is no longer ephemeral because it is using a configMap that has been mounted onto the filesystem. This is now evident when you exec into the pod and list the /usr/share/nginx/html directory
 ```
@@ -612,6 +614,8 @@ Now the index.html file is no longer ephemeral because it is using a configMap t
   lrwxrwxrwx 1 root root 17 Feb 19 16:16 index.html -> ..data/index.html
 ```
 You can now see that the index.html is now a soft link to ../data
+![Screenshot from 2023-10-14 01-24-41](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/53f06b02-d13c-4022-b14f-eb56c3fb6bd6)
+
 
 Accessing the site will not change anything at this time because the same html file is being loaded through configmap.
 
