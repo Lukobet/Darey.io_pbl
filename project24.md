@@ -348,8 +348,25 @@ variable "autoscaling_maximum_size_by_az" {
   default     = 10
 }
 ```
-got another error 
+and variables.tfvars file to 
+```
+cluster_name            = "tooling-app-eks"
+iac_environment_tag     = "development"
+name_prefix             = "darey-io-eks"
+main_network_block      = "10.0.0.0/16"
+subnet_prefix_extension = 4
+zone_offset             = 8
 
+# Ensure that these users already exist in AWS IAM. Another approach is that you can introduce an iam.tf file to manage users separately, get the data source and interpolate their ARN.
+admin_users                              = "root"
+developer_users                          = "lukobet"
+asg_instance_types                       = "t2.micro"
+autoscaling_minimum_size_by_az           = 1
+autoscaling_maximum_size_by_az           = 10
+autoscaling_average_cpu                  = 30
+got another error 
+```
+![Screenshot from 2023-10-14 17-53-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/67fa56ac-4401-450c-b6dd-b902c479c81e)
 15. Run Terraform apply
 This will begin to create cloud resources, and fail at some point with the error
 ***
