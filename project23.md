@@ -141,7 +141,7 @@ EOF
 3. Exec into the pod and navigate to the nginx configuration file /etc/nginx/conf.d
 using
 
-kubectl exec -it ip-192-168-23-253.us-east-2.compute.internal -c nginx bash
+kubectl exec -it nginx-deployment-79d8c764bc-j6sp9 -c nginx bash
 
 ![Screenshot from 2023-10-13 23-16-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c6fab4e4-e950-44f8-a202-360ddf2adca5)
 
