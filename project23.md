@@ -507,6 +507,8 @@ Lets go through the below process so that you can see an example of a configMap 
 
 2. port forward the service and ensure that you are able to see the "Welcome to nginx" page
 
+![Screenshot from 2023-10-14 01-01-40](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/451dea30-5c96-4aa0-be47-64d92c0597e5)
+
 3. exec into the running container and keep a copy of the index.html file somewhere. For example
 ```
 kubectl exec -it nginx-deployment-79d8c764bc-j6sp9 -- bash
