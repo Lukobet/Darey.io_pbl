@@ -21,6 +21,7 @@ Use AWS CLI to create an S3 bucket
 terraform {
 }
 ```
+![Screenshot from 2023-10-14 11-32-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/015c74e4-2c63-49b2-b41b-5dd9fd16bc15)
 
 2. Create a file – network.tf and provision Elastic IP for Nat Gateway, VPC, Private and public subnets.
 ```
