@@ -286,8 +286,69 @@ provider "random" {
 13. Run terraform init
 
 14. Run Terraform plan – Your plan should have an output
-**8
+***
 Plan: 41 to add, 0 to change, 0 to destroy.
+i got a lot of errors her i had to change the variables.tf file to this
+
+```
+# create some variables
+variable "cluster_name" {
+type        = string
+description = "EKS cluster name."
+default     = "tooling-app-eks"
+}
+variable "iac_environment_tag" {
+type        = string
+description = "AWS tag to indicate environment name of each infrastructure object."
+default     = "development"
+}
+variable "name_prefix" {
+type        = string
+description = "Prefix to be used on each infrastructure object Name created in AWS."
+default     = "darey-io-eks"
+}
+variable "main_network_block" {
+type        = string
+description = "Base CIDR block to be used in our VPC."
+default     = "10.0.0.0/16"
+}
+variable "subnet_prefix_extension" {
+type        = number
+description = "CIDR block bits extension to calculate CIDR blocks of each subnetwork."
+default     = 4
+}
+variable "zone_offset" {
+type        = number
+description = "CIDR block bits extension offset to calculate Public subnets, avoiding collisions with Private subnets."
+default     = 8
+}
+# create some variables
+variable "admin_users" {
+  type        = string
+  default     = "root"
+  description = "List of Kubernetes admins."
+}
+variable "developer_users" {
+  type        = string
+  description = "List of Kubernetes developers."
+  default     = "lukobet"
+}
+variable "asg_instance_types" {
+  description = "List of EC2 instance machine types to be used in EKS."
+  default     = "t2.micro"
+}
+variable "autoscaling_minimum_size_by_az" {
+  type        = number
+  description = "Minimum number of EC2 instances to autoscale our EKS cluster on each AZ."
+  default     = 1
+}
+variable "autoscaling_maximum_size_by_az" {
+  type        = number
+  description = "Maximum number of EC2 instances to autoscale our EKS cluster on each AZ."
+  default     = 10
+}
+```
+got another error 
 
 15. Run Terraform apply
 This will begin to create cloud resources, and fail at some point with the error
