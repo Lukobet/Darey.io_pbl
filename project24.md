@@ -662,6 +662,7 @@ Output:
 ```
   kubectl config current-context
 ```
+![Screenshot from 2023-10-16 23-26-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c249a279-fae0-42a6-9531-6e1929de95b8)
 
 11. Now that we can use kubectl without the --kubeconfig flag, Lets get access to the Jenkins UI. (In later projects we will further configure Jenkins. For now, it is to set up all the tools we need)
 
