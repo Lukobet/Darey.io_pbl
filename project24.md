@@ -387,10 +387,15 @@ Create kubeconfig file using awscli.
 aws eks update-kubeconfig --name tooling-app-eks --region us-east-2 --kubeconfig kubeconfig
 ```
 
-## DEPLOY APPLICATIONS WITH HELM
+# DEPLOY APPLICATIONS WITH HELM
 In Project 22, you experienced the use of manifest files to define and deploy resources like pods, deployments, and services into Kubernetes cluster. Here, you will do the same thing except that it will not be passed through kubectl. In the real world, Helm is the most popular tool used to deploy resources into kubernetes. That is because it has a rich set of features that allows deployments to be packaged as a unit. Rather than have multiple YAML files managed individually – which can quickly become messy.
 
 A Helm chart is a definition of the resources that are required to run an application in Kubernetes. Instead of having to think about all of the various deployments/services/volumes/configmaps/ etc that make up your application, you can use a command like
+
+### here practicing with Helm
+![Screenshot from 2023-10-16 21-53-08](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/007a049d-039c-444c-8556-c1b40d1351d5)
+![Screenshot from 2023-10-16 21-54-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a1029f23-fd35-4798-a9a6-d829cc0a2524)
+![Screenshot from 2023-10-16 21-55-36](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/be90e736-9964-46de-b91b-f5907b8831f6)
 ```
 helm install stable/mysql
 ```
