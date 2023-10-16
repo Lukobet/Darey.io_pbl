@@ -611,6 +611,8 @@ kubectl describe pod jenkins-0 --kubeconfig [kubeconfig file]
 ```
 kubectl logs jenkins-0 --kubeconfig [kubeconfig file]
 ```
+![Screenshot from 2023-10-16 22-57-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/96977fad-4a78-4a2b-a394-6c2cafc68db9)
+![Screenshot from 2023-10-16 22-59-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/048ffc9f-3e16-40e7-b9f4-495ad79c53cd)
 
 You will notice an output with an error
 ***
