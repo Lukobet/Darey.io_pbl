@@ -13,7 +13,7 @@ At this point you already have some Terraform experience. So, you have some work
 
 Note: Use Terraform version v1.0.2 and kubectl version v1.23.6
 
-Open up a new directory on your laptop, and name it **eks**
+Open up a new directory on your laptop, and name it **EKS-Terraform**
 Use AWS CLI to create an S3 bucket
 
 1. Create a file – backend.tf Task for you, ensure the backend is configured for remote state in S3
@@ -383,7 +383,7 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 Create kubeconfig file using awscli.
 ```
-aws eks update-kubecofig --name <cluster_name> --region <cluster_region> --kubeconfig kubeconfig
+aws eks update-kubecofig --name tooling-app-eks --region us-east-2 --kubeconfig kubeconfig
 ```
 
 ## DEPLOY APPLICATIONS WITH HELM
