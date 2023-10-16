@@ -255,8 +255,9 @@ variable "autoscaling_maximum_size_by_az" {
   type        = number
   description = "Maximum number of EC2 instances to autoscale our EKS cluster on each AZ."
 }
+
 ```
-10. Create a file – variables.tfvars to set values for variables.
+10. Create a file – variables.tfvars to set values for variables. i changed this to terraform.tfvars
 ```
 cluster_name            = "tooling-app-eks"
 iac_environment_tag     = "development"
@@ -288,84 +289,8 @@ provider "random" {
 14. Run Terraform plan – Your plan should have an output
 ***
 Plan: 41 to add, 0 to change, 0 to destroy.
-i got a lot of errors her i had to change the variables.tf file to this
 
-```
-# create some variables
-variable "cluster_name" {
-type        = string
-description = "EKS cluster name."
-default     = "tooling-app-eks"
-}
-variable "iac_environment_tag" {
-type        = string
-description = "AWS tag to indicate environment name of each infrastructure object."
-default     = "development"
-}
-variable "name_prefix" {
-type        = string
-description = "Prefix to be used on each infrastructure object Name created in AWS."
-default     = "darey-io-eks"
-}
-variable "main_network_block" {
-type        = string
-description = "Base CIDR block to be used in our VPC."
-default     = "10.0.0.0/16"
-}
-variable "subnet_prefix_extension" {
-type        = number
-description = "CIDR block bits extension to calculate CIDR blocks of each subnetwork."
-default     = 4
-}
-variable "zone_offset" {
-type        = number
-description = "CIDR block bits extension offset to calculate Public subnets, avoiding collisions with Private subnets."
-default     = 8
-}
-# create some variables
-variable "admin_users" {
-  type        = string
-  default     = "root"
-  description = "List of Kubernetes admins."
-}
-variable "developer_users" {
-  type        = string
-  description = "List of Kubernetes developers."
-  default     = "lukobet"
-}
-variable "asg_instance_types" {
-  description = "List of EC2 instance machine types to be used in EKS."
-  default     = "t2.micro"
-}
-variable "autoscaling_minimum_size_by_az" {
-  type        = number
-  description = "Minimum number of EC2 instances to autoscale our EKS cluster on each AZ."
-  default     = 1
-}
-variable "autoscaling_maximum_size_by_az" {
-  type        = number
-  description = "Maximum number of EC2 instances to autoscale our EKS cluster on each AZ."
-  default     = 10
-}
-```
-and variables.tfvars file to 
-```
-cluster_name            = "tooling-app-eks"
-iac_environment_tag     = "development"
-name_prefix             = "darey-io-eks"
-main_network_block      = "10.0.0.0/16"
-subnet_prefix_extension = 4
-zone_offset             = 8
 
-# Ensure that these users already exist in AWS IAM. Another approach is that you can introduce an iam.tf file to manage users separately, get the data source and interpolate their ARN.
-admin_users                              = "root"
-developer_users                          = "lukobet"
-asg_instance_types                       = "t2.micro"
-autoscaling_minimum_size_by_az           = 1
-autoscaling_maximum_size_by_az           = 10
-autoscaling_average_cpu                  = 30
-got another error 
-```
 ![Screenshot from 2023-10-14 17-53-34](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/67fa56ac-4401-450c-b6dd-b902c479c81e)
 15. Run Terraform apply
 This will begin to create cloud resources, and fail at some point with the error
@@ -403,6 +328,7 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.cluster.token
 }
 ```
+![Screenshot from 2023-10-16 16-08-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d9d5af78-db94-4271-a3e9-9a76463f609c)
 
 Run the init and plan again – This time you will see
 ```
@@ -453,6 +379,7 @@ Run the init and plan again – This time you will see
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
+![Screenshot from 2023-10-16 16-09-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e92ca590-85c7-46b8-b915-287da70cf7b5)
 
 Create kubeconfig file using awscli.
 ```
