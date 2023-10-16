@@ -380,10 +380,11 @@ Run the init and plan again – This time you will see
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 ![Screenshot from 2023-10-16 16-09-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e92ca590-85c7-46b8-b915-287da70cf7b5)
+![Screenshot from 2023-10-16 16-37-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1fe261c8-cfc7-4564-9c02-f7abaa9ed0e6)
 
 Create kubeconfig file using awscli.
 ```
-aws eks update-kubecofig --name tooling-app-eks --region us-east-2 --kubeconfig kubeconfig
+aws eks update-kubeconfig --name tooling-app-eks --region us-east-2 --kubeconfig kubeconfig
 ```
 
 ## DEPLOY APPLICATIONS WITH HELM
