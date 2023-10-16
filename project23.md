@@ -36,6 +36,9 @@ eksctl create cluster \
 then run
 
 aws eks update-kubeconfig --region us-east-2 --name demo-cluster
+
+
+
 aws eks describe-nodegroup --cluster-name demo-cluster --nodegroup-name sample
 
 ![Screenshot from 2023-10-13 22-58-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1db85460-9bd7-4c79-b030-a7ee5ec6fc12)
