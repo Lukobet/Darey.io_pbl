@@ -515,6 +515,10 @@ output:
 ***
 version.BuildInfo{Version:"v3.6+unreleased", GitCommit:"13f07e8adbc57b0e3f96b42340d6f44bdc8d5016", GitTreeState:"dirty", GoVersion:"go1.15.5"}
 ***
+**I didnt use the above for my helm installation, i went through the helm documentation itself**
+
+![Screenshot from 2023-10-16 22-32-53](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/2df45e6b-f1e6-43c5-b6af-30872fa974b8)
+
 
 ## DEPLOY JENKINS WITH HELM
 Before we begin to develop our own helm charts, lets make use of publicly available charts to deploy all the tools that we need.
@@ -523,18 +527,34 @@ One of the amazing things about helm is the fact that you can deploy application
 
 1. Visit Artifact Hub to find packaged applications as Helm Charts
 2. Search for Jenkins
+![Screenshot from 2023-10-16 22-35-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/991d0e8c-20c0-4291-b325-e80b5af6dd8e)
+
 3. Add the repository to helm so that you can easily download and deploy
 ```
 helm repo add jenkins https://charts.jenkins.io
 ```
+![Screenshot from 2023-10-16 22-36-21](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6c18fb6e-8ba2-4c0c-823a-b9fb309c563d)
+
 4. Update helm repo
 ```
 helm repo update 
 ```
+![Screenshot from 2023-10-16 22-37-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0eacb0f2-6476-4ab8-a44e-089fc2400af6)
+
+
 5. Install the chart
 ```
 helm install [RELEASE_NAME] jenkins/jenkins --kubeconfig [kubeconfig file]
 ```
+The chart i saw is 
+```
+helm install my-jenkins jenkinsci/jenkins --version 4.7.2
+```
+![Screenshot from 2023-10-16 22-39-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/61d3c5ac-27e2-4cbd-87b5-871bd77fcc24)
+Got this error repeatedly, so i tried bitnami/jenkins
+it worked
+![Screenshot from 2023-10-16 22-49-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/949184b9-02a2-4114-9210-6fe77db5cf4e)
+
 You should see an output like this
 ***
 NAME: jenkins
@@ -571,7 +591,7 @@ Output:
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
 jenkins default         1               2021-08-01 12:38:53.429471 +0100 BST    deployed        jenkins-3.5.9   2.289.3 
 ***
-
+![Screenshot from 2023-10-16 22-52-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/32ac957f-626b-4e43-9ecd-9f3cea6e6b69)
 7.Check the pods
 ```
 kubectl get pods --kubeconfigo [kubeconfig file]
