@@ -95,7 +95,7 @@ A huge benefit of using the ingress controller is that we will be able to use a 
 For now, we will leave Artifactory, move on to the next phase of configuration (Ingress, DNS(Route53) and Cert Manager), and then return to Artifactory to complete the setup so that it can serve as a private docker registry and repository for private helm charts.
 
 
-DEPLOYING INGRESS CONTROLLER AND MANAGING INGRESS RESOURCES
+## DEPLOYING INGRESS CONTROLLER AND MANAGING INGRESS RESOURCES
 Before we discuss what ingress controllers are, it will be important to start off understanding about the Ingress resource.
 
 An ingress is an API object that manages external access to the services in a kubernetes cluster. It is capable to provide load balancing, SSL termination and name-based virtual hosting. In otherwords, Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
@@ -143,7 +143,9 @@ There are many other 3rd party Ingress controllers that provide similar function
 
 AKS Application Gateway Ingress Controller (Microsoft Azure), Istio, Traefik, Ambassador, HA Proxy Ingress, Kong and Gloo
 
-An example comparison matrix of some of the controllers can be found here. Understanding their unique features will help businesses determine which product works well for their respective requirements.
+An example comparison matrix of some of the controllers can be found here : [.](https://kubevious.io/blog/post/comparing-top-ingress-controllers-for-kubernetes#comparison-matrix) 
+
+Understanding their unique features will help businesses determine which product works well for their respective requirements.
 
 It is possible to deploy any number of ingress controllers in the same cluster. That is the essence of an ingress class. By specifying the spec ingressClassName field on the ingress object, the appropriate ingress controller will be used by the ingress resource.
 
