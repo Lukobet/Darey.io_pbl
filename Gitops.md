@@ -9,3 +9,7 @@ Started a minikube cluster on my local machine
 
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+my network was bad
+![Screenshot from 2023-10-24 15-53-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/6e467bba-1907-421f-8de6-1d3a0652dc5a)
+
+so i am tried using the cli
