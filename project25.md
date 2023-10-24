@@ -1,4 +1,4 @@
-# DEPLOYING AND PACKAGING APPLICATIONS INTO KUBERNETES WITH HELM
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7e5116e1-57fe-4487-bba4-5c5d89dba20c)# DEPLOYING AND PACKAGING APPLICATIONS INTO KUBERNETES WITH HELM
 In the previous project, you started experiencing helm as a tool used to deploy an application into Kubernetes. You probably also tried installing more tools apart from Jenkins.
 
 In this project, you will experience deploying more DevOps tools, get familiar with some of the real world issues faced during such deployments and how to fix them. You will learn how to tweak helm values files to automate the configuration of the applications you deploy. Finally, once you have most of the DevOps tools deployed, you will experience using them and relate with the DevOps cycle and how they fit into the entire ecosystem.
@@ -62,17 +62,25 @@ The helm chart version to install is very important to specify. So, the version 
 **Getting the Artifactory URL**
 Lets break down the first Next Step.
 
-1. The artifactory helm chart comes bundled with the Artifactory software, a PostgreSQL database and an Nginx proxy which it uses to configure routes to the different capabilities of Artifactory. Getting the pods after some time, you should see something like the below.
+1. The artifactory helm chart comes bundled with the Artifactory software, a PostgreSQL database and an Nginx proxy which it uses to configure routes to the different capabilities of Artifactory. Getting the pods after some time, you should see something like the below
+
+```
+kubectl get pods -n tools
+```
 
 2. Each of the deployed application have their respective services. This is how you will be able to reach either of them.
-
+```
+kubectl get svc -n tools
+```
 
 3. Notice that, the Nginx Proxy has been configured to use the service type of LoadBalancer. Therefore, to reach Artifactory, we will need to go through the Nginx proxy’s service. Which happens to be a load balancer created in the cloud provider. Run the kubectl command to retrieve the Load Balancer URL.
 
 ```
 kubectl get svc artifactory-artifactory-nginx -n tools
-
 ```
+![Screenshot from 2023-10-24 15-40-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/85d9382f-d1ee-4b68-9edc-4963055eab05)
+i realised that my pods were in init:CrashLoopBackOff, and i tried troubleshooting it
+
 
 
 
