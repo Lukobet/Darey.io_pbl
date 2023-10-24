@@ -81,8 +81,9 @@ kubectl get svc artifactory-artifactory-nginx -n tools
 ![Screenshot from 2023-10-24 15-40-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/85d9382f-d1ee-4b68-9edc-4963055eab05)
 i realised that my pods were in init:CrashLoopBackOff, and i tried troubleshooting it
 
+i used eks and no error
 
-
+![Screenshot from 2023-10-24 19-10-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ec4af6d-7171-431e-a1a8-ab7b118441c8)
 
 ```
 ```
