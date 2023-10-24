@@ -85,10 +85,15 @@ i used eks and no error
 
 ![Screenshot from 2023-10-24 19-10-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ec4af6d-7171-431e-a1a8-ab7b118441c8)
 
-```
-```
-```
-```
+Is the Load Balancer Service type the Ideal configuration option to use in the Real World?
+Setting the service type to Load Balancer is the easiest way to get started with exposing applications running in kubernetes externally. But provisioning load balancers for each application can become very expensive over time, and more difficult to manage. Especially when tens or even hundreds of applications are deployed.
+
+The best approach is to use Kubernetes Ingress instead. But to do that, we will have to deploy an Ingress Controller.
+
+A huge benefit of using the ingress controller is that we will be able to use a single load balancer for different applications we deploy. Therefore, Artifactory and any other tools can reuse the same load balancer. Which reduces cloud cost, and overhead of managing multiple load balancers. more on that later.
+
+For now, we will leave Artifactory, move on to the next phase of configuration (Ingress, DNS(Route53) and Cert Manager), and then return to Artifactory to complete the setup so that it can serve as a private docker registry and repository for private helm charts.
+
 
 DEPLOYING INGRESS CONTROLLER AND MANAGING INGRESS RESOURCES
 Before we discuss what ingress controllers are, it will be important to start off understanding about the Ingress resource.
