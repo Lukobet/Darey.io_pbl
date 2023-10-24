@@ -605,6 +605,9 @@ Output:
 NAME        READY   STATUS    RESTARTS   AGE
 jenkins-0   2/2     Running   0          6m14s
 ***
+![Screenshot from 2023-10-24 13-39-57](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4e3eaa09-c2b2-4012-a124-7391599cc91e)
+pods not running yet
+
 8. Describe the running pod (review the output and try to understand what you see)
 ```
 kubectl describe pod jenkins-0 --kubeconfig [kubeconfig file]
