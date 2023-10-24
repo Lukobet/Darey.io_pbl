@@ -554,7 +554,9 @@ helm install my-jenkins jenkinsci/jenkins --version 4.7.2
 Got this error repeatedly, so i tried bitnami/jenkins
 it worked because i was on minikube
 ![Screenshot from 2023-10-16 22-49-13](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/949184b9-02a2-4114-9210-6fe77db5cf4e)
-but worked on eks and got in
+after several errors in trying to install jenkins, it was successful
+
+![Screenshot from 2023-10-24 13-19-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7a1bf6cf-10a0-43f3-9406-e80fcead09ef)
 
 You should see an output like this
 ***
