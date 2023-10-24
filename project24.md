@@ -617,6 +617,9 @@ kubectl describe pod jenkins-0 --kubeconfig [kubeconfig file]
 ```
 kubectl logs jenkins-0 --kubeconfig [kubeconfig file]
 ```
+![Screenshot from 2023-10-24 13-41-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bbdb4f74-7fe9-48cc-94c5-7f6714b19cfa)
+
+
 ![Screenshot from 2023-10-16 22-57-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/96977fad-4a78-4a2b-a394-6c2cafc68db9)
 ![Screenshot from 2023-10-16 22-59-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/048ffc9f-3e16-40e7-b9f4-495ad79c53cd)
 
@@ -631,6 +634,8 @@ Therefore we need to let kubectl know, which pod we are interested to see its lo
 ```
 kubectl logs jenkins-0 -c jenkins --kubeconfig [kubeconfig file]
 ```
+![Screenshot from 2023-10-24 13-45-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/00103036-0310-4801-9fce-94ddd0dd3ddb)
+
 ![Screenshot from 2023-10-16 23-03-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ef64d99b-f778-466c-b4eb-e8e761594c94)
 
 10. Now lets avoid calling the [kubeconfig file] everytime. Kubectl expects to find the default kubeconfig file in the location ~/.kube/config. But what if you already have another cluster using that same file? It doesn’t make sense to overwrite it. What you will do is to merge all the kubeconfig files together using a kubectl plugin called [konfig](https://github.com/corneliusweig/konfig) and select whichever one you need to be active.
