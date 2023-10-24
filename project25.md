@@ -1,4 +1,87 @@
-# DEPLOYING INGRESS CONTROLLER AND MANAGING INGRESS RESOURCES
+# DEPLOYING AND PACKAGING APPLICATIONS INTO KUBERNETES WITH HELM
+In the previous project, you started experiencing helm as a tool used to deploy an application into Kubernetes. You probably also tried installing more tools apart from Jenkins.
+
+In this project, you will experience deploying more DevOps tools, get familiar with some of the real world issues faced during such deployments and how to fix them. You will learn how to tweak helm values files to automate the configuration of the applications you deploy. Finally, once you have most of the DevOps tools deployed, you will experience using them and relate with the DevOps cycle and how they fit into the entire ecosystem.
+
+Our focus will be on the following tools.
+
+Artifactory
+Hashicorp Vault
+Prometheus
+Grafana
+Elasticsearch ELK using ECK
+For the tools that require paid license, don’t worry, you will also learn how to get the license for free and have true experience exactly how they are used in the real world.
+
+Lets start first with Artifactory. What is it exactly?
+
+Artifactory is part of a suit of products from a company called Jfrog. Jfrog started out as an artifact repository where software binaries in different formats are stored. Today, Jfrog has transitioned from an artifact repository to a DevOps Platform that includes CI and CD capabilities. This has been achieved by offering more products in which Jfrog Artifactory is part of. Other offerings include
+
+JFrog Pipelines – a CI-CD product that works well with its Artifactory repository. Think of this product as an alternative to Jenkins.
+JFrog Xray – a security product that can be built-into various steps within a JFrog pipeline. Its job is to scan for security vulnerabilities in the stored artifacts. It is able to scan all dependent code.
+In this project, the requirement is to use Jfrog Artifactory as a private registry for the organisation’s Docker images and Helm charts. This requirement will satisfy part of the company’s corporate security policies to never download artifacts directly from the public into production systems. We will eventually have a CI pipeline that initially pulls public docker images and helm charts from the internet, store in artifactory and scan the artifacts for security vulnerabilities before deploying into the corporate infrastructure. Any found vulnerabilities will immediately trigger an action to quarantine such artifacts.
+
+Lets get into action and see how all of these work.
+
+Deploy Jfrog Artifactory into Kubernetes
+The best approach to easily get Artifactory into kubernetes is to use helm.
+
+Search for an official helm chart for Artifactory on Artifact Hub
+
+Click on See all results
+
+Use the filter checkbox on the left to limit the return data. As you can see in the image below, “Helm” is selected. In some cases, you might select “Official”. Then click on the first option from the result.
+
+Review the Artifactory page
+Click on the install menu on the right to see the installation commands.
+Add the jfrog remote repository on your laptop/computer
+```
+helm repo add jfrog https://charts.jfrog.io
+```
+Create a namespace called tools where all the tools for DevOps will be deployed. (In previous project, you installed Jenkins in the default namespace. You should uninstall Jenkins there and install in the new namespace)
+```
+kubectl create ns tools
+```
+
+
+Update the helm repo index on your laptop/computer
+```
+helm repo update
+```
+
+Install artifactory
+```
+helm upgrade --install artifactory jfrog/artifactory --version 107.38.10 -n tools
+```
+![Screenshot from 2023-10-24 15-14-19](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/35c0f525-ab87-474d-a2fd-416add3068b5)
+
+NOTE:
+
+We have used upgrade --install flag here instead of helm install artifactory jfrog/artifactory This is a better practice, especially when developing CI pipelines for helm deployments. It ensures that helm does an upgrade if there is an existing installation. But if there isn’t, it does the initial install. With this strategy, the command will never fail. It will be smart enough to determine if an upgrade or fresh installation is required.
+The helm chart version to install is very important to specify. So, the version at the time of writing may be different from what you will see from Artifact Hub. So, replace the version number to the desired
+
+**Getting the Artifactory URL**
+Lets break down the first Next Step.
+
+1. The artifactory helm chart comes bundled with the Artifactory software, a PostgreSQL database and an Nginx proxy which it uses to configure routes to the different capabilities of Artifactory. Getting the pods after some time, you should see something like the below.
+
+2. Each of the deployed application have their respective services. This is how you will be able to reach either of them.
+
+
+3. Notice that, the Nginx Proxy has been configured to use the service type of LoadBalancer. Therefore, to reach Artifactory, we will need to go through the Nginx proxy’s service. Which happens to be a load balancer created in the cloud provider. Run the kubectl command to retrieve the Load Balancer URL.
+
+```
+kubectl get svc artifactory-artifactory-nginx -n tools
+
+```
+
+
+
+```
+```
+```
+```
+
+DEPLOYING INGRESS CONTROLLER AND MANAGING INGRESS RESOURCES
 Before we discuss what ingress controllers are, it will be important to start off understanding about the Ingress resource.
 
 An ingress is an API object that manages external access to the services in a kubernetes cluster. It is capable to provide load balancing, SSL termination and name-based virtual hosting. In otherwords, Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
