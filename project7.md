@@ -1,4 +1,15 @@
 # DEVOPS TOOLING WEBSITE SOLUTION
+In previous [Project 6(https://www.dareyio.com/docs/project-6-step-1/) you implemented a WordPress based solution that is ready to be filled with content and can be used as a full fledged website or blog. Moving further we will add some more value to our solutions that your DevOps team could utilize. We want to introduce a set of DevOps tools that will help our team in day to day activities in managing, developing, testing, deploying and monitoring different projects
+
+The tools we want our team to be able to use are well known and widely used by multiple DevOps teams, so we will introduce a single DevOps Tooling Solution that will consist of:
+
+Jenkins – free and open source automation server used to build CI/CD pipelines.
+Kubernetes – an open-source container-orchestration system for automating computer application deployment, scaling, and management.
+Jfrog Artifactory – Universal Repository Manager supporting all major packaging formats, build tools and CI servers. Artifactory.
+Rancher – an open source software platform that enables organizations to run and manage Docker and Kubernetes in production.
+Grafana – a multi-platform open source analytics and interactive visualization web application.
+Prometheus – An open-source monitoring system with a dimensional data model, flexible query language, efficient time series database and modern alerting approach.
+Kibana – Kibana is a free and open user interface that lets you visualize your Elasticsearch data and navigate the Elastic Stack.
 
 In this project i will be usinng DevOps tools that will help in day to day activities in managing, developing, testing, deploying and monitoring different projects.
 This a single DevOps Tooling Solution that will consist of the following components:
@@ -54,13 +65,126 @@ Formatting the disk as xfS
 Create mount points on /mnt directory for the logical volumes 
 ![Screenshot from 2022-09-27 12-01-11](https://user-images.githubusercontent.com/110517150/192508718-830e9ee2-3a82-473f-973d-8c427311a9e1.png)
 
-*Installing NFS Server
+*Install NFS server, configure it to start on reboot and make sure it is u and running
+```
+sudo yum -y update
+sudo yum install nfs-utils -y
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
+sudo systemctl status nfs-server.service
+```
+Make sure we set up permission that will allow our Web servers to read, write and execute files on NFS:
+```
+sudo chown -R nobody: /mnt/apps
+sudo chown -R nobody: /mnt/logs
+sudo chown -R nobody: /mnt/opt
+
+sudo chmod -R 777 /mnt/apps
+sudo chmod -R 777 /mnt/logs
+sudo chmod -R 777 /mnt/opt
+
+sudo systemctl restart nfs-server.service
+```
+Configure access to NFS for clients within the same subnet (example of Subnet CIDR – 172.31.32.0/20 ):
+```
+sudo vi /etc/exports
+
+/mnt/apps <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/logs <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+```
+Esc + :wq!
+```
+sudo exportfs -arv
+```
+
+Check which port is used by NFS and open it using Security Groups (add new Inbound Rule)
+```
+rpcinfo -p | grep nfs
+```      
+
+Important note: In order for NFS server to be accessible from your client, you must also open following ports: TCP 111, UDP 111, UDP 2049
+
 
 ![Screenshot from 2022-09-27 15-10-16](https://user-images.githubusercontent.com/110517150/192549857-9469e33c-a5c5-46d7-bc65-ff03d63dbcf4.png)
 
 ![Screenshot from 2022-09-27 15-29-11](https://user-images.githubusercontent.com/110517150/192554480-bc840a2a-cfe0-4e5e-96ae-c19f07dceeec.png)
 
 # Configuring the DBSERVER
+By now you should know how to install and configure a MySQL DBMS to work with remote Web Server
+
+Install MySQL server
+Create a database and name it **tooling**
+Create a database user and name it **webaccess**
+Grant permission to webaccess user on tooling database to do anything only from the webservers subnet cidr
+
+### Step 3 — Prepare the Web Servers
+We need to make sure that our Web Servers can serve the same content from shared storage solutions, in our case – NFS Server and MySQL database.
+You already know that one DB can be accessed for reads and writes by multiple clients. For storing shared files that our Web Servers will use – we will utilize NFS and mount previously created Logical Volume lv-apps to the folder where Apache stores files to be served to the users (/var/www).
+
+This approach will make our Web Servers stateless, which means we will be able to add new ones or remove them whenever we need, and the integrity of the data (in the database and on NFS) will be preserved.
+
+During the next steps we will do following:
+
+* Configure NFS client (this step must be done on all three servers)
+* Deploy a Tooling application to our Web Servers into a shared NFS folder
+* Configure the Web Servers to work with a single MySQL database
+* Launch a new EC2 instance with RHEL 8 Operating System
+*Install NFS client
+
+```
+sudo yum install nfs-utils nfs4-acl-tools -y
+```
+Mount /var/www/ and target the NFS server’s export for apps
+```
+sudo mkdir /var/www
+sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www
+```
+Verify that NFS was mounted successfully by running **df -h**. Make sure that the changes will persist on Web Server after reboot:
+```
+sudo vi /etc/fstab
+```
+add following line
+```
+<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0
+```
+
+### Install Remi’s repository, Apache and PHP
+```
+sudo yum install httpd -y
+
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+sudo dnf module reset php
+
+sudo dnf module enable php:remi-7.4
+
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd
+
+sudo systemctl start php-fpm
+
+sudo systemctl enable php-fpm
+
+setsebool -P httpd_execmem 1
+```
+
+Repeat steps 1-5 for another 2 Web Servers.
+
+Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.
+
+Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step №4 to make sure the mount point will persist after reboot.
+
+Fork the tooling source code from Darey.io Github Account to your Github account. (Learn how to fork a repo here)
+
+Deploy the tooling website’s code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
+**Note 1**: Do not forget to open TCP port 80 on the Web Server.
+
+**Note 2**: If you encounter 403 Error – check permissions to your /var/www/html folder and also disable SELinux sudo setenforce 0
+To make this change permanent – open following config file sudo vi /etc/sysconfig/selinux and set SELINUX=disabledthen restrt httpd.
+
+# Results
 ![Screenshot from 2022-09-27 12-26-37](https://user-images.githubusercontent.com/110517150/192513413-cf395d67-185c-442a-9017-1f0281842d0b.png)
 
 *Installing mysql-server, Create a database and name it tooling, Create a database user and name it webaccess
