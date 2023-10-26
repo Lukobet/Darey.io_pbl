@@ -521,6 +521,7 @@ dns01:
 With the ClusterIssuer properlu configured, it is now time to start getting certificates issued.
 
 Lets see what that looks like in the next section.
+![Screenshot from 2023-10-26 22-54-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5dcf4797-fb32-4282-86ab-d66ec749a143)
 
 ## CONFIGURING INGRESS FOR TLS
 
