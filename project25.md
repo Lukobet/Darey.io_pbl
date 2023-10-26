@@ -257,6 +257,8 @@ Output:
 NAME          CLASS   HOSTS                                   ADDRESS                                                                  PORTS   AGE
 artifactory   nginx   tooling.artifactory.sandbox.svc.darey.io   a38db84e7d2104dc4b743ee6df1e667b-954094141.eu-west-2.elb.amazonaws.com   80      5s
 ***
+![Screenshot from 2023-10-26 22-07-04](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/50e03f2b-ab77-4c97-893e-a5fc00a12a5f)
+![Screenshot from 2023-10-26 22-09-35](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/319c6a53-500c-460c-b0f5-51a2e13cb645)
 
 Now, take note of
 
