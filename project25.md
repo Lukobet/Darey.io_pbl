@@ -610,7 +610,7 @@ kubectl get service -n tools
 ![Screenshot from 2023-10-26 23-08-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4ab6aa63-62bf-4807-95bc-3fae58d5daf1)
 
 You will see that the load balancer is still there.
-
+**
 A task for you is to update the helm values file for artifactory, and ensure that the artifactory-artifactory-nginx service uses ClusterIP
 
 Your final output should look like this.
@@ -621,7 +621,7 @@ Your final output should look like this.
 Finally, update the ingress to use artifactory-artifactory-nginx as the backend service instead of using artifactory. Remember to update the port number as well.
 
 If everything goes well, you will be prompted at login to set the BASE URL. It will pick up the new https address. Simply click next
-
+**
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5355b407-30c6-4751-90db-ee22fbaf0c9c)
 
 
