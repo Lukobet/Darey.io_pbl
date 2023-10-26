@@ -599,32 +599,40 @@ Notice the secret name there in the above output. Executing the command ```kubec
 
 If you now head over to the browser, you should see the padlock sign without warnings of untrusted certificates.
 
+![Screenshot from 2023-10-26 23-03-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cff7a3ad-35f6-4983-acbc-3c44e035c535)
+![Screenshot from 2023-10-26 23-03-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1fb3aa64-1293-48fb-a34c-a5bfb49f90a4)
 
 
 Finally, one more task for you to do is to ensure that the LoadBalancer created for artifactory is destroyed. If you run a get service kubectl command like below;
 ```
 kubectl get service -n tools
 ```
+![Screenshot from 2023-10-26 23-08-20](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4ab6aa63-62bf-4807-95bc-3fae58d5daf1)
+
 You will see that the load balancer is still there.
 
 A task for you is to update the helm values file for artifactory, and ensure that the artifactory-artifactory-nginx service uses ClusterIP
 
 Your final output should look like this.
 
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/87c3d6b4-5577-48c4-b875-812c72166a89)
 
 
 Finally, update the ingress to use artifactory-artifactory-nginx as the backend service instead of using artifactory. Remember to update the port number as well.
 
 If everything goes well, you will be prompted at login to set the BASE URL. It will pick up the new https address. Simply click next
 
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5355b407-30c6-4751-90db-ee22fbaf0c9c)
 
 
 Skip the proxy part of the setup.
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9629f03d-4bf5-4330-a6ee-b4199291f406)
 
 
 
 Skip repositories creation because you will do this in the next poject.
 
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/ab8d8b7a-4087-4de4-8a08-bb59900e318f)
 
 
 Then complete the setup.
