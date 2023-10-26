@@ -273,7 +273,7 @@ If anyone were to visit the tool, it would be very inconvenient sharing the long
 
 The sandbox.svc.darey.io part of the domain is the configured HOSTED ZONE in AWS. So you will need to configure Hosted Zone in AWS console or as part of your infrastructure as code using terraform.
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/285c3e28-dfb7-433e-ad35-6d208a8be883)
-f you purchased the domain directly from AWS, the hosted zone will be automatically configured for you. But if your domain is registered with a different provider such as freenon or namechaep, you will have to create the hosted zone and update the name servers.
+if you purchased the domain directly from AWS, the hosted zone will be automatically configured for you. But if your domain is registered with a different provider such as freenon or namechaep, you will have to create the hosted zone and update the name servers.
 
 **Create Route53 record**
 Within the hosted zone is where all the necessary DNS records will be created. Since we are working on Artifactory, lets create the record to point to the ingress controller’s loadbalancer. There are 2 options. You can either use the CNAME or AWS Alias
@@ -296,11 +296,14 @@ Within the hosted zone is where all the necessary DNS records will be created. S
 
 For detailed read on selecting between CNAME and Alias based records, read the official documentation
 
+![Screenshot from 2023-10-26 22-25-18](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/91efa2bd-dea6-41a2-8589-900f81ecb4b4)
+
 **Visiting the application from the browser**
 So far, we now have an application running in Kubernetes that is also accessible externally. That means if you navigate to https://tooling.artifactory.sandbox.svc.darey.io/ (replace the full URL with your domain), it should load up the artifactory application.
 
 Using Chrome browser will show something like the below. It shows that the site is indeed reachable, but insecure. This is because Chrome browsers do not load insecure sites by default. It is insecure because it either does not have a trusted TLS/SSL certificate, or it doesn’t have any at all.
 
+![Screenshot from 2023-10-26 22-26-25](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9172058a-74bf-4bd1-a486-3c088001ebed)
 
 
 Nginx Ingress Controller does configure a default TLS/SSL certificate. But it is not trusted because it is a self signed certificate that browsers are not aware of.
