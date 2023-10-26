@@ -352,6 +352,9 @@ Congratulations. You have just deployed JFrog Artifactory!
    user: admin
    password: password
 ***
+![Screenshot from 2023-10-26 22-29-46](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/53b91231-2a31-4b7f-a4aa-a0c0370974d0)
+
+
 2. Insert the username and password to load the Get Started page
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3018a80a-80e1-453c-a497-f106c51dc465)
 
@@ -361,12 +364,18 @@ Congratulations. You have just deployed JFrog Artifactory!
 4. Activate the Artifactory License. You will need to purchase a license to use Artifactory enterprise features.
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/297fc3c9-1781-44ed-80a6-fe0ca49c45c7)
 5. For learning purposes, you can apply for a free trial license. Simply fill the form here and a license key will be delivered to your email in few minutes.
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4f1be8dd-ff95-4d09-83d7-6a0782ae7c09)
 6. In exactly 1 minute, the license key had arrived. Simply copy the key and apply to the console.
+
 7. Set the Base URL. Ensure to use https
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/58ce55f9-79ed-49a1-b9df-c095f0573e17)
 
 8. Skip the Proxy setting
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e2573931-098f-4d8c-a8b5-f263f05864c6)
 9. Skip creation of repositories for now. You will create them yourself later on.
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5989787d-8a10-4f74-afd5-7c05b21bcb15)
 10. finish the setup
+![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c2d0e79a-4ecb-4ee3-831a-ea7e8adea9fc)
 
 Next, its time to fix the TLS/SSL configuration so that we will have a trusted HTTPS URL
 
