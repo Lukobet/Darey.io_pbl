@@ -551,7 +551,8 @@ spec:
     - "tooling.artifactory.sandbox.svc.darey.io"
     secretName: "tooling.artifactory.sandbox.svc.darey.io"
 ```
-
+![Screenshot from 2023-10-26 22-58-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7741cf42-27ba-4726-908f-2f660e7eacfe)
+![Screenshot from 2023-10-26 22-58-11](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/dd607bc0-0b90-45a8-8332-797ef653a7fd)
 The most significat updates to the ingress definition is the annotations and tls sections.
 
 Lets quickly talk about Annotations. Annotations are used similar to labels in kubernetes. They are ways to attach metadata to objects.
