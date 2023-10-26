@@ -448,7 +448,9 @@ documentation:
 
 https://cert-manager.io/docs/usage/ingress/
 ```
+![Screenshot from 2023-10-26 22-49-48](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/94bb5bca-32dc-49e3-8021-4b346ea3dcf3)
 
+Documentation gotten her https://cert-manager.io/docs/installation/helm/
 **Certificate Issuer**
 
 Next, is to create an Issuer. We will use a Cluster Issuer so that it can be scoped globally. Assuming that we will be using darey.io domain. Simply update this yaml file and deploy with kubectl. In the section that follows, we will break down each part of the file.
