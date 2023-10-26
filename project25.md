@@ -176,7 +176,7 @@ if the ingress controller is already installed, it will upgrade it.
 Self Challenge Task – Delete the installation after running above command. Then try to re-install it using a slightly different method you are already familiar with. Ensure NOT to use the flag --repo
 
 Hint – Run the helm repo add command before installation
-
+![Screenshot from 2023-10-26 21-50-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1a4061e8-309b-4a9b-a413-363dd21bf753)
 2. A few pods should start in the ingress-nginx namespace:
 ```
 kubectl get pods --namespace=ingress-nginx
