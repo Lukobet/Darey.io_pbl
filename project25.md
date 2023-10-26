@@ -177,10 +177,13 @@ Self Challenge Task – Delete the installation after running above command. The
 
 Hint – Run the helm repo add command before installation
 ![Screenshot from 2023-10-26 21-50-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1a4061e8-309b-4a9b-a413-363dd21bf753)
+![Screenshot from 2023-10-26 21-57-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fc7f057a-d30e-40c5-aaec-526d29e32057)
+
 2. A few pods should start in the ingress-nginx namespace:
 ```
 kubectl get pods --namespace=ingress-nginx
 ```
+![Screenshot from 2023-10-26 22-01-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/022bc338-2c0c-4eb2-8584-612442e88038)
 
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 ```
@@ -200,11 +203,9 @@ NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP 
 ingress-nginx-controller             LoadBalancer   172.16.11.35    a38db84e7d2104dc4b743ee6df1e667b-954094141.eu-west-2.elb.amazonaws.com   80:32516/TCP,443:31942/TCP   50s
 ingress-nginx-controller-admission   ClusterIP      172.16.94.137   <none>                                                                   443/TCP                      50s
 ***
+![Screenshot from 2023-10-26 22-02-44](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/377b79dc-358a-4d23-9ebd-f43bf8669327)
 
 The ingress-nginx-controller service that was created is of the type LoadBalancer. That will be the load balancer to be used by all applications which require external access, and is using this ingress controller.
-
-If you go ahead to AWS console, copy the address in the EXTERNAL-IP column, and search for the loadbalancer, you will see an output like below.
-
 
 
 5. Check the IngressClass that identifies this ingress controller.
@@ -217,6 +218,8 @@ Output:
 NAME    CONTROLLER             PARAMETERS   AGE
 nginx   k8s.io/ingress-nginx   <none>       105s
 ***
+![Screenshot from 2023-10-26 22-03-53](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/946f8b43-174a-4c8a-91f7-71642ccd6c71)
+
 
 **Deploy Artifactory Ingress**
 
