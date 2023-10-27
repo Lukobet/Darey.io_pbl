@@ -38,12 +38,12 @@ It is a configuration management solution that leverages layering to preserve th
 
 Kustomize relies on the following system of configuration management layering to achieve reusability:
 
-Base Layer – Specifies the most common resources
-Patch Layers – Specifies use case specific resources
+    - Base Layer – Specifies the most common resources
+    - Patch Layers – Specifies use case specific resources
 Let’s step through how Kustomize works using a deployment scenario involving 3 different environments: dev, sit, and prod. In this example we’ll use service, deployment, and namespace resources. For the dev environment, there wont be any specific changes as it will use the same configuration from the base setting. In sit and prod environments, the replica settings will be different.
 
 Using the tooling app for this example, create a folder structure as below.
-
+```
 └── tooling-app-kustomize
     ├── base
     │   ├── deployment.yaml
@@ -61,11 +61,12 @@ Using the tooling app for this example, create a folder structure as below.
             ├── deployment.yaml
             ├── kustomization.yaml
             └── namespace.yaml
+```
 Now, lets walk through the content of each file.
 
 Base directory
 tooling-app-kustomize/base/deployment.yaml – This is a standard kubernetes yaml file for a deployment.
-
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -94,8 +95,9 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+```
 tooling-app-kustomize/base/service.yaml – This is a standard kubernetes yaml file for a service.
-
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -111,18 +113,20 @@ spec:
   type: ClusterIP
   selector:
     app: tooling
+```
 tooling-app-kustomize/base/kustomization.yaml – This is a Kustomization declaritive yaml that is used to let kustomize know what resources to create and monitor in kubernetes.
-
+```
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+```
 The resources being monitored here are deployment and services. You can simply add more to the list as you wish.
 
 It is assumed that we will need to deploy kubernetes resources across multiple environments, as a standard practice in most cases. Hence, to deploy resources into the Dev environment, lets see what the layout and file contents will look like.
 
-DEV Environment
+**DEV Environment**
 In the overlays folder – This is where you manage multiple environments. In each environment, there is a Kustomize file that tells Kustomize where to find the base setting, and how to patch the environment using the base as the starting point.
 
 In the dev environment for example, the namespace for dev is created, and the deployment is patched to use a replica count of “3” different from the base setting of “1”. So Kustomize will simply create all the resources in base, in addition to whatever is specified in the dev directory. We will discuss patching a little further in the following section.
@@ -130,21 +134,27 @@ In the dev environment for example, the namespace for dev is created, and the de
 Lets have a look at what each file contains.
 
 tooling-app-kustomize/overlays/dev/namespace.yaml
-
+```
 apiVersion: v1
 kind: Namespace
 metadata:
   name: dev-tooling
+```
+
 tooling-app-kustomize/overlays/dev/deployment.yaml
 
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tooling-deployment
 spec:
   replicas: 3
+```
+
 tooling-app-kustomize/overlays/dev/kustomization.yaml
 
+```
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: dev
@@ -156,6 +166,8 @@ commonLabels:
 
 resources:
   - namespace.yaml
+```
+
 The Kustomization file for dev here specifies that the base configuration should be applied, and include the yaml file(s) specified in the resources section. It also indicates what namespace the configuration should be applied to.
 
 In summary it specifies the following;
