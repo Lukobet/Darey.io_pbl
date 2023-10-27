@@ -219,7 +219,7 @@ Now lets apply the configuration and see what happens.
 ```
 kubectl apply -k overlays/dev
 ```
-Notice that the the apply flag here is -k rather than the -f we have been using all along. This is because kubectl has been made aware of Kustomize. You can use kustomize cli directly, but since you are already familiar with kubectl, it just makes sensee to use the kustomize flag that comes bundled with kubectl.
+Notice that the the apply flag here is -k rather than the -f we have been using all along. This is because kubectl has been made aware of Kustomize. You can use kustomize cli directly, but since you are already familiar with kubectl, it just makes sense to use the kustomize flag that comes bundled with kubectl.
 
 Output will look like this;
 ***
@@ -234,6 +234,7 @@ With your understanding of how kustomize is able to patch resources per environm
 
 * pod replica
 * resource limit and requests
+![Screenshot from 2023-10-27 22-27-00](https://github.com/Lukobet/tooling-app-kustomize/assets/110517150/5b23498a-129b-4358-b5d3-f4cdad5e6570)
 
 **Helm Template Engine vs. Kustomize Overlays**
 Both technologies have good reasons why they are designed the way they are. But most of the experienced engineers in the industry would rather get the best of both worlds.
