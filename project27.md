@@ -213,6 +213,8 @@ resources:
 patches:
   - deployment.yaml
 ```
+![Screenshot from 2023-10-27 22-00-54](https://github.com/Lukobet/tooling-app-kustomize/assets/110517150/ba470b0a-6ccf-452a-adfc-c5542d726626)
+
 Now lets apply the configuration and see what happens.
 ```
 kubectl apply -k overlays/dev
@@ -225,7 +227,7 @@ namespace/dev-tooling created
 service/tooling-service created
 deployment.apps/tooling-deployment created
 ***
-
+![Screenshot from 2023-10-27 22-17-44](https://github.com/Lukobet/tooling-app-kustomize/assets/110517150/8d4cd70c-83c9-4337-a610-672ad5bac622)
 **Self Side Task:**
 
 With your understanding of how kustomize is able to patch resources per environment, now configure both SIT and PROD environments with their respective overlays and set different configuration values for
