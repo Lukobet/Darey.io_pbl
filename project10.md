@@ -24,12 +24,13 @@ Your target architecture will look like this:
 
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bbb85655-6da5-4aca-a49d-32e5df298f61)
 
-CONFIGURE NGINX AS A LOAD BALANCER
+### CONFIGURE NGINX AS A LOAD BALANCER
 You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx.
 
-Create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx LB (do not forget to open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections)
-Update /etc/hosts file for local DNS with Web Servers’ names (e.g. Web1 and Web2) and their local IP addresses
-Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
+1. Create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx LB (do not forget to open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections)
+2. Update /etc/hosts file for local DNS with Web Servers’ names (e.g. Web1 and Web2) and their local IP addresses
+3. Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
+
 Update the instance and Install Nginx
 ```
 sudo apt update
@@ -72,26 +73,26 @@ sudo systemctl status nginx
 
 Side Self Study: Read more about HTTP load balancing methods and features supported by Nginx on this page
 
-REGISTER A NEW DOMAIN NAME AND CONFIGURE SECURED CONNECTION USING SSL/TLS CERTIFICATES
+# REGISTER A NEW DOMAIN NAME AND CONFIGURE SECURED CONNECTION USING SSL/TLS CERTIFICATES
 Let us make necessary configurations to make connections to our Tooling Web Solution secured!
 
 In order to get a valid SSL certificate – you need to register a new domain name, you can do it using any Domain name registrar – a company that manages reservation of domain names. The most popular ones are: Godaddy.com, Domain.com, Bluehost.com.
 
-Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
-Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
+1. Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
+2. Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
 You might have noticed, that every time you restart or stop/start your EC2 instance – you get a new public IP address. When you want to associate your domain name – it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem, learn how to allocate an Elastic IP and associate it with an EC2 server on this page.
 
-Update A record in your registrar to point to Nginx LB using Elastic IP address
+3. Update A record in your registrar to point to Nginx LB using Elastic IP address
 Learn how associate your domain name to your Elastic IP on this page.
 
-Side Self Study: Read about different DNS record types and learn what they are used for.
+Side Self Study: Read about different DNS record types ( https://www.cloudflare.com/learning/dns/dns-records/ ) and learn what they are used for.
 
 Check that your Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
 
-Configure Nginx to recognize your new domain name
+4.  Configure Nginx to recognize your new domain name
 Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
 
-Install certbot and request for an SSL/TLS certificate
+5. Install certbot and request for an SSL/TLS certificate
 Make sure snapd service is active and running
 ```
 sudo systemctl status snapd
@@ -114,7 +115,7 @@ Test secured access to your Web Solution by trying to reach https://<your-domain
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string.
 Click on the padlock icon and you can see the details of the certificate issued for your website.     
 
-Set up periodical renewal of your SSL/TLS certificate
+6. Set up periodical renewal of your SSL/TLS certificate
 By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.
 
 You can test renewal command in dry-run mode
