@@ -649,7 +649,7 @@ kubectl logs jenkins-0 -c jenkins --kubeconfig [kubeconfig file]
 10. Now lets avoid calling the [kubeconfig file] everytime. Kubectl expects to find the default kubeconfig file in the location ~/.kube/config. But what if you already have another cluster using that same file? It doesn’t make sense to overwrite it. What you will do is to merge all the kubeconfig files together using a kubectl plugin called [konfig](https://github.com/corneliusweig/konfig) and select whichever one you need to be active.
 
 * Install a package manager for kubectl called krew so that it will enable you to install plugins to extend the functionality of kubectl. Read more about it [Here](https://github.com/kubernetes-sigs/krew)
-
+  i Couldnt install KREW
 * Install the [konfig plugin](https://github.com/corneliusweig/konfig)
 ```
   kubectl krew install konfig
@@ -681,7 +681,7 @@ Output:
 ```
   kubectl config current-context
 ```
-![Screenshot from 2023-10-16 23-26-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c249a279-fae0-42a6-9531-6e1929de95b8)
+![Screenshot from 2023-11-09 00-19-00](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d55e07c4-e7f7-4c4e-a642-f011e3e413fa)
 
 11. Now that we can use kubectl without the --kubeconfig flag, Lets get access to the Jenkins UI. (In later projects we will further configure Jenkins. For now, it is to set up all the tools we need)
 
@@ -689,6 +689,16 @@ Output:
 ```
   kubectl exec --namespace default -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
 ```
+since i am using the Bitanmi Jenkins i used the following to get the password
+
+kubectl get secret --kubeconfig kubeconfig my-jenkins -o json
+path="{.data.jenkins-password}" | base64 -d 
+
+
+![Screenshot from 2023-11-09 00-34-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/02e446c8-b354-430e-b283-2ac4e4b18fbe)
+
+![Screenshot from 2023-11-09 00-35-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/aff38fa2-01fc-4a8b-a92e-bef2394acb72)
+
 * Use port forwarding to access Jenkins from the UI
 ```
 kubectl --namespace default port-forward svc/jenkins 8080:8080
@@ -700,6 +710,7 @@ Go to the browser localhost:8080 and authenticate with the username and password
 
 ![image](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/cb0a4cb9-727d-419d-a095-14369a12d906)
 
+![Screenshot from 2023-11-09 00-35-54](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/aff38fa2-01fc-4a8b-a92e-bef2394acb72)
 
 
 **QUICK TASK FOR YOU**
