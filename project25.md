@@ -60,7 +60,7 @@ helm upgrade --install my-artifactory jfrog/artifactory --version 107.71.4 -n to
 ![Screenshot from 2023-10-24 15-14-19](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/35c0f525-ab87-474d-a2fd-416add3068b5)
 
 ![Screenshot from 2023-11-09 00-52-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0f597d02-96cf-4f1e-a25a-2b40eb8f3eeb)
-
+![Screenshot from 2023-11-09 00-55-15](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/3da00c05-3748-4507-972f-ebb664ba8cb3)
 **NOTE**:
 
 We have used upgrade --install flag here instead of helm install artifactory jfrog/artifactory This is a better practice, especially when developing CI pipelines for helm deployments. It ensures that helm does an upgrade if there is an existing installation. But if there isn’t, it does the initial install. With this strategy, the command will never fail. It will be smart enough to determine if an upgrade or fresh installation is required.
@@ -83,16 +83,22 @@ kubectl get svc -n tools --kubeconfig kubeconfig
 3. Notice that, the Nginx Proxy has been configured to use the service type of LoadBalancer. Therefore, to reach Artifactory, we will need to go through the Nginx proxy’s service. Which happens to be a load balancer created in the cloud provider. Run the kubectl command to retrieve the Load Balancer URL.
 
 ```
-kubectl get svc artifactory-artifactory-nginx -n tools
+kubectl get svc my-artifactory-artifactory-nginx -n tools --kubeconfig kubeconfig
 ```
+MINIKUBE
 ![Screenshot from 2023-10-24 15-40-55](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/85d9382f-d1ee-4b68-9edc-4963055eab05)
-i realised that my pods were in init:CrashLoopBackOff, and i tried troubleshooting it
+
+i realised that my pods were in init:CrashLoopBackOff, and i tried troubleshooting it (this was on minikube)
 
 i used eks and no error
 
 ![Screenshot from 2023-10-24 19-10-51](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0ec4af6d-7171-431e-a1a8-ab7b118441c8)
 
-Is the Load Balancer Service type the Ideal configuration option to use in the Real World?
+**AWSCLUSTER**
+![Screenshot from 2023-11-09 00-58-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1dc5df4c-cb01-4386-a45a-8e0926c52cb2)
+
+
+### Is the Load Balancer Service type the Ideal configuration option to use in the Real World?
 Setting the service type to Load Balancer is the easiest way to get started with exposing applications running in kubernetes externally. But provisioning load balancers for each application can become very expensive over time, and more difficult to manage. Especially when tens or even hundreds of applications are deployed.
 
 The best approach is to use Kubernetes Ingress instead. But to do that, we will have to deploy an Ingress Controller.
