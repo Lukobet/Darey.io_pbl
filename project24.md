@@ -331,7 +331,7 @@ provider "kubernetes" {
 ![Screenshot from 2023-10-16 16-08-01](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/d9d5af78-db94-4271-a3e9-9a76463f609c)
 
 Run the init and plan again – This time you will see
-```
+***
   # module.eks-cluster.kubernetes_config_map.aws_auth[0] will be created
   + resource "kubernetes_config_map" "aws_auth" {
       + data = {
@@ -378,7 +378,7 @@ Run the init and plan again – This time you will see
     }
 
 Plan: 1 to add, 0 to change, 0 to destroy.
-```
+***
 ![Screenshot from 2023-10-16 16-09-14](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/e92ca590-85c7-46b8-b915-287da70cf7b5)
 ![Screenshot from 2023-10-16 16-37-37](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1fe261c8-cfc7-4564-9c02-f7abaa9ed0e6)
 
