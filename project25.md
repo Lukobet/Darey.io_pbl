@@ -41,6 +41,11 @@ Create a namespace called tools where all the tools for DevOps will be deployed.
 ```
 kubectl create ns tools
 ```
+Couldnt run this alone because i counldnt install KREW so i havent stopped working with --kubeconfig kubeconfig
+```
+kubectl create ns tools --kubeconfig kubeconfig
+```
+![Screenshot from 2023-11-09 00-49-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5eef01b9-6c51-48b8-a794-990ebf237067)
 
 
 Update the helm repo index on your laptop/computer
@@ -50,11 +55,13 @@ helm repo update
 
 Install artifactory
 ```
-helm upgrade --install artifactory jfrog/artifactory --version 107.38.10 -n tools
+helm upgrade --install my-artifactory jfrog/artifactory --version 107.71.4 -n tools --kubeconfig kubeconfig
 ```
 ![Screenshot from 2023-10-24 15-14-19](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/35c0f525-ab87-474d-a2fd-416add3068b5)
 
-NOTE:
+![Screenshot from 2023-11-09 00-52-27](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/0f597d02-96cf-4f1e-a25a-2b40eb8f3eeb)
+
+**NOTE**:
 
 We have used upgrade --install flag here instead of helm install artifactory jfrog/artifactory This is a better practice, especially when developing CI pipelines for helm deployments. It ensures that helm does an upgrade if there is an existing installation. But if there isn’t, it does the initial install. With this strategy, the command will never fail. It will be smart enough to determine if an upgrade or fresh installation is required.
 The helm chart version to install is very important to specify. So, the version at the time of writing may be different from what you will see from Artifact Hub. So, replace the version number to the desired
@@ -65,12 +72,12 @@ Lets break down the first Next Step.
 1. The artifactory helm chart comes bundled with the Artifactory software, a PostgreSQL database and an Nginx proxy which it uses to configure routes to the different capabilities of Artifactory. Getting the pods after some time, you should see something like the below
 
 ```
-kubectl get pods -n tools
+kubectl get pods -n tools --kubeconfig kubeconfig
 ```
 
 2. Each of the deployed application have their respective services. This is how you will be able to reach either of them.
 ```
-kubectl get svc -n tools
+kubectl get svc -n tools --kubeconfig kubeconfig
 ```
 
 3. Notice that, the Nginx Proxy has been configured to use the service type of LoadBalancer. Therefore, to reach Artifactory, we will need to go through the Nginx proxy’s service. Which happens to be a load balancer created in the cloud provider. Run the kubectl command to retrieve the Load Balancer URL.
