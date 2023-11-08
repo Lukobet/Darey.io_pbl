@@ -553,7 +553,7 @@ The chart i saw is
 helm install my-jenkins jenkinsci/jenkins --version 4.7.2
 ```
 helm install my-jenkins jenkinsci/jenkins --kubeconfig kubeconfig
-
+helm install my-jenkins bitnami/jenkins --kubeconfig kubeconfig
 ![Screenshot from 2023-10-16 22-39-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/61d3c5ac-27e2-4cbd-87b5-871bd77fcc24)
 Got this error repeatedly, so i tried bitnami/jenkins
 it worked because i was on minikube
@@ -599,9 +599,11 @@ NAME    NAMESPACE       REVISION        UPDATED                                 
 jenkins default         1               2021-08-01 12:38:53.429471 +0100 BST    deployed        jenkins-3.5.9   2.289.3 
 ***
 ![Screenshot from 2023-10-16 22-52-32](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/32ac957f-626b-4e43-9ecd-9f3cea6e6b69)
+![Screenshot from 2023-11-08 23-21-16](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/425165b2-9d48-4271-aaea-b394ff531fdc)
+
 7.Check the pods
 ```
-kubectl get pods --kubeconfigo [kubeconfig file]
+kubectl get pods --kubeconfig kubeconfig
 ```
 
 Output:
@@ -611,22 +613,24 @@ jenkins-0   2/2     Running   0          6m14s
 ***
 ![Screenshot from 2023-10-24 13-39-57](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/4e3eaa09-c2b2-4012-a124-7391599cc91e)
 pods not running yet
-
+running after another trial
+![Screenshot from 2023-11-08 23-22-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/9a6bc5df-59f4-4400-bc34-86d06196b792)
 8. Describe the running pod (review the output and try to understand what you see)
 ```
-kubectl describe pod jenkins-0 --kubeconfig [kubeconfig file]
+kubectl describe pod my-jenkins-69c85ccb58-lkfwm --kubeconfig kubeconfig
 ```
+![Screenshot from 2023-11-08 23-24-00](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/612e0072-5be4-4e61-901a-c7fe10ca4951)
 
 9. Check the logs of the running pod
 ```
-kubectl logs jenkins-0 --kubeconfig [kubeconfig file]
+kubectl logs my-jenkins-69c85ccb58-lkfwm --kubeconfig kubeconfig
 ```
 ![Screenshot from 2023-10-24 13-41-50](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/bbdb4f74-7fe9-48cc-94c5-7f6714b19cfa)
 
 
 ![Screenshot from 2023-10-16 22-57-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/96977fad-4a78-4a2b-a394-6c2cafc68db9)
 ![Screenshot from 2023-10-16 22-59-31](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/048ffc9f-3e16-40e7-b9f4-495ad79c53cd)
-
+![Screenshot from 2023-11-08 23-24-59](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7932f55b-509e-4c14-909f-f05c8417f37a)
 You will notice an output with an error
 ***
 error: a container name must be specified for pod jenkins-0, choose one of: [jenkins config-reload] or one of the init containers: [init]
@@ -652,7 +656,7 @@ kubectl logs jenkins-0 -c jenkins --kubeconfig [kubeconfig file]
 ```
 * Import the kubeconfig into the default kubeconfig file. Ensure to accept the prompt to overide.
 ```
-  sudo kubectl konfig import --save  [kubeconfig file]
+  sudo kubectl konfig import --save kubeconfig
 ```
 * Show all the contexts – Meaning all the clusters configured in your kubeconfig. If you have more than 1 Kubernetes clusters configured, you will see them all in the output.
 ```
