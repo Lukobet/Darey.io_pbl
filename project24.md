@@ -387,6 +387,8 @@ Create kubeconfig file using awscli.
 aws eks update-kubeconfig --name tooling-app-eks --region us-east-2 --kubeconfig kubeconfig
 ```
 ![Screenshot from 2023-11-08 23-00-22](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/a9743ca3-2bb9-40a2-a1f4-c95389cef012)
+
+
 # DEPLOY APPLICATIONS WITH HELM
 In Project 22, you experienced the use of manifest files to define and deploy resources like pods, deployments, and services into Kubernetes cluster. Here, you will do the same thing except that it will not be passed through kubectl. In the real world, Helm is the most popular tool used to deploy resources into kubernetes. That is because it has a rich set of features that allows deployments to be packaged as a unit. Rather than have multiple YAML files managed individually – which can quickly become messy.
 
@@ -550,6 +552,8 @@ The chart i saw is
 ```
 helm install my-jenkins jenkinsci/jenkins --version 4.7.2
 ```
+helm install my-jenkins jenkinsci/jenkins --kubeconfig kubeconfig
+
 ![Screenshot from 2023-10-16 22-39-49](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/61d3c5ac-27e2-4cbd-87b5-871bd77fcc24)
 Got this error repeatedly, so i tried bitnami/jenkins
 it worked because i was on minikube
