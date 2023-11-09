@@ -177,17 +177,8 @@ Using the Helm approach, according to the official guide;
 ```
 helm upgrade --install ingress-nginx ingress-nginx \
 --repo https://kubernetes.github.io/ingress-nginx \
---namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
+--namespace ingress-nginx --create-namespace 
 ```
-AWSCLUSTER
-
-![Screenshot from 2023-11-09 01-04-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/267f1afb-2507-4aa2-bb7c-1489284c5c40)
-got an error, so i used
-```
-helm upgrade --install my-ingress-nginx ingress-nginx/ingress-nginx --version 4.8.3 --namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
-```
-still the epo cant be reached
-![Screenshot from 2023-11-09 01-12-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b075c966-3012-4446-af22-ed9eec47ad09)
 
 **Notice**:
 
@@ -197,21 +188,36 @@ if the ingress controller is not installed, it will install it,
 
 if the ingress controller is already installed, it will upgrade it.
 
-Self Challenge Task – Delete the installation after running above command. Then try to re-install it using a slightly different method you are already familiar with. Ensure NOT to use the flag --repo
+**Self Challenge Task** – Delete the installation after running above command. Then try to re-install it using a slightly different method you are already familiar with. Ensure NOT to use the flag --repo
 
 Hint – Run the helm repo add command before installation
 ![Screenshot from 2023-10-26 21-50-39](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1a4061e8-309b-4a9b-a413-363dd21bf753)
 ![Screenshot from 2023-10-26 21-57-07](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/fc7f057a-d30e-40c5-aaec-526d29e32057)
 
+**AWSCLUSTER From project24**
+
+![Screenshot from 2023-11-09 01-04-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/267f1afb-2507-4aa2-bb7c-1489284c5c40)
+got an error, so i used
+```
+helm upgrade --install my-ingress-nginx ingress-nginx/ingress-nginx --version 4.8.3 --namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
+```
+still the repo cant be reached  due to network
+![Screenshot from 2023-11-09 01-12-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b075c966-3012-4446-af22-ed9eec47ad09)
+
 2. A few pods should start in the ingress-nginx namespace:
 ```
-kubectl get pods --namespace=ingress-nginx --kubeconfig kubeconfig
+kubectl get pods --namespace=ingress-nginx 
 ```
 ![Screenshot from 2023-10-26 22-01-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/022bc338-2c0c-4eb2-8584-612442e88038)
 
+
+# so i tried using kOps to create a kubernetes cluster and tried doing away with the (--kubeconfig kubeconfig)
+
+
+
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 ```
-kubectl wait --namespace ingress-nginx --kubeconfig kubeconfig\
+kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
   --selector=app.kubernetes.io/component=controller \
   --timeout=120s
