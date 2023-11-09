@@ -212,6 +212,7 @@ kubectl get pods --namespace=ingress-nginx
 
 
 # so i tried using kOps to create a kubernetes cluster and tried doing away with the (--kubeconfig kubeconfig)
+![Screenshot from 2023-11-09 22-40-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/87f3e284-4ae6-43c4-aad4-50755606be85)
 
 
 
