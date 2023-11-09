@@ -97,6 +97,8 @@ i used eks and no error
 **AWSCLUSTER**
 ![Screenshot from 2023-11-09 00-58-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/1dc5df4c-cb01-4386-a45a-8e0926c52cb2)
 
+couldnt access it on minikube and aws cluster
+![Screenshot from 2023-11-09 01-01-10](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7c52bbd1-b476-420d-86c8-ab65d2a29876)
 
 ### Is the Load Balancer Service type the Ideal configuration option to use in the Real World?
 Setting the service type to Load Balancer is the easiest way to get started with exposing applications running in kubernetes externally. But provisioning load balancers for each application can become very expensive over time, and more difficult to manage. Especially when tens or even hundreds of applications are deployed.
@@ -175,10 +177,19 @@ Using the Helm approach, according to the official guide;
 ```
 helm upgrade --install ingress-nginx ingress-nginx \
 --repo https://kubernetes.github.io/ingress-nginx \
---namespace ingress-nginx --create-namespace
+--namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
 ```
+AWSCLUSTER
 
-Notice:
+![Screenshot from 2023-11-09 01-04-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/267f1afb-2507-4aa2-bb7c-1489284c5c40)
+got an error, so i used
+```
+helm upgrade --install my-ingress-nginx ingress-nginx/ingress-nginx --version 4.8.3 --namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
+```
+still the epo cant be reached
+![Screenshot from 2023-11-09 01-12-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b075c966-3012-4446-af22-ed9eec47ad09)
+
+**Notice**:
 
 This command is idempotent:
 
@@ -194,13 +205,13 @@ Hint – Run the helm repo add command before installation
 
 2. A few pods should start in the ingress-nginx namespace:
 ```
-kubectl get pods --namespace=ingress-nginx
+kubectl get pods --namespace=ingress-nginx --kubeconfig kubeconfig
 ```
 ![Screenshot from 2023-10-26 22-01-06](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/022bc338-2c0c-4eb2-8584-612442e88038)
 
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 ```
-kubectl wait --namespace ingress-nginx \
+kubectl wait --namespace ingress-nginx --kubeconfig kubeconfig\
   --for=condition=ready pod \
   --selector=app.kubernetes.io/component=controller \
   --timeout=120s
