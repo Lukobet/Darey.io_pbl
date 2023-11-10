@@ -213,8 +213,9 @@ kubectl get pods --namespace=ingress-nginx
 
 # so i tried using kOps to create a kubernetes cluster and tried doing away with the (--kubeconfig kubeconfig)
 ![Screenshot from 2023-11-09 22-40-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/87f3e284-4ae6-43c4-aad4-50755606be85)
-
-
+* how to create aws s3 bucket through the CLI
+  aws s3api create-bucket --bucket my-kOps-bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
+ ![Screenshot from 2023-11-10 19-36-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c4005091-f1d6-4e5d-9653-2c814c7468c8)
 
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 ```
