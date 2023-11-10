@@ -216,7 +216,17 @@ kubectl get pods --namespace=ingress-nginx
 * how to create aws s3 bucket through the CLI
   aws s3api create-bucket --bucket my-kOps-bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
  ![Screenshot from 2023-11-10 19-36-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c4005091-f1d6-4e5d-9653-2c814c7468c8)
+* how to create kubernetes through kops
+  kOps create cluster --cloud=aws --zones=us-east-2a --node-count=1 --node-size=t2.micro --master-size=t2.micro --name=${kOps_CLUSTER_NAME}
+or
+kops create cluster \
+    --name=${NAME} \
+    --cloud=aws \
+    --zones=us-east-2a \
+    --discovery-store=s3://project24kops-bucket/${NAME}/discovery
+![Screenshot from 2023-11-10 20-52-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7df16b8b-be9e-473c-b7e9-92fc22877048)
 
+kops delete cluster --name ${NAME} --yes
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 ```
 kubectl wait --namespace ingress-nginx \
