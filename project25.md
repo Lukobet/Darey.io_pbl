@@ -225,6 +225,9 @@ kops create cluster \
     --zones=us-east-2a \
     --discovery-store=s3://project24kops-bucket/${NAME}/discovery
 ![Screenshot from 2023-11-10 20-52-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7df16b8b-be9e-473c-b7e9-92fc22877048)
+* Build cluster
+
+   kops update cluster --name ${NAME} --yes --admin
 
 kops delete cluster --name ${NAME} --yes
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
