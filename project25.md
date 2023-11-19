@@ -220,10 +220,10 @@ kubectl get pods --namespace=ingress-nginx
   kOps create cluster --cloud=aws --zones=us-east-2a --node-count=1 --node-size=t2.micro --master-size=t2.micro --name=${kOps_CLUSTER_NAME}
 or
 kops create cluster \
-    --name=${NAME} \
+    --name=${practice} \
     --cloud=aws \
     --zones=us-east-2a \
-    --discovery-store=s3://project24kops-bucket/${NAME}/discovery
+    --discovery-store=s3://prstce11234/${NAME}/discovery
 ![Screenshot from 2023-11-10 20-52-38](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/7df16b8b-be9e-473c-b7e9-92fc22877048)
 * Build cluster
 
