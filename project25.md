@@ -201,7 +201,10 @@ Hint – Run the helm repo add command before installation
 ![Screenshot from 2023-11-09 01-04-29](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/267f1afb-2507-4aa2-bb7c-1489284c5c40)
 got an error, so i used
 ```
-helm upgrade --install my-ingress-nginx ingress-nginx/ingress-nginx --version 4.8.3 --namespace ingress-nginx --create-namespace --kubeconfig kubeconfig
+kubectl create ns ingress-nginx --kubeconfig kubeconfig
+
+
+helm upgrade --install my-ingress-nginx ingress-nginx/ingress-nginx --version 4.8.3 -n ingress-nginx --kubeconfig kubeconfig
 ```
 still the repo cant be reached  due to network
 ![Screenshot from 2023-11-09 01-12-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/b075c966-3012-4446-af22-ed9eec47ad09)
