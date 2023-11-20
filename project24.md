@@ -15,7 +15,8 @@ Note: Use Terraform version v1.0.2 and kubectl version v1.23.6
 
 Open up a new directory on your laptop, and name it **EKS-Terraform**
 Use AWS CLI to create an S3 bucket
-
+* how to create aws s3 bucket through the CLI
+  aws s3api create-bucket --bucket my-kOps-bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
 1. Create a file – backend.tf Task for you, ensure the backend is configured for remote state in S3
 ```
 terraform {
