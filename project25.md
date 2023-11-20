@@ -44,6 +44,8 @@ kubectl create ns tools
 Couldnt run this alone because i counldnt install KREW so i havent stopped working with --kubeconfig kubeconfig
 ```
 kubectl create ns tools --kubeconfig kubeconfig
+
+kubectl get ns --kubeconfig kubeconfig
 ```
 ![Screenshot from 2023-11-09 00-49-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/5eef01b9-6c51-48b8-a794-990ebf237067)
 
