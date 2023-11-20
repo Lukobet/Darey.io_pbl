@@ -214,10 +214,10 @@ kubectl get pods --namespace=ingress-nginx
 # so i tried using kOps to create a kubernetes cluster and tried doing away with the (--kubeconfig kubeconfig)
 ![Screenshot from 2023-11-09 22-40-33](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/87f3e284-4ae6-43c4-aad4-50755606be85)
 * how to create aws s3 bucket through the CLI
-  aws s3api create-bucket --bucket my-kOps-bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
+  aws s3api create-bucket --bucket prject25bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
  ![Screenshot from 2023-11-10 19-36-52](https://github.com/Lukobet/Darey.io_pbl/assets/110517150/c4005091-f1d6-4e5d-9653-2c814c7468c8)
-* how to create kubernetes through kops
-  kOps create cluster --cloud=aws --zones=us-east-2a --node-count=1 --node-size=t2.micro --master-size=t2.micro --name=${kOps_CLUSTER_NAME}
+* how to create kubernetes through kops ( https://kops.sigs.k8s.io/getting_started/aws/ )
+  kops create cluster --cloud=aws --zones=us-east-2a --node-count=1 --node-size=t2.micro --master-size=t2.micro --name=${project 25}
 or
 kops create cluster \
     --name=${practice} \
