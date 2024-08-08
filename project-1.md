@@ -468,6 +468,8 @@ Navigate to EC2 and click “Launch Instance.”
 Choose an Amazon Linux 2 AMI and select the “t2.micro” instance type.
 Follow the prompts, create a new key pair (or use an existing one), and launch your instance.
 
+![Screenshot from 2024-08-08 05-34-16](https://github.com/user-attachments/assets/61364e19-d763-4b34-ab6c-68dcf90df77e)
+
 ### Step 2: Connect to Your EC2 Instance
 
 
@@ -475,6 +477,7 @@ Follow the prompts, create a new key pair (or use an existing one), and launch y
 ssh -i "YourKeyPair.pem" ec2-user@your-ec2-public-ip
 ```
 Description: Use SSH to connect to your Linux server from your terminal.
+![Screenshot from 2024-08-08 05-35-55](https://github.com/user-attachments/assets/512bca6e-f9a9-48b3-9531-f151449d3eb1)
 
 ## 2. Installing Apache (Web Server)
 
@@ -482,8 +485,8 @@ Description: Use SSH to connect to your Linux server from your terminal.
 
 Command:
 ```
-sudo yum update -y
-sudo yum install httpd -y
+sudo apt update
+sudo apt install apache2 -y
 
 ```
 
@@ -493,11 +496,13 @@ Description: Install Apache, which will serve your website.
 
 Command:
 ```
-sudo systemctl start httpd
-sudo systemctl enable httpd
+sudo systemctl start apache2
+sudo systemctl enable apache2
 
 ```
 Description: Start Apache and make sure it starts automatically when the server reboots.
+
+![Screenshot from 2024-08-08 05-38-14](https://github.com/user-attachments/assets/1fa0556e-f658-436d-a085-be4afa2cdd07)
 
 ## 3. Installing MySQL (Database Server)
 
@@ -505,7 +510,7 @@ Description: Start Apache and make sure it starts automatically when the server 
 
 Command:
 ```
-sudo yum install mysql-server -y
+sudo apt install mysql-server -y
 
 ```
 Description: Install MySQL to manage your website's data.
@@ -514,39 +519,52 @@ Description: Install MySQL to manage your website's data.
 
 Command:
 ```
-sudo systemctl start mysqld
 sudo mysql_secure_installation
 
 ```
 Description: Start MySQL and follow the prompts to set a root password and remove insecure defaults.
+![Screenshot from 2024-08-08 05-41-12](https://github.com/user-attachments/assets/a1b3b945-f77b-43db-8eaf-5c1f2e9efdf0)
 
 ### Step 7: Create a Database for WordPress
 
 MySQL Command:
 ```
+sudo mysql -u root -p
 CREATE DATABASE wordpress_db;
-CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'Password123#@!';
 GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wp_user'@'localhost';
 FLUSH PRIVILEGES;
+EXIT;
 
 ```
 Description: Create a database and a user for WordPress.
+
+
+i encountered problem at the creating of user
+
+![Screenshot from 2024-08-08 05-47-25](https://github.com/user-attachments/assets/4eec6b61-3fea-4d03-bce2-1a75e641159c)
+![Screenshot from 2024-08-08 05-47-29](https://github.com/user-attachments/assets/7bb5a446-5d9a-4933-811a-36add9304100)
+![Screenshot from 2024-08-08 05-47-33](https://github.com/user-attachments/assets/39963610-1157-4f3b-a500-3a92c7030dae)
+result 
+![Screenshot from 2024-08-08 05-49-22](https://github.com/user-attachments/assets/408c63cb-ed22-4046-b06d-f34c49fbe0fc)
 
 ## 4. Installing PHP (Programming Language)
 
 ### Step 8: Install PHP
 Command:
 ```
-sudo yum install php php-mysqlnd -y
+sudo apt install php libapache2-mod-php php-mysql -y
+
 ```
 Description: Install PHP, the programming language WordPress uses.
 
 ### Step 9: Restart Apache to Apply Changes
 Command:
 ```
-sudo systemctl restart httpd
+sudo systemctl restart apache2
 ```
 Description: Restart Apache so it recognizes PHP.
+![Screenshot from 2024-08-08 05-51-09](https://github.com/user-attachments/assets/01123f26-ffa8-4447-8509-d300ac61508d)
 
 ## 5. Installing WordPress
 
@@ -554,18 +572,20 @@ Description: Restart Apache so it recognizes PHP.
 
 Command:
 ```
+cd /tmp
 wget https://wordpress.org/latest.tar.gz
 tar -xzf latest.tar.gz
 sudo mv wordpress/* /var/www/html/
 
 ```
 Description: Download and move WordPress files to your web server.
+![Screenshot from 2024-08-08 05-52-04](https://github.com/user-attachments/assets/5820c50a-9882-49bb-ba73-9e88e70e2f03)
 
 ### Step 11: Configure WordPress
 Command:
 ```
 sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-sudo vim /var/www/html/wp-config.php
+sudo nano /var/www/html/wp-config.php
 
 ```
 Description: Edit the WordPress configuration file to connect to your MySQL database. Replace these lines with your database info:
@@ -573,14 +593,16 @@ Command:
 ```
 define('DB_NAME', 'wordpress_db');
 define('DB_USER', 'wp_user');
-define('DB_PASSWORD', 'password');
+define('DB_PASSWORD', 'Password123#@!');
 define('DB_HOST', 'localhost');
 
 ```
+![Screenshot from 2024-08-08 05-55-27](https://github.com/user-attachments/assets/f517cecd-04b5-4b77-8ebd-389f9d31fe86)
+
 ### Step 12: Set Permissions
 Command:
 ```
-sudo chown -R apache:apache /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/
 sudo chmod -R 755 /var/www/html/
 
 ```
@@ -600,17 +622,31 @@ Follow the on-screen instructions to complete the WordPress setup.
 
 Command:
 ```
-sudo yum install mod_ssl -y
-sudo openssl req -new -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/localhost.key -out /etc/pki/tls/certs/localhost.csr
-sudo openssl x509 -req -days 365 -in /etc/pki/tls/certs/localhost.csr -signkey /etc/pki/tls/private/localhost.key -out /etc/pki/tls/certs/localhost.crt
+sudo apt install openssl
+sudo openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/apache-selfsigned.key -x509 -days 365 -out /etc/ssl/certs/apache-selfsigned.crt
 
 ```
 Description: Install and configure a self-signed SSL certificate to secure your website.
 
-### Step 15: Restart Apache for SSL
+### Step 15: Step 15: Configure Apache for SSL
+
 Command:
 ```
-sudo systemctl restart httpd
+sudo nano /etc/apache2/sites-available/default-ssl.conf
 
 ```
-Description: Restart Apache to apply the SSL settings.
+![Screenshot from 2024-08-08 06-08-59](https://github.com/user-attachments/assets/7d230b37-51b4-4903-8d8b-e7b2de376e0d)
+
+Description: Edit the SSL configuration file to use your SSL certificate. Ensure the SSLCertificateFile and SSLCertificateKeyFile directives point to your certificate and key paths.
+
+### Step 16: Enable SSL and Restart Apache
+
+Command:
+```
+sudo a2enmod ssl
+sudo a2ensite default-ssl.conf
+sudo systemctl restart apache2
+```
+Description: Enable SSL in Apache and restart it to apply the settings.
+![Screenshot from 2024-08-08 06-10-53](https://github.com/user-attachments/assets/1617ba59-013e-4514-8665-ea97704f0c45)
+![Screenshot from 2024-08-08 06-11-47](https://github.com/user-attachments/assets/597e2e9b-ee67-4d84-85e2-ca73f22ac120)
