@@ -612,6 +612,9 @@ sudo ln -s /etc/nginx/sites-available/blog /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
+![Screenshot from 2024-08-11 05-46-42](https://github.com/user-attachments/assets/2257bdbe-45b2-4116-96ba-76eae79427ce)
+
+
 ### Step 3: Set Up the MySQL Database:
 
 Create a MySQL database and user for the blog application.
@@ -624,12 +627,14 @@ Create the database and user:
 MySQL Commands:
 ```
 CREATE DATABASE blog_db;
-CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'password1234@!';
+CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'Password1234@!';
 GRANT ALL PRIVILEGES ON blog_db.* TO 'blog_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 
 ```
+![Screenshot from 2024-08-11 05-48-43](https://github.com/user-attachments/assets/f59e6689-af0d-4ea7-b207-156fe920648e)
+
 ### Step 4:Develop the Blog Application
 Create a simple PHP application that interacts with the MySQL database.
 
@@ -699,6 +704,10 @@ CREATE TABLE posts (
 EXIT;
 
 ```
+![Screenshot from 2024-08-11 05-50-30](https://github.com/user-attachments/assets/bfe28f89-a983-4211-b217-57da0044963f)
+
+
+
 ### : Set the Correct Permissions
 Ensure that Nginx can access the blog files.
 ```
